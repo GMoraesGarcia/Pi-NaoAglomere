@@ -7,7 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>PI3_Static_NaoAglomere2</name>
+    <name>PI3_Static_NaoAglomere</name>
     
     <organization>
         <name>Static</name>
