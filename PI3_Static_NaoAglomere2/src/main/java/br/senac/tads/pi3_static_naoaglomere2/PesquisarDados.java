@@ -9,6 +9,16 @@ package br.senac.tads.pi3_static_naoaglomere2;
  *
  * @author Gabriel
  */
-public class Pesquisar_Estabelecimentos {
+public class PesquisarDados {
+    private String pesquisa;
+
+    public String getPesquisa() {
+        return pesquisa;
+    }
+
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+    
     
 }
