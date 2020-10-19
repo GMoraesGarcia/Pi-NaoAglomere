@@ -1,4 +1,4 @@
-package br.senac.tads.pi3_static_naoaglomere2;
+package Pesquisa;
 
 import java.io.IOException;
 import java.io.PrintWriter;

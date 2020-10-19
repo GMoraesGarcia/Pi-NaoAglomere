@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.senac.tads.pi3_static_naoaglomere2;
+package Cad_Usuario;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,19 +17,23 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Gabriel
  */
-@WebServlet(name = "PesquisarAbrirServlet", urlPatterns = {"/pesquisar-abrir"})
-public class PesquisarAbrirServlet extends HttpServlet {
+@WebServlet(name = "Cad_Usuario_Serv", urlPatterns = {"/cad_usuario"})
+public class Cad_Usuario_Serv extends HttpServlet {
 
-  
+ 
+    
 
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar.jsp");
-        dispatcher.forward(request, response);
     }
+
+    
+  
+
+  
 
 
 }
