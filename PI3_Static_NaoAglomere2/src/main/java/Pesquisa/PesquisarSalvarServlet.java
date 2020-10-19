@@ -31,7 +31,7 @@ public class PesquisarSalvarServlet extends HttpServlet {
         dados.setPesquisa(pesquisa);
         
         request.setAttribute("dados", dados);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/PesquisarResultado.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/PesquisarResultado.jsp");
         dispatcher.forward(request, response);
     }
 
