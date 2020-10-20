@@ -22,8 +22,10 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Login</a></li>
-                    <li><a href="#">Cadastrar Usuario</a></li>
-                    <li><a href="#">Cadastrar Empresa</a></li>
+                    <li><a href="/PI3_Static_NaoAglomere2/cad_usuario">Cadastrar Usuario</a></li>
+                    <li><a href="/PI3_Static_NaoAglomere2/cad-empresa-abrir">Cadastrar Empresa</a></li>
+                    
+                    
                 </ul>
             </nav>
 
