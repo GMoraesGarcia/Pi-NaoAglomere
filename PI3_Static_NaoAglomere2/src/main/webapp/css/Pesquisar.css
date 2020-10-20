@@ -10,7 +10,7 @@ header {
     position: relative;
 }
 footer {    
-    clear: both;/*jogar imagem rodape para baixo*/
+    clear: both; /*jogar imagem rodape para baixo*/
     padding: 20px 0;
     text-align: center;
 }
@@ -20,7 +20,7 @@ footer .container{
 }
 
 .menu-opcoes ul li {
-    display: inline; <!--reoordena cadas topico da lista horizontalmente-->.
+    display: inline; /*reoordena cadas topico da lista horizontalmente*/
     margin-left: 50px;
 }
 
@@ -39,7 +39,7 @@ footer .container{
 }
 
 .sugestões ul li {
-    display: inline; <!--reoordena cadas topico da lista horizontalmente-->.
+    display: inline; /*reoordena cadas topico da lista horizontalmente*/
     margin-left: 20px;
 }
 
@@ -55,7 +55,7 @@ footer .container{
 }
 
 .pesquisar{    
-    front-weight: bold;  
+    font-weight: bold;  
     text-align: center;
     
 }
