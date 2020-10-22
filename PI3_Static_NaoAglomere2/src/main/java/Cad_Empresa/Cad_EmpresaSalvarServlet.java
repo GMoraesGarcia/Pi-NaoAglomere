@@ -32,7 +32,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         sessao.removeAttribute("dados");
 
         request.setAttribute("dados", empresa_dados);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/resultado.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/CadEmpresaSaida.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -54,12 +54,6 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         String qtd_pessoasStr = request.getParameter("qtd_pessoas");
         String regras = request.getParameter("regras");
 
-        // Validação do nome
-        boolean nomeValido = (nome_empresa != null && nome_empresa.trim().length() > 0);
-
-        
-        
-
         Cad_EmpresaDados empresa_dados = new Cad_EmpresaDados();
 
         empresa_dados.setNome_Empresa(nome_empresa);
@@ -76,6 +70,9 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
         request.setAttribute("dados", empresa_dados);
 
+        HttpSession sessao = request.getSession();
+        sessao.setAttribute("dados", empresa_dados);
+        response.sendRedirect("cad-empresa-salvar");
     }
 
 }

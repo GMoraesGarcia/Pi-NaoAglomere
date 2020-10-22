@@ -17,7 +17,7 @@
     <body>
         <h1>Dados da Empresa</h1>
         <div>
-            <form class="col-md-8 col-xl-9" method="post">
+            <form class="col-md-8 col-xl-9" method="post" action="cad-empresa-salvar">
 
                 <div class="row">
 
@@ -40,7 +40,7 @@
                             <label id="Email">E-mail Corporativo: </label> <label id="asterisco">*</label>
                             <br>
                             <input type="email" class="form-control" name="email" placeholder="email@exemplo.com" 
-                                   pattern="^[a-z]@?[a-z]"  required>
+                                   pattern="^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$"  required>
                         </div>
                         <p></p>
                         <div>
@@ -104,8 +104,8 @@
                         <div>
                             <label id="regras">Regras: </label> <label id="asterisco">*</label>
                             <br>
-                            <textarea name="regras" class="form-control" rows="5" cols="64" placeholder="Exemplo: Proibida a 
-                                      entrada sem máscara" required></textarea>
+                            <textarea name="regras" class="form-control" rows="5" cols="64"
+                                      placeholder="Exemplo: Proibida a entrada sem máscara" required></textarea>
                         </div>
                         <p></p>
                         <div>
