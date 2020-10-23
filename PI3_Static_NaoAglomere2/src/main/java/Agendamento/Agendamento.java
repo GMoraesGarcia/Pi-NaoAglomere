@@ -5,10 +5,14 @@
  */
 package Agendamento;
 
+import Cad_Usuario.Cad_Usuario;
+
 /**
  *
  * @author Gabriel
  */
 public class Agendamento {
+    private Cad_Usuario nome;
+    private Cad_Usuario email;
     
 }

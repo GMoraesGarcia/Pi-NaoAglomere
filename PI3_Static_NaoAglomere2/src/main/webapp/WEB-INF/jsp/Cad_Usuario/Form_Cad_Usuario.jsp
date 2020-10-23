@@ -22,30 +22,43 @@
         </header>        
         <h1>Cadastro de Usuário</h1>
         <div class="containerw"> 
-            <form method="get" action="salvar-usuario" class="form-group">
+            <form method="post" action="salvar-usuario" class="form-group" novalidate>
                 <div>
                     <label>Nome: </label>
-                    <input type="text" class="form-control" name="nome">
+                    <input type="text" class="form-control" name="nome" value="${nome}">
+                    <c:if test="${nomeErro != null}">
+                        <span><c:out value="${nomeErro}"/></span> 
+                    </c:if>
 
                 </div>
                 <div>
                     <label>CPF: </label>
-                    <input type="text" class="form-control" name="cpf">
+                    <input type="text" class="form-control" name="cpf" value="${cpf}">
+                    <c:if test="${cpfErro != null}">
+                        <span><c:out value="${cpfErro}"/></span> 
+                    </c:if>
                 </div>
                 <div>
                     <label>E-mail: </label>
-                    <input type="email" class="form-control"  name="email">
+                    <input type="email" class="form-control"  name="email" value="${email}">
+                    <c:if test="${emailErro != null}">
+                        <span><c:out value="${emailErro}"/></span> 
+                    </c:if>
 
                 </div>
                 <div>
                     <label>Data de Nascimento:</label>
-                    <input type="date" class="form-control" name="dataNascimento">
-
+                    <input type="date" class="form-control" name="dataNascimento" value="${dataNascimento}">
+                     <c:if test="${dtNascimentoErro != null}">
+                        <span><c:out value="${dtNascimentoErro}"/></span> 
+                    </c:if>
                 </div>
                 <div>
                     <label>Telefone:</label>
-                    <input type="text" class="form-control" placeholder="( )_____-____" name="telefone">
-
+                    <input type="text" class="form-control" placeholder="( )_____-____" name="telefone" value="${telefone}">
+                    <c:if test="${telefoneErro != null}">
+                        <span><c:out value="${telefoneErro}"/></span> 
+                    </c:if>
                 </div>
                 <div>
                     <label>Senha:</label>

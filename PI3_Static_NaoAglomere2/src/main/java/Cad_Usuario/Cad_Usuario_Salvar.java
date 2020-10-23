@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,7 +30,13 @@ public class Cad_Usuario_Salvar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+       HttpSession sessao = request.getSession();
+       Cad_Usuario novoUsuario = (Cad_Usuario)sessao.getAttribute("novouser");
+       sessao.removeAttribute("novouser");
+       
+       request.setAttribute("novouser", novoUsuario);
+       RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Saida.jsp");
+       dispacher.forward(request, response);
        
     }
 
@@ -47,6 +54,64 @@ public class Cad_Usuario_Salvar extends HttpServlet {
             String senhaStr = request.getParameter("senha");
             String confSenhaStr = request.getParameter("confirmarSenha");
         
+           
+           
+            
+            
+            //Validação Nome
+            boolean nomeValido = nomeStr != null && nomeStr.trim().length()>0;
+            
+            //Validação e-mail
+            boolean emailValido = (emailStr != null && emailStr.trim().length()>0);
+            
+            //Validação de data de nascimento
+              LocalDate dataNascimento = null;
+               if(dtNascimentoStr != null && dtNascimentoStr.trim().length() >0){
+                     dataNascimento = LocalDate.parse(dtNascimentoStr);
+                }
+             boolean dataNascimentoValida = (dataNascimento != null && dataNascimento.isBefore(LocalDate.now()));
+            
+             
+             //Validação CPF
+              char arrayCpf[] = cpfStr.toCharArray();
+              boolean validaCpf = validaCPF(arrayCpf);
+         
+              
+              //Validação do Telefone
+              boolean validaTelefone = (telefoneStr != null && telefoneStr.trim().length() == 11);
+              
+             
+              boolean camposValidos = (nomeValido && emailValido && validaCpf && validaTelefone && dataNascimentoValida);
+              
+              if(!camposValidos){
+                  //mensagens de erro
+                  if(!nomeValido){
+                      request.setAttribute("nomeErro", "Nome deve ser preenchido ou Válido");
+                  }
+                  if(!emailValido){
+                      request.setAttribute("emailErro", "E-mail deve ser preenchido ou Válido");
+                  }
+                  if(!validaCpf){
+                      request.setAttribute("cpfErro", " CPF deve ser preenchido ou Válido");
+                  }
+                  if(!validaTelefone){
+                      request.setAttribute("telefoneErro", " Telefone deve ser preenchido ou Válido");
+                  }
+                  if(!dataNascimentoValida){
+                      request.setAttribute("dtNascimentoErro", " Data de Nascimento deve ser preenchido ou Válido");
+                  }
+                  
+                  request.setAttribute("nome", nomeStr);
+                  request.setAttribute("cpf", cpfStr);
+                  request.setAttribute("email", emailStr);
+                  request.setAttribute("dataNascimento", dtNascimentoStr);
+                  request.setAttribute("telefone", telefoneStr);
+                  
+                   RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Cad_Usuario.jsp");
+                    dispatcher.forward(request, response);
+                    return;
+              }
+              
         Cad_Usuario novoUsuario = new Cad_Usuario();
         
         novoUsuario.setNome(nomeStr);
@@ -57,14 +122,46 @@ public class Cad_Usuario_Salvar extends HttpServlet {
         novoUsuario.setSenha(senhaStr);
         novoUsuario.setConfirmarSenha(confSenhaStr);
         
-        request.setAttribute("novo", novoUsuario);
+        /*request.setAttribute("novo", novoUsuario);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Saida.jsp");
-       dispatcher.forward(request, response);
+       dispatcher.forward(request, response);*/
         
+        HttpSession sessao = request.getSession();
+        sessao.setAttribute("novoUsuario", novoUsuario);
         
+        response.sendRedirect("salvar-usuario");
      
       
+    }
+    public static boolean validaCPF(char ArrayCPF [] ){
+        int num =10;
+        int mult =0;
+        for(int i =0;i<8;i++){
+          String ar = String.valueOf(ArrayCPF[i]);
+           mult += Integer.parseInt(ar) * num;
+           num--;
+           
+        }
+        float result = mult%11;
+        float res = 11-result;
+        if(result < 2 || res == ArrayCPF[9]){
+            int num2 =11;
+            int mult2 =0;
+            for(int i =0;i<9;i++){
+                 String ar = String.valueOf(ArrayCPF[i]);
+                 mult2 += Integer.parseInt(ar) * num2;
+                 num2--;
+            }
+            float result2 = mult2%11;
+            float res2 = 11-result2;
+            
+            if(result2 <2 || res2 == ArrayCPF[10])
+                return true;
+        }
+
+            return false;
+
     }
 
   
