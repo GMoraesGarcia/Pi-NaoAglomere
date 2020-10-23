@@ -21,15 +21,17 @@
         <header class="header">
             <c:import url="../header.jsp"/> 
         </header>
-            <nav class="sugestões">
-                <ul>
-                    <li><a href="#">Mercados</a></li>
-                    <li><a href="#">Salões de Beleza e Estudios</a></li>
-                    <li><a href="#">Bares e restaurantes</a></li>
-                    <li><a href="#">Lojas</a></li>
-                    <li><a href="#">Bancos</a></li>                    
-                </ul>
-            </nav>
+        <nav class="sugestões">
+            <form method="post" action="pesquisar-Salvar">
+                <div>            
+                    <input  type="submit" class="btn btn-info" name="pesquisa" value="mercados">    
+                    <input  type="submit" class="btn btn-info" name="pesquisa" value="Salões de Beleza e Estudios"> 
+                    <input  type="submit" class="btn btn-info" name="pesquisa" value="Bares e restaurantes"> 
+                    <input  type="submit" class="btn btn-info" name="pesquisa" value="Lojas">   
+                    <input  type="submit" class="btn btn-info" name="pesquisa" value="Bancos">                     
+                </div>
+            </form>
+        </nav>
         <div>            
             <section class="pesquisar">                
                 <p>Nome do estabelecimento:</p>
@@ -43,12 +45,12 @@
         </div>
 
         <section class="telaPesquisa">
-            
+
         </section>
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>
-        
+
 
     </body>
 </html>
