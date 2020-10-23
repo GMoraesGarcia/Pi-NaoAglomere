@@ -2,41 +2,6 @@ body{
     color: #333333;
     font-family: "Lucida Sans Unicode","Lucida Grande",sans-serif;
 }
-.container{
-    margin: 0 auto;
-    width: 940px;
-}
-header {
-    position: relative;
-}
-footer {    
-    clear: both; /*jogar imagem rodape para baixo*/
-    padding: 20px 0;
-    text-align: center;
-}
-
-footer .container{
-    position: relative;
-}
-
-.menu-opcoes ul li {
-    display: inline; /*reoordena cadas topico da lista horizontalmente*/
-    margin-left: 50px;
-}
-
-.menu-opcoes ul {
-    font-size: 15px
-}
-
-.menu-opcoes a {
-    color: #003366;
-}
-.menu-opcoes{    
-    text-align: right;   
-    background-color: aliceblue;
-    padding: 5px;
-    
-}
 
 .sugestões ul li {
     display: inline; /*reoordena cadas topico da lista horizontalmente*/
@@ -51,7 +16,8 @@ footer .container{
     color: #003366;
 }
 .sugestões{
-    text-align: left;    
+    text-align: center;    
+    margin-top: 10px;
 }
 
 .pesquisar{    

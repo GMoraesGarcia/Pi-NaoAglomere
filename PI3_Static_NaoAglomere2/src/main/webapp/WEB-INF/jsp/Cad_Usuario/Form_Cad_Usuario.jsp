@@ -12,22 +12,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/Cad_Usuario.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
         <title>JSP Page</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-sm bg-light justify-content-end espaco">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link 2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link 3</a>
-                </li>
-            </ul>
-        </nav>
+        <header class="header">
+            <c:import url="../header.jsp"/>
+        </header>        
         <h1>Cadastro de Usuário</h1>
         <div class="containerw"> 
             <form method="get" action="salvar-usuario" class="form-group">
@@ -72,5 +64,9 @@
                 </div>
             </form>
         </div>
+        
+        <footer class="footer">
+            <c:import url="../footer.jsp"/>
+        </footer>
     </body>
 </html>

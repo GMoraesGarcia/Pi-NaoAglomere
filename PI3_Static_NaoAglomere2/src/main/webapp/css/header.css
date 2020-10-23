@@ -1,0 +1,26 @@
+header {
+    border: solid 1px black;
+    margin: 0 auto;
+    width: 940px;
+    position: relative;
+    text-align: center;
+}
+.menu-opcoes ul li {
+    display: inline; /*reoordena cadas topico da lista horizontalmente*/
+    margin-left: 50px;
+}
+
+.menu-opcoes ul {
+    font-size: 15px
+}
+
+.menu-opcoes a {
+    color: #003366;
+}
+.menu-opcoes{    
+    text-align: right;   
+    background-color: aliceblue;
+    padding: 5px;
+    
+}
+

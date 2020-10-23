@@ -14,21 +14,13 @@
         <title>Pesquisar Estabelecimentos</title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/Pesquisar.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
     </head>
     <body>
-        <header class="container">
-
-            <nav class="menu-opcoes">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="/PI3_Static_NaoAglomere2/cad_usuario">Cadastrar Usuario</a></li>
-                    <li><a href="/PI3_Static_NaoAglomere2/cad-empresa-abrir">Cadastrar Empresa</a></li>
-                    
-                    
-                </ul>
-            </nav>
-
+        <header class="header">
+            <c:import url="../header.jsp"/> 
+        </header>
             <nav class="sugestões">
                 <ul>
                     <li><a href="#">Mercados</a></li>
@@ -38,7 +30,6 @@
                     <li><a href="#">Bancos</a></li>                    
                 </ul>
             </nav>
-        </header>
         <div>            
             <section class="pesquisar">                
                 <p>Nome do estabelecimento:</p>
@@ -54,13 +45,10 @@
         <section class="telaPesquisa">
             
         </section>
-
-        <footer>
-            <div class="container">
-
-                <p>@Todos os direitos reservados</p>
-            </div>
+        <footer class="footer">
+            <c:import url="../footer.jsp"/>
         </footer>
+        
 
     </body>
 </html>

@@ -11,10 +11,15 @@
     <head>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/cad-empresa.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
         <meta charset=UTF-8">
         <title>Cadastro de Empresa</title>
     </head>
     <body>
+        <header class="header">
+            <c:import url="../header.jsp"/>
+        </header>
         <h1>Dados da Empresa</h1>
         <div>
             <form class="col-md-8 col-xl-9" method="post" action="cad-empresa-salvar">
@@ -117,6 +122,9 @@
                 </div>
             </form>
         </div>
+        <footer class="footer">
+            <c:import url="../footer.jsp"/>
+        </footer>
 
     </body>
 </html>
