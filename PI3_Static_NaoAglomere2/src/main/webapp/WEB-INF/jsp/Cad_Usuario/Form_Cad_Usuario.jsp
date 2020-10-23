@@ -27,7 +27,7 @@
                     <label>Nome: </label>
                     <input type="text" class="form-control" name="nome" value="${nome}">
                     <c:if test="${nomeErro != null}">
-                        <span><c:out value="${nomeErro}"/></span> 
+                        <span class="erro"><c:out value="${nomeErro}"/></span> 
                     </c:if>
 
                 </div>
