@@ -143,8 +143,9 @@ public class Cad_Usuario_Salvar extends HttpServlet {
            int num =10, r=0, i=0;
        
        while(num >=2){
-        String m =  String.valueOf(ArrayCPF[i]);
-        int m2 = Integer.parseInt(m);
+           //Validação do primeiro digito
+            String m =  String.valueOf(ArrayCPF[i]);
+            int m2 = Integer.parseInt(m);
              r += m2*num;
            num--; i++;
        }
@@ -162,7 +163,7 @@ public class Cad_Usuario_Salvar extends HttpServlet {
                i++;num--;
            }
            int mult2 = (r*10)%11;
-            if(mult ==10){
+            if(mult2 ==10){
                 mult2 =0;
             }
             if(mult2 == Integer.parseInt(digito02))

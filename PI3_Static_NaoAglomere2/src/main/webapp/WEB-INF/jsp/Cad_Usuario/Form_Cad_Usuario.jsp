@@ -35,14 +35,14 @@
                     <label>CPF: </label>
                     <input type="text" class="form-control" name="cpf" value="${cpf}">
                     <c:if test="${cpfErro != null}">
-                        <span><c:out value="${cpfErro}"/></span> 
+                        <span class="erro"><c:out value="${cpfErro}"/></span> 
                     </c:if>
                 </div>
                 <div>
                     <label>E-mail: </label>
                     <input type="email" class="form-control"  name="email" value="${email}">
                     <c:if test="${emailErro != null}">
-                        <span><c:out value="${emailErro}"/></span> 
+                        <span class="erro"><c:out value="${emailErro}"/></span> 
                     </c:if>
 
                 </div>
@@ -50,14 +50,14 @@
                     <label>Data de Nascimento:</label>
                     <input type="date" class="form-control" name="dataNascimento" value="${dataNascimento}">
                      <c:if test="${dtNascimentoErro != null}">
-                        <span><c:out value="${dtNascimentoErro}"/></span> 
+                        <span class="erro"><c:out value="${dtNascimentoErro}"/></span> 
                     </c:if>
                 </div>
                 <div>
                     <label>Telefone:</label>
                     <input type="text" class="form-control" placeholder="( )_____-____" name="telefone" value="${telefone}">
                     <c:if test="${telefoneErro != null}">
-                        <span><c:out value="${telefoneErro}"/></span> 
+                        <span class="erro"><c:out value="${telefoneErro}"/></span> 
                     </c:if>
                 </div>
                 <div>
