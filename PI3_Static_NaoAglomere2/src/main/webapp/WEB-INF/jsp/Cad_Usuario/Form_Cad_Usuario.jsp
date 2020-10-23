@@ -33,7 +33,7 @@
                 </div>
                 <div>
                     <label>CPF: </label>
-                    <input type="text" class="form-control" name="cpf" value="${cpf}">
+                    <input type="text" class="form-control" name="cpf" value="${cpf}" placeholder="Digite apenas Números">
                     <c:if test="${cpfErro != null}">
                         <span class="erro"><c:out value="${cpfErro}"/></span> 
                     </c:if>
@@ -71,8 +71,8 @@
 
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-success">Efetuar Cadastro</button>
-                    <button type="reset" class="btn btn-danger">Cancelar</button>
+                    <button type="submit" class="btn btn-success botoes">Efetuar Cadastro</button>
+                    <button type="reset" class="btn btn-danger botoes">Cancelar</button>
 
                 </div>
             </form>

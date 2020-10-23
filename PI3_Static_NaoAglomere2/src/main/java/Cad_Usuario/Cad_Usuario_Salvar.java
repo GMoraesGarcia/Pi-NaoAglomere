@@ -74,10 +74,11 @@ public class Cad_Usuario_Salvar extends HttpServlet {
              
              //Validação CPF
                boolean validaCpf = false;
-            if(cpfStr!= ""){
+            if(cpfStr!= "" && cpfStr.matches("[0-9]+")){
               char arrayCpf[] = cpfStr.toCharArray();
                validaCpf = validaCPF(arrayCpf);
             } 
+           
          
               
               //Validação do Telefone
