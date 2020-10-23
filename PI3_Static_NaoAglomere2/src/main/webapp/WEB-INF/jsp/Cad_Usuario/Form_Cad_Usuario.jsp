@@ -62,12 +62,18 @@
                 </div>
                 <div>
                     <label>Senha:</label>
-                    <input type="password" class="form-control" name="senha">
+                    <input type="password" class="form-control" name="senha" value="${senha}">
+                    <c:if test="${senhaErro != null}">
+                        <span class="erro"><c:out value="${senhaErro}"/></span>
+                    </c:if>
 
                 </div>
                 <div>
                     <label>Confirmar Senha:</label>
-                    <input type="password" class="form-control" name="confirmarSenha">
+                    <input type="password" class="form-control" name="confirmarSenha" value="${confirmarSenha}">
+                    <c:if test="${ConfirmSenhaErro != null}">
+                        <span class="erro"><c:out value="${ConfirmSenhaErro}"/></span>
+                    </c:if>
 
                 </div>
                 <div>

@@ -84,7 +84,13 @@ public class Cad_Usuario_Salvar extends HttpServlet {
               //Validação do Telefone
               boolean validaTelefone = (telefoneStr != null && telefoneStr.trim().length() == 11);
               
+              //validação senha
+              boolean validarSenha = (senhaStr !=  null && senhaStr.trim().length() >= 8 );
+              
+              //Senhas Iguais
+              boolean validarConfirmaSenha  = (confSenhaStr != null && confSenhaStr.equals(senhaStr));
              
+              //Tratar erros
               boolean camposValidos = (nomeValido && emailValido && validaCpf && validaTelefone && dataNascimentoValida);
               
               if(!camposValidos){
@@ -104,12 +110,20 @@ public class Cad_Usuario_Salvar extends HttpServlet {
                   if(!dataNascimentoValida){
                       request.setAttribute("dtNascimentoErro", " Data de Nascimento deve ser preenchido ou Válido");
                   }
+                  if(!validarSenha){
+                      request.setAttribute("senhaErro", "Senha deve ser preenchido, e sua senha deve conter pelo menos 8 caracters");
+                  }
+                  if(!validarConfirmaSenha){
+                      request.setAttribute("ConfirmSenhaErro", "Senhas devem ser iguais");
+                  }
                   
                   request.setAttribute("nome", nomeStr);
                   request.setAttribute("cpf", cpfStr);
                   request.setAttribute("email", emailStr);
                   request.setAttribute("dataNascimento", dtNascimentoStr);
                   request.setAttribute("telefone", telefoneStr);
+                  request.setAttribute("senha", senhaStr);
+                  request.setAttribute("confirmarSenha", confSenhaStr);
                   
                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Cad_Usuario.jsp");
                     dispatcher.forward(request, response);
