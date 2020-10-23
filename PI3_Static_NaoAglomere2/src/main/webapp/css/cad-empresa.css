@@ -1,7 +1,11 @@
 #asterisco{
-    color: red;
+    color: blue;
 }
 
 #modelo{
     opacity: 0.2;
+}
+
+.erro{
+    color: red;
 }

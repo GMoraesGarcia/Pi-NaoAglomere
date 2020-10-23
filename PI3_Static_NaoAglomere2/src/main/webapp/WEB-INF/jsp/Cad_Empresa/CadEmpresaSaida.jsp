@@ -9,6 +9,11 @@
     <body>
         <h1>Dados</h1>
         
-        <label>CPNJ: </label> <c:out value="${dados.getEmail()}" />
+        <span>Adicionado com sucesso</span>
+        <c:if test="${Erro != null}">
+            <span class="erro"><c:out value="${Erro}"/></span>
+        </c:if>
+        <label>CPNJ: </label> <c:out value="${dados.getDescricao()}" />
+
     </body>
 </html>
