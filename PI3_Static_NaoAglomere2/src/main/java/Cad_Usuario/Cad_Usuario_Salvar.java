@@ -84,7 +84,7 @@ public class Cad_Usuario_Salvar extends HttpServlet {
         boolean validarConfirmaSenha = (confSenhaStr != null && confSenhaStr.equals(senhaStr));
 
         //Tratar erros
-        boolean camposValidos = (nomeValido && emailValido && validaCpf && validaTelefone && dataNascimentoValida);
+        boolean camposValidos = (nomeValido && emailValido && validaCpf && telefoneValido && dataNascimentoValida);
 
         if (!camposValidos) {
             //mensagens de erro
@@ -97,7 +97,7 @@ public class Cad_Usuario_Salvar extends HttpServlet {
             if (!validaCpf) {
                 request.setAttribute("cpfErro", " CPF deve ser preenchido ou Válido");
             }
-            if (!validaTelefone) {
+            if (!telefoneValido) {
                 request.setAttribute("telefoneErro", " Telefone deve ser preenchido ou Válido");
             }
             if (!dataNascimentoValida) {
