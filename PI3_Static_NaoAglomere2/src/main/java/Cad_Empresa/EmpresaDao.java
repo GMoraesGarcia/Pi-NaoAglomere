@@ -37,7 +37,7 @@ public class EmpresaDao {
     public void addNew(Cad_EmpresaDados empresaDados) throws SQLException {
 
         String sql = "INSERT INTO EMPRESA (NOME_EMPRESA, CNPJ, EMAIL, DESCRICAO, TELEFONE, SENHA, QTD_MAX,"
-                + "RUA, BAIRRO, NUMERO, REGRAS) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
@@ -56,6 +56,7 @@ public class EmpresaDao {
                 stmt.setString(9, empresaDados.getBairro());
                 stmt.setInt(10, empresaDados.getNumero_Rua());
                 stmt.setString(11, empresaDados.getRegras());
+                stmt.setString(12, "empresa"); // tipo de cadastro usado para login
 
                 int resultados = stmt.executeUpdate();
 
