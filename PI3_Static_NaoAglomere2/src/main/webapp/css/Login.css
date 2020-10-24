@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24/10/2020, 15:42:10
+    Author     : Matheus
+*/
+h1{
+    text-align: center;
+    margin: 4px 0;
+
+}
+
+.erro{
+    color: red;
+    text-decoration: underline;
+
+}
+
+.botoes{
+    margin: 10px 0;
+
+}
+
+.form-group{
+    width: 300px;
+    margin: auto;
+}
+
+.form-group btn btn-success botoes{
+    padding-right: 100px;
+}
+
+
