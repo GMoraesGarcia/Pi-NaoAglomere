@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/Cad_Usuario.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
-        <title>JSP Page</title>
+        <title>Cadastro de Usuários</title>
     </head>
     <body>
         <header class="header">
@@ -55,7 +55,8 @@
                 </div>
                 <div>
                     <label>Telefone:</label>
-                    <input type="text" class="form-control" placeholder="( )_____-____" name="telefone" value="${telefone}">
+                    <input type="text" class="form-control" placeholder="( )_____-____" name="telefone" value="${telefone}"
+                         >
                     <c:if test="${telefoneErro != null}">
                         <span class="erro"><c:out value="${telefoneErro}"/></span> 
                     </c:if>
@@ -74,6 +75,9 @@
                     <c:if test="${ConfirmSenhaErro != null}">
                         <span class="erro"><c:out value="${ConfirmSenhaErro}"/></span>
                     </c:if>
+                        <c:if test="${add != null}">
+                            <span><c:out value="${add}/"/></span>
+                        </c:if>
 
                 </div>
                 <div>

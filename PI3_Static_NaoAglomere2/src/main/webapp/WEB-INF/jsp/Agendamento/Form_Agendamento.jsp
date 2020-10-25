@@ -5,36 +5,68 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/Estilo_Agendamento.css">
         <title>JSP Page</title>
     </head>
     <body>
+        <header class="header">
+            <c:import url="../header.jsp"/>
+        </header>     
         <h1>Agendamento</h1>
-        <form>
-            <div>
-                <label>Nome: </label>
-                <input type="text" name="nome">
-            </div>
-            <div>
-                <label>E-mail: </label>
-                <input type="email" name="email">
-            </div>
-            <div>
-                <label>Telefone:  </label>
-                <input type="text" name="telefone">
-            </div>
-            <div>
-                <label>data </label>
-                <input type="date" name="data">
-            </div>
-            <div>
-                <label>Horário </label>
-                <input type="time" name="horario">
-            </div>
-            
-        </form>
+        <div class="container">
+            <form method="post" action="agendamento-salvar" class="form-group">
+                <div>
+                    <label>Nome: </label>
+                    <input type="text" name="nome" value="${nome}" class="form-control">
+                    <c:if test="${nomeErro != null}">
+                        <span class="erro"><c:out value="${nomeErro}"/></span> 
+                    </c:if>
+                </div>
+                <div>
+                    <label>E-mail: </label>
+                    <input type="email" name="email" value="${email}" class="form-control">
+                    <c:if test="${emailErro != null}">
+                        <span class="erro"> <c:out value="${emailErro}"/></span> 
+                    </c:if>
+                </div>
+                <div>
+                    <label>Telefone:  </label>
+                    <input type="text" name="telefone" value="${telefone}" class="form-control">
+                    <c:if test="${telefoneErro != null}">
+                        <span class="erro"><c:out value="${telefoneErro}"/></span> 
+                    </c:if>
+                </div>
+                <div>
+                    <label>data </label>
+                    <input type="date" name="data" value="${data}" class="form-control">
+                    <c:if test="${dataAgendamentoErro != null}">
+                        <span class="erro"><c:out value="${dataAgendamentoErro}"/></span> 
+                    </c:if>
+                </div>
+                <div>
+                    <label>Horário </label>
+                    <input type="time" name="horario" value="horario" class="form-control">
+                    <c:if test="${horarioErro != null}">
+                        <span class="erro"><c:out value="${horarioErro}"/></span> 
+                    </c:if>
+
+                </div>
+                <button type="submit" class="btn btn-success botoes">Agendar</button>
+                <button type="reset"  class="btn btn-danger botoes">Cancelar</button>
+
+            </form>
+        </div>
+        <footer class="footer">
+            <c:import url="../footer.jsp"/>
+        </footer>
     </body>
+
 </html>

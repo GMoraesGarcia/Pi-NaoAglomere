@@ -6,13 +6,59 @@
 package Agendamento;
 
 import Cad_Usuario.Cad_Usuario;
+import java.time.LocalDate;
 
 /**
  *
  * @author Gabriel
  */
 public class Agendamento {
-    private Cad_Usuario nome;
-    private Cad_Usuario email;
+    private String nome;
+    private String email;
+    private String telefone;
+    private LocalDate data;
+    private String hora;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+    
+    
     
 }

@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Saida</h1>
-        <p>Nome: <c:out value="${novo.nome}"/></p>
+        <h1>Cadastrado com sucesso</h1>
+     
     </body>
 </html>

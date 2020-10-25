@@ -6,6 +6,7 @@
 package Cad_Usuario;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,11 +73,11 @@ public class Cad_Usuario_Salvar extends HttpServlet {
 
         //Validação do Telefone
         boolean telefoneValido = telefoneStr != null && telefoneStr.trim().length() > 0;
-        if (telefoneValido) {
+       /* if (telefoneValido) {
             Pattern telefonePattern = Pattern.compile("(\\([0-9]{2}\\))\\s([9]{1})?([0-9]{4})-([0-9]{4})");
             Matcher telefoneMatcher = telefonePattern.matcher(telefoneStr);
             telefoneValido = telefoneValido && telefoneMatcher.matches();
-        }
+        }*/
         //validação senha
         boolean validarSenha = (senhaStr != null && senhaStr.trim().length() <= 8);
 
@@ -132,15 +133,25 @@ public class Cad_Usuario_Salvar extends HttpServlet {
         novoUsuario.setTelefone(telefoneStr);
         novoUsuario.setSenha(senhaStr);
         novoUsuario.setConfirmarSenha(confSenhaStr);
-
-        /*request.setAttribute("novo", novoUsuario);
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Saida.jsp");
-       dispatcher.forward(request, response);*/
+        UsuarioDAO dao = new UsuarioDAO();
+        try{
+            
+             dao.addNovoUsuario(novoUsuario);
+             request.setAttribute("add", "Cadasreo realizado com sucesso");
+             
+             
+        }catch(SQLException e){System.out.println(e);}
+            
+        
+        
+       
         HttpSession sessao = request.getSession();
         sessao.setAttribute("novoUsuario", novoUsuario);
 
         response.sendRedirect("salvar-usuario");
+        
+        
 
     }
 
