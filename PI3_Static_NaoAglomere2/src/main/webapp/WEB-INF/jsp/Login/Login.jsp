@@ -42,6 +42,9 @@
                 <button type="submit" class="btn btn-success botoes">Login</button>
                 <button type="reset" class="btn btn-success botoes">Cadastre-se</button>
             </div>
+            <c:if test="${Erro != null}">
+                <span class="erro"><c:out value="${Erro}"/></span>
+            </c:if>
         </form>
 
         <footer class="footer">

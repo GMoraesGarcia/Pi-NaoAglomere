@@ -1,7 +1,10 @@
 package Login;
 
+import Cad_Empresa.Cad_EmpresaDados;
+import Cad_Empresa.EmpresaDao;
 import Cad_Usuario.Cad_Usuario;
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +24,7 @@ public class LoginSalvarServlet extends HttpServlet {
         sessao.removeAttribute("novoLogin");
 
         request.setAttribute("novoLogin", novoLogin);
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
+        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Login/LoginSaida.jsp");
         dispacher.forward(request, response);
     }
 
@@ -37,7 +40,7 @@ public class LoginSalvarServlet extends HttpServlet {
         boolean emailValido = (emailStr != null && emailStr.trim().length() > 0);
 
         //validação senha
-        boolean validarSenha = (senhaStr != null && senhaStr.trim().length() <= 8);
+        boolean validarSenha = (senhaStr != null && senhaStr.trim().length() >= 8);
 
         //Tratar erros
         boolean camposValidos = (emailValido && validarSenha);
@@ -59,18 +62,41 @@ public class LoginSalvarServlet extends HttpServlet {
             return;
         }
 
-        LoginDados novoLogin = new LoginDados();
+        LoginDao dao = new LoginDao();
 
-        novoLogin.setEmail(emailStr);
-        novoLogin.setSenha(senhaStr);
+        try {
+            LoginDados dados = dao.findByEmail(emailStr);
 
-        /*request.setAttribute("novo", novoLogin);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
-        dispatcher.forward(request, response);*/
-        HttpSession sessao = request.getSession();
-        sessao.setAttribute("novoLogin", novoLogin);
+            if (dados.getEmail() == null) {
+                request.setAttribute("Erro", "Email ou Senha inválida");
 
-        response.sendRedirect("login-salvar");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
+
+            if (dados.getEmail().equals(emailStr) && dados.getSenha().equals(senhaStr)) {
+                request.setAttribute("novoLogin", dados);
+                HttpSession sessao = request.getSession();
+                sessao.setAttribute("novoLogin", dados);
+                response.sendRedirect("login-salvar");
+            } else {
+                request.setAttribute("Erro", "Email ou Senha inválida 2");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
+
+        } catch (SQLException e) {
+
+            request.setAttribute("Erro", "Erro no banco de dados");
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+
     }
 
 }

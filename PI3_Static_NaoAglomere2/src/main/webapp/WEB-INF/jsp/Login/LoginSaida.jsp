@@ -14,6 +14,9 @@
     </head>
     <body>
         <h1>Saida</h1>
-        <p>email <c:out value="${novo.email}"/></p>
+        <c:if test="${Erro != null}">
+            <span class="erro"><c:out value="${Erro}"/></span>
+        </c:if>
+        <label>olá </label> <c:out value="${novoLogin.getEmail()}" />
     </body>
 </html>
