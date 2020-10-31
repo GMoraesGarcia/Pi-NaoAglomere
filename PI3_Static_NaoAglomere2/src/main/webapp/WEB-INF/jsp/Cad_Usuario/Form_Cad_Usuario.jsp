@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="css/Cad_Usuario.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
-        <title>Cadastro de Usuários</title>
     </head>
     <body>
         <header class="header">
@@ -76,12 +75,12 @@
                         <span class="erro"><c:out value="${ConfirmSenhaErro}"/></span>
                     </c:if>
                         <c:if test="${add != null}">
-                            <span><c:out value="${add}/"/></span>
+                            <span><c:out value="${add}"/></span>
                         </c:if>
 
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-success botoes">Efetuar Cadastro</button>
+                    <button type="submit" class="btn btn-success botoes" data-toggle="modal" data-target="#myModal">Efetuar Cadastro</button>
                     <button type="reset" class="btn btn-danger botoes">Cancelar</button>
 
                 </div>

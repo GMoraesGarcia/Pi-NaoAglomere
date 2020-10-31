@@ -7,7 +7,10 @@ package Agendamento;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.RequestDispatcher;
@@ -60,11 +63,11 @@ public class Agendamento_Salvar extends HttpServlet {
         
          //Validação do Telefone
         boolean telefoneValido = telefoneStr != null && telefoneStr.trim().length() > 0;
-        if (telefoneValido) {
+       /* if (telefoneValido) {
             Pattern telefonePattern = Pattern.compile("(\\([0-9]{2}\\))\\s([9]{1})?([0-9]{4})-([0-9]{4})");
             Matcher telefoneMatcher = telefonePattern.matcher(telefoneStr);
             telefoneValido = telefoneValido && telefoneMatcher.matches();
-        }
+        }*/
         
         
          //Validação de data de agendamento
@@ -75,7 +78,7 @@ public class Agendamento_Salvar extends HttpServlet {
         boolean dataAgendamentoValida = (dataAgendamento != null );
         
         //Validação horario
-        boolean horarioValido = (horaStr != null && horaStr.matches("[0-9]+"));
+        boolean horarioValido = (horaStr != null );
         
         boolean camposValidos = (nomeValido && emailValido && telefoneValido && dataAgendamentoValida && horarioValido);
         
@@ -108,16 +111,24 @@ public class Agendamento_Salvar extends HttpServlet {
             return;
         }
        Agendamento a = new Agendamento();
+      
        a.setNome(nomeStr);
        a.setEmail(emailStr);
        a.setTelefone(telefoneStr);
        a.setData(LocalDate.parse(dataStr));
        a.setHora(horaStr);
        
+        AgendamentoDAO dao = new AgendamentoDAO();
+        try {
+            dao.addAgendamento(a);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
        HttpSession sessao = request.getSession();
        sessao.setAttribute("dados", a);
        
        response.sendRedirect("agendamento-salvar");
+       
     }
 
     
