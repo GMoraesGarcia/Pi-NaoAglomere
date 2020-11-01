@@ -6,7 +6,7 @@
  */
 :root {
   --blue: #007bff;
-  --indigo: #6610f2;
+  --indiog: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
   --red: #dc3545;
@@ -94,8 +94,8 @@ abbr[data-original-title] {
   text-decoration-skip-ink: none;
 }
 
-address {
-  margin-bottom: 1rem;
+address { 
+ margin-bottom: 1rem;
   font-style: normal;
   line-height: inherit;
 }

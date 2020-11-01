@@ -11,16 +11,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/Cad_Usuario.css">
         <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/Estilo.css">
         <link rel="stylesheet" href="css/footer.css">
     </head>
-    <body>
+    <body class="jumbotron jumbotron-fluid">
         <header class="header">
             <c:import url="../header.jsp"/>
         </header>        
-        <h1>Cadastro de Usuário</h1>
+       
         <div class="containerw"> 
+             <h1>Cadastro de Usuário</h1>
             <form method="post" action="salvar-usuario" class="form-group" novalidate>
                 <div>
                     <label>Nome: </label>

@@ -10,7 +10,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/cad-empresa.css">
+        <link rel="stylesheet" href="css/Estilo.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <meta charset=UTF-8">
@@ -38,7 +38,7 @@
             <span class="erro"><c:out value="${Erro}"/></span>
         </c:if>
         <div>
-            <form class="col-md-8 col-xl-9" method="post" action="cad-empresa-salvar" novalidate>
+            <form class="containerw" method="post" action="cad-empresa-salvar" novalidate>
 
                 <div class="row">
 
@@ -116,8 +116,10 @@
                             </c:if>
 
                         </div>
-                        <p></p>
-                        <input type="submit" value="Efetuar cadastro"> <input type="reset" value="Cancelar">
+                       <div>
+                           <button class="btn btn-success botoes botoes" type="submit" >Efetuar Cadastro</button> 
+                           <button class=" btn btn-danger botoes" type="reset">Cancelar</button>
+                       </div>
                     </fieldset>
 
                     <fieldset class="col-lg-6">
