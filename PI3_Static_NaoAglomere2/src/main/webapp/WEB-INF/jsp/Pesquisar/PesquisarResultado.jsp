@@ -6,10 +6,22 @@
         <title>Resultado dados preenchidos</title>
         <meta charset=UTF-8">  
         <link rel="stylesheet" href="css/estilos.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/Pesquisar.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/footer.css">
     </head>
     <body>
-        <h1>Resultado dados preenchidos</h1>
+        <header class="header">
+            <c:import url="../header.jsp"/> 
+        </header>
+        
+        <h1>Resultado dados Pesquisados</h1>
         <h2><c:out value ="${dados.pesquisa}" /></h2>
+        
+        <footer class="footer">
+            <c:import url="../footer.jsp"/>
+        </footer>
 
     </body>
 </html>

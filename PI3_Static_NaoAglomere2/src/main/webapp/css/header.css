@@ -1,17 +1,16 @@
-header {
-    border: solid 1px black;
-    margin: 0 auto;
-    width: 940px;
+header {    
+    margin: 0 auto;    
     position: relative;
     text-align: center;
 }
 .menu-opcoes ul li {
     display: inline; /*reoordena cadas topico da lista horizontalmente*/
     margin-left: 50px;
+    
 }
 
 .menu-opcoes ul {
-    font-size: 15px
+    font-size: 15px;    
 }
 
 .menu-opcoes a {
