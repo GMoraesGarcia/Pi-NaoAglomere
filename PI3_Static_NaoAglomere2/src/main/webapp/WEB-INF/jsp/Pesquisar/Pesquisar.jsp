@@ -16,11 +16,13 @@
         <link rel="stylesheet" href="css/Pesquisar.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/Estilo.css">
     </head>
     <body>
         <header class="header">
             <c:import url="../header.jsp"/> 
         </header>
+        <div class="containerw">
         <nav class="sugestões">
             <form method="post" action="pesquisar-Salvar">
                 <div>            
@@ -32,7 +34,7 @@
                 </div>
             </form>
         </nav>
-        <div>            
+        <div >            
             <section class="pesquisar">                
                 <p>Nome do estabelecimento:</p>
                 <form method="post" action="pesquisar-Salvar">
@@ -47,6 +49,7 @@
         <section class="telaPesquisa">
 
         </section>
+        </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>

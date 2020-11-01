@@ -5,6 +5,8 @@ and open the template in the editor.
 */
 
 
+
+html, body {height:100%;}
 .erro{
     color: red;
 }
@@ -13,8 +15,8 @@ and open the template in the editor.
 .containerw{
     width: 940px;
     margin: auto;
- 
-   
+    min-height:100%;
+    position:relative;
 }
 
 

@@ -13,15 +13,16 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
-        <link rel="stylesheet" href="css/Estilo_Agendamento.css">
+        <link rel="stylesheet" href="css/Estilo.css">
         <title>JSP Page</title>
     </head>
     <body>
         <header class="header">
             <c:import url="../header.jsp"/>
         </header>     
-        <h1>Agendamento</h1>
-        <div class="container">
+       
+        <div class="containerw">
+             <h1>Agendamento</h1>
             <form method="post" action="agendamento-salvar" class="form-group">
                 <div>
                     <label>Nome: </label>
