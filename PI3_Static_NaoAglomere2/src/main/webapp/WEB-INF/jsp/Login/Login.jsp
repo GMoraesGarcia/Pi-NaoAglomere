@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="css/footer.css">
     </head>
     <body>
+        <div class="containerw"
         <header class="header">
             <c:import url="../header.jsp"/> 
         </header>
@@ -46,7 +47,7 @@
                 <span class="erro"><c:out value="${Erro}"/></span>
             </c:if>
         </form>
-
+        </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>

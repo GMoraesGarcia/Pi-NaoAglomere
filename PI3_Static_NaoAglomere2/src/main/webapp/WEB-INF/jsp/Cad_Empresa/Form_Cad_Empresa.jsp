@@ -29,16 +29,18 @@
         
         <title>Cadastro de Empresa</title>
     </head>
-    <body>
+    <body class="">
         <header class="header">
             <c:import url="../header.jsp"/>
         </header>
-        <h1>Dados da Empresa</h1>
+       
         <c:if test="${Erro != null}">
             <span class="erro"><c:out value="${Erro}"/></span>
         </c:if>
-        <div>
+            <div >
+             
             <form class="containerw" method="post" action="cad-empresa-salvar" novalidate>
+                <h1>Dados da Empresa</h1>
 
                 <div class="row">
 
@@ -176,7 +178,7 @@
                         <div>
                             <label id="imagem">Carregar imagem: </label> <label id="asterisco">*</label>
                             <br>
-                            <input type="file" name="imagem">
+                            <input  type="file" name="imagem">
                         </div>
                     </fieldset>
                 </div>

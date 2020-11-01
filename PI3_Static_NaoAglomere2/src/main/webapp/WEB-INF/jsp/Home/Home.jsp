@@ -15,14 +15,16 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/Home.css">
+        <link rel="stylesheet" href="css/Estilo.css">
     </head>
     <body>
+        <div class="containerw">
         <header class="header">
             <c:import url="../header.jsp"/> 
         </header>
         
         <h1>não aglomere</h1>
-        
+        </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>

@@ -14,8 +14,9 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/Estilo.css">
         <link rel="stylesheet" href="css/footer.css">
+       
     </head>
-    <body class="jumbotron jumbotron-fluid">
+    <body class="">
         <header class="header">
             <c:import url="../header.jsp"/>
         </header>        

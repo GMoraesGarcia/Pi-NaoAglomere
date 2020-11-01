@@ -1,5 +1,12 @@
+
 <footer>
-    <div class="container">
-        <p>@Todos os direitos reservados</p>
+    <div class="opcoes-menu">
+        <p>@Todos os direitos reservados<a href="https://github.com/MatheusSantosDev/PI-Static">/Projeto-Static</a></p>
+        <ul>
+            <li>Criadores:</li>
+            <li><a href="https://github.com/GMoraesGarcia">Gabriel Moraes</li>
+            <li><a href="https://github.com/leonardo-900">Leonardo Alves</li>
+            <li><a href="https://github.com/MatheusSantosDev">Matehus Santos </li>
+        </ul>
     </div>
 </footer>

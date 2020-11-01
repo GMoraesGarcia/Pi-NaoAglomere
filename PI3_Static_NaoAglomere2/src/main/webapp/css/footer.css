@@ -10,10 +10,29 @@ and open the template in the editor.
 footer {    
     clear: both; /*jogar imagem rodape para baixo*/
     padding: 20px 0;
-    text-align: center;
-}
-
-footer {
     position: relative;
 }
+footer p{
+    
+  text-align: center;
+  
+   
+}
+.opcoes-menu  a{
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid black;
+  
+}
+.opcoes-menu a:hover{
+    transition: all 0.5s;
+    transform: scale(1.1);
+    
+}
+.opcoes-menu ul{
+     list-style-type: none;
+}
+
+
+
 
