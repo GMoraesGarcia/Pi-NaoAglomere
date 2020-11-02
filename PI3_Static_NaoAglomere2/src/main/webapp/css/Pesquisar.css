@@ -19,6 +19,10 @@ body{
     margin-top: 10px;
 }
 
+.sugestões btn btn-info{
+    padding: 20px;
+}
+
 .pesquisar{    
     font-weight: bold;  
     text-align: center;
