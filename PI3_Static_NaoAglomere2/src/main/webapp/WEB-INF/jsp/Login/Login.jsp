@@ -18,10 +18,11 @@
         <link rel="stylesheet" href="css/Estilo.css">
     </head>
     <body>
-        <div class="containerw"
         <header class="header">
             <c:import url="../header.jsp"/> 
         </header>
+        <div class="containerw">
+        
 
         <form method="post" action="login-salvar" class="form-group">
             <div>
@@ -41,8 +42,7 @@
 
             </div>
             <div>
-                <button type="submit" class="btn btn-success botoes">Login</button>
-                <button type="reset" class="btn btn-success botoes">Cadastre-se</button>
+                <button type="submit" class="btn btn-success botoes">Login</button>                
             </div>
             <c:if test="${Erro != null}">
                 <span class="erro"><c:out value="${Erro}"/></span>

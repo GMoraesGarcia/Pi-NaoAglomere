@@ -18,12 +18,12 @@
         <link rel="stylesheet" href="css/Estilo.css">
     </head>
     <body>
-        <div class="containerw">
         <header class="header">
             <c:import url="../header.jsp"/> 
         </header>
+        <div class="containerw">       
         
-        <h1>não aglomere</h1>
+        <h1>Não Aglomere</h1>
         </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>

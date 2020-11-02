@@ -15,10 +15,13 @@
         <header class="header">
             <c:import url="../header.jsp"/> 
         </header>
-        
+
         <h1>Resultado dados Pesquisados</h1>
         <h2><c:out value ="${dados.pesquisa}" /></h2>
-        
+
+        <a class="btn btn-info" href="${pageContext.request.contextPath}/agendamento" >Agendar</a>
+
+
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>
