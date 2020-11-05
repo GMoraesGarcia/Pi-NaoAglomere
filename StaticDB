@@ -1,43 +1,43 @@
-CREATE DATABASE StaticDB;
-use StaticDB;
+create database staticdb;
+use staticdb;
 
-CREATE TABLE empresa (
-    id            INT NOT NULL auto_increment,
-    nome_empresa  VARCHAR(30) NOT NULL,
-    cnpj          VARCHAR(16) NOT NULL,
-    email         VARCHAR(20) NOT NULL,
-    descricao     VARCHAR(30) NOT NULL,
-    telefone      VARCHAR(11) NOT NULL,
-    senha         VARCHAR(8) NOT NULL,
-    qtd_max       INT NOT NULL,
-    rua           VARCHAR(20) NOT NULL,
-    bairro        VARCHAR(20) NOT NULL,
-    numero        INT NOT NULL,
-    regras        VARCHAR(100) NOT NULL,
-    imagem        BLOB NOT NULL,
-    PRIMARY KEY ( id )
-);
-
-
-
-CREATE TABLE usuario (
-    id               int NOT NULL auto_increment,
-    nome             VARCHAR(20) NOT NULL,
-    cpf              VARCHAR(11) NOT NULL,
-    email            VARCHAR(20) NOT NULL,
-    data_nascimento  DATE NOT NULL,
-    telefone         VARCHAR(11) NOT NULL,
-    senha            VARCHAR(8) NOT NULL,
-     PRIMARY KEY ( id )
+CREATE TABLE Empresa (
+    ID_empresa int not null PRIMARY KEY auto_increment,
+    Nome_Empresa varchar(30) not null,
+    CNPJ varchar(18) not null,
+    Email varchar(50) not null,
+    Descricao varchar(100) not null,
+    Telefone varchar(15) not null,
+    Senha varchar(20),
+    QTD_Max int not null,
+    Rua varchar(30) not null,
+    Bairro varchar(20),
+    Numero int not null,
+    Regras varchar(500) not null,
+    Tipo_Cadastro varchar(8)
 );
 
 CREATE TABLE agendamento (
     num_agendamento  INT NOT NULL auto_increment,
-    usuario_id       INT NOT NULL,
-    empresa_id       INT NOT NULL,
-    data             DATE NOT NULL,
-    horario          timestamp NOT NULL,
-    PRIMARY KEY ( num_agendamento ),
-    FOREIGN KEY ( empresa_id ) REFERENCES empresa ( id ),
-    FOREIGN KEY ( usuario_id ) REFERENCES usuario ( id )
+    email 			 VARCHAR(50),
+    usuario_id       VARCHAR(50) NOT NULL,
+    telefone 		 VARCHAR(20),
+		# empresa_id       INT NOT NULL,
+    data_Agend        DATE NOT NULL,
+    horario          time NOT NULL,
+    PRIMARY KEY ( num_agendamento )
+		#FOREIGN KEY ( empresa_id ) REFERENCES empresa ( id ),
+		#FOREIGN KEY ( usuario_id ) REFERENCES usuario ( id )
+);
+
+CREATE TABLE usuario (
+    id               int NOT NULL auto_increment,
+    nome             VARCHAR(30) NOT NULL,
+    cpf              VARCHAR(11) NOT NULL,
+    email            VARCHAR(50) NOT NULL,
+    data_nascimento  DATE NOT NULL,
+    telefone         VARCHAR(14) NOT NULL,
+    senha            VARCHAR(20) NOT NULL,
+     PRIMARY KEY ( id ),
+     UNIQUE(cpf)
 );
