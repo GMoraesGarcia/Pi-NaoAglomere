@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class UsuarioDAO {
     
     public void addNovoUsuario(Cad_Usuario user) throws SQLException{
-        String sql = "INSERT INTO usuario (nome,cpf,email,data_nascimento,telefone,senha) values(?,?,?,?,?,?);";
+        String sql = "INSERT INTO usuario (nome,cpf,email,data_nascimento,telefone,senha,tipo_cadastro) values(?,?,?,?,?,?,?);";
         try (Connection conn = Connection_db2.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
@@ -31,6 +31,7 @@ public class UsuarioDAO {
                 stmt.setString(4, String.valueOf(user.getDataNascimento()));
                 stmt.setString(5, user.getTelefone());
                 stmt.setString(6, user.getSenha());
+                stmt.setString(7, "usuário");
                 stmt.executeUpdate();
                 
                 System.out.println("Cadastrado com secesso");

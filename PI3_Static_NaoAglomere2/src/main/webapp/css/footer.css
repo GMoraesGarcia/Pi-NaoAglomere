@@ -23,16 +23,16 @@ footer p {
     text-decoration: none;
     color: black;
     border-bottom: 1px solid black;
-  
+
 }
 .opcoes-menu a:hover{
     transition: all 0.5s;
     transform: scale(1.1);
-  
-    
+
+
 }
 .opcoes-menu ul{
-     list-style-type: none;
+    list-style-type: none;
 }
 .criadores{
     position: absolute;
@@ -41,7 +41,7 @@ footer p {
 .criadores li{
     float: left;
     margin-right: 15px;
-    
+
 }
 
 
