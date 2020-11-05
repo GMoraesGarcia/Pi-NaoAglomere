@@ -2,19 +2,19 @@ create database staticdb;
 use staticdb;
 
 CREATE TABLE Empresa (
-    ID_empresa int not null PRIMARY KEY auto_increment,
-    Nome_Empresa varchar(30) not null,
-    CNPJ varchar(18) not null,
-    Email varchar(50) not null,
-    Descricao varchar(100) not null,
-    Telefone varchar(15) not null,
-    Senha varchar(20),
-    QTD_Max int not null,
-    Rua varchar(30) not null,
-    Bairro varchar(20),
-    Numero int not null,
-    Regras varchar(500) not null,
-    Tipo_Cadastro varchar(8)
+ID_empresa int not null PRIMARY KEY auto_increment,
+Nome_Empresa varchar(30) not null,
+CNPJ varchar(18) not null Unique,
+Email varchar(50) not null,
+Descricao varchar(100) not null,
+Telefone varchar(15) not null,
+Senha varchar(20),
+QTD_Max int not null,
+Rua varchar(30) not null,
+Bairro varchar(20),
+Numero int not null,
+Regras varchar(500) not null,
+Tipo_Cadastro varchar(8)
 );
 
 CREATE TABLE agendamento (
