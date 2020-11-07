@@ -47,4 +47,31 @@ public class UsuarioDAO {
     
     }
     
+      public void Update(Cad_Usuario user) throws SQLException{
+          String sql  = "update usuario set nome =?, email = ?,data_nascimento=?,telefone = ? where cpf = ?";
+           try (Connection conn = Connection_db2.obterConexao()) {
+            // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
+            conn.setAutoCommit(false);
+            
+            try(PreparedStatement stmt = conn.prepareStatement(sql)){
+                stmt.setString(1, user.getNome());
+                stmt.setString(3, user.getEmail());
+                stmt.setString(4, String.valueOf(user.getDataNascimento()));
+                stmt.setString(5, user.getTelefone());
+                stmt.setString(2, user.getCpf());
+
+                stmt.executeUpdate();
+                
+                System.out.println("Cadastrado com secesso");
+                
+                 conn.commit();
+            
+            } catch(SQLException e){
+                conn.rollback();
+                throw e;
+            }
+            
+        }
+      }
+    
 }

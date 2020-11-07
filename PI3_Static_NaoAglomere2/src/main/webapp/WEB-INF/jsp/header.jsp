@@ -5,5 +5,6 @@
         <li><a href="${pageContext.request.contextPath}/login-abrir">Login</a></li>
         <li><a  href="${pageContext.request.contextPath}/cad_usuario">Cadastrar Usuario</a></li>
         <li> <a href="${pageContext.request.contextPath}/cad-empresa-abrir">Cadastrar Empresa</a></li>
+        <li><a href="${pageContext.request.contextPath}/Perfil-usuario" >Perfil</a></li>
     </ul>
 </nav>

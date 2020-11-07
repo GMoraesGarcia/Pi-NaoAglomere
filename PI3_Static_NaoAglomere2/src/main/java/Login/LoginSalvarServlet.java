@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginSalvarServlet", urlPatterns = {"/login-salvar"})
+@WebServlet(name = "LoginSalvarServlet", urlPatterns = {"/Perfil-entrada"})
 public class LoginSalvarServlet extends HttpServlet {
 
     @Override
@@ -24,7 +24,7 @@ public class LoginSalvarServlet extends HttpServlet {
         sessao.removeAttribute("novoLogin");
 
         request.setAttribute("novoLogin", novoLogin);
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Login/LoginSaida.jsp");
+        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
         dispacher.forward(request, response);
     }
 
@@ -61,9 +61,28 @@ public class LoginSalvarServlet extends HttpServlet {
             dispatcher.forward(request, response);
             return;
         }
-
+        
+        
+        //proceso de pesquisa de usuario para o perfil -----começo----
         LoginDao dao = new LoginDao();
+        try{
+            //nome,cpf,email,data_nascimento,telefone 
+            Cad_Usuario user = dao.findUser(emailStr, senhaStr);
+            request.setAttribute("user", user);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
+            dispatcher.forward(request, response);
+            return;
+            
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        //proceso de pesquisa de usuario para o perfil -----FIM----
 
+     
+        
+        
+        
+        
         try {
             LoginDados dados = dao.findByEmail(emailStr);
 
@@ -79,7 +98,7 @@ public class LoginSalvarServlet extends HttpServlet {
                 request.setAttribute("novoLogin", dados);
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("novoLogin", dados);
-                response.sendRedirect("login-salvar");
+                response.sendRedirect("Perfil-entrada");
             } else {
                 request.setAttribute("Erro", "Email ou Senha inválida 2");
 
