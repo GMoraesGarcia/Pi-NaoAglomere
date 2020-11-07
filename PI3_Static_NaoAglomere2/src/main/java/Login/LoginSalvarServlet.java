@@ -68,7 +68,21 @@ public class LoginSalvarServlet extends HttpServlet {
         LoginDao dao = new LoginDao();
 
         try {
+
             LoginDados dados = dao.findLogin(emailStr, senhaStr); //procura o login e retorna o tipo de cadastro
+
+            if (dados.getEmail() == null) { //caso email não esteja no banco de dados
+                request.setAttribute("Erro", "Email ou Senha inválida");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
+                dispatcher.forward(request, response);
+                return;
+            } else if(!dados.getSenha().equals(senhaStr)) { //caso a senha esteja errada
+                request.setAttribute("Erro", "Email ou Senha inválida 2");
+
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
+                dispatcher.forward(request, response);
+            }
 
             if (dados.getTipo_cadastro().equals("usuário")) { //processo de pesquisa de usuario para o perfil -----começo----
 
@@ -79,13 +93,11 @@ public class LoginSalvarServlet extends HttpServlet {
                     request.setAttribute("dados", dados);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
                     dispatcher.forward(request, response);
-                    return;
 
                 } catch (SQLException e) {
                     System.out.println(e);
                 }
             } //processo de pesquisa de usuario para o perfil -----FIM----
-            
             else if (dados.getTipo_cadastro().equals("empresa")) { //processo de pesquisa de empresa para o perfil -----começo----
 
                 try {
@@ -102,27 +114,6 @@ public class LoginSalvarServlet extends HttpServlet {
                 }
             } //processo de pesquisa de empresa para o perfil -----FIM----
 
-            if (dados.getEmail() == null) { //caso email não esteja no banco de dados
-                request.setAttribute("Erro", "Email ou Senha inválida");
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
-                dispatcher.forward(request, response);
-                return;
-            }
-
-            if (dados.getEmail().equals(emailStr) && dados.getSenha().equals(senhaStr)) { //email e senha corretos
-                request.setAttribute("novoLogin", dados);
-                HttpSession sessao = request.getSession();
-                sessao.setAttribute("novoLogin", dados);
-                response.sendRedirect("Perfil-entrada");
-
-            } else { //caso a senha esteja errada
-                request.setAttribute("Erro", "Email ou Senha inválida 2");
-
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
-                dispatcher.forward(request, response);
-            }
-            
         } catch (SQLException e) {
 
             request.setAttribute("Erro", "Erro no banco de dados");
