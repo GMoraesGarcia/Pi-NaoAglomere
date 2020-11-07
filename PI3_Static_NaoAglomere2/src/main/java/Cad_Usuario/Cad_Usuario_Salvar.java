@@ -33,7 +33,7 @@ public class Cad_Usuario_Salvar extends HttpServlet {
         sessao.removeAttribute("novouser");
 
         request.setAttribute("novouser", novoUsuario);
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Saida.jsp");
+        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
         dispacher.forward(request, response);
 
     }
@@ -73,13 +73,13 @@ public class Cad_Usuario_Salvar extends HttpServlet {
 
         //Validação do Telefone
         boolean telefoneValido = telefoneStr != null && telefoneStr.trim().length() > 0;
-       /* if (telefoneValido) {
+        /* if (telefoneValido) {
             Pattern telefonePattern = Pattern.compile("(\\([0-9]{2}\\))\\s([9]{1})?([0-9]{4})-([0-9]{4})");
             Matcher telefoneMatcher = telefonePattern.matcher(telefoneStr);
             telefoneValido = telefoneValido && telefoneMatcher.matches();
         }*/
         //validação senha
-        boolean validarSenha = (senhaStr != null && senhaStr.trim().length() <= 8);
+        boolean validarSenha = (senhaStr != null && senhaStr.trim().length() >= 8);
 
         //Senhas Iguais
         boolean validarConfirmaSenha = (confSenhaStr != null && confSenhaStr.equals(senhaStr));
@@ -133,25 +133,20 @@ public class Cad_Usuario_Salvar extends HttpServlet {
         novoUsuario.setTelefone(telefoneStr);
         novoUsuario.setSenha(senhaStr);
         novoUsuario.setConfirmarSenha(confSenhaStr);
-        
-        UsuarioDAO dao = new UsuarioDAO();
-        try{
-            
-             dao.addNovoUsuario(novoUsuario);
-             request.setAttribute("add", "Cadasreo realizado com sucesso");
-             
-             
-        }catch(SQLException e){System.out.println(e);}
-            
-        
-        
-       
-        HttpSession sessao = request.getSession();
-        sessao.setAttribute("novoUsuario", novoUsuario);
 
-        response.sendRedirect("salvar-usuario");
-        
-        
+        UsuarioDAO dao = new UsuarioDAO();
+        try {
+
+            dao.addNovoUsuario(novoUsuario);
+            request.setAttribute("add", "Cadasreo realizado com sucesso");
+            HttpSession sessao = request.getSession();
+            sessao.setAttribute("novouser", novoUsuario);
+
+            response.sendRedirect("salvar-usuario");
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
 
     }
 

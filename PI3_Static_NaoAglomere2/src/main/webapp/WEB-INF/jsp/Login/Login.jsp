@@ -22,35 +22,46 @@
             <c:import url="../header.jsp"/> 
         </header>
         <div class="containerw">
-        
 
-        <form method="post" action="Perfil-entrada" class="form-group">
-            <div>
-                <label>E-mail: </label>
-                <input type="email" class="form-control"  name="email" value="${email}">
-                <c:if test="${emailErro != null}">
-                    <span class="erro"><c:out value="${emailErro}"/></span> 
+
+            <form method="post" action="Perfil-entrada" class="form-group">
+                <div>
+                    <label>E-mail: </label>
+                    <input type="email" class="form-control"  name="email" value="${email}">
+                    <c:if test="${emailErro != null}">
+                        <span class="erro"><c:out value="${emailErro}"/></span> 
+                    </c:if>
+
+                </div>
+                <div>
+                    <label>Senha:</label>
+                    <input type="password" class="form-control" name="senha" value="${senha}">
+                    <c:if test="${senhaErro != null}">
+                        <span class="erro"><c:out value="${senhaErro}"/></span>
+                    </c:if>
+
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success botoes">Login</button>                
+                </div>
+                <c:if test="${Erro != null}">
+                    <span class="erro"><c:out value="${Erro}"/></span>
                 </c:if>
-
-            </div>
-            <div>
-                <label>Senha:</label>
-                <input type="password" class="form-control" name="senha" value="${senha}">
-                <c:if test="${senhaErro != null}">
-                    <span class="erro"><c:out value="${senhaErro}"/></span>
-                </c:if>
-
-            </div>
-            <div>
-                <button type="submit" class="btn btn-success botoes">Login</button>                
-            </div>
-            <c:if test="${Erro != null}">
-                <span class="erro"><c:out value="${Erro}"/></span>
-            </c:if>
-        </form>
+            </form>
         </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>
     </body>
+
+    <c:if test="${dados.getCNPJ() != null}">
+        <script>
+            alert("Cadastrado com sucesso!");
+        </script>
+    </c:if>
+    <c:if test="${novouser.getCpf() != null}">
+        <script>
+            alert("Cadastrado com sucesso!");
+        </script>
+    </c:if>
 </html>

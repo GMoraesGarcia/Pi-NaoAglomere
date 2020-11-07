@@ -6,8 +6,6 @@ package Cad_Empresa;
  */
 public class Cad_EmpresaDados {
     
-    private int ID;
-    
     private String Nome_Empresa;
     
     private String CNPJ;
@@ -29,15 +27,16 @@ public class Cad_EmpresaDados {
     private int Numero_Rua;
     
     private String Regras;
+    
+    private String Agendamento;
 
-    public int getID() {
-        return ID;
+    public String getAgendamento() {
+        return Agendamento;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setAgendamento(String Agendamento) {
+        this.Agendamento = Agendamento;
     }
-
     public String getNome_Empresa() {
         return Nome_Empresa;
     }

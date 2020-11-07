@@ -11,33 +11,10 @@ import java.util.List;
 
 public class EmpresaDao {
 
-    public List<Cad_EmpresaDados> findAll() throws SQLException {
-
-        String sql = "";
-        
-        List<Cad_EmpresaDados> resultados = new ArrayList<>();
-
-        try (Connection conn = ConnectionUtilMySql.obterConexao(); // abre e fecha a conexão
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Cad_EmpresaDados empresaDados = new Cad_EmpresaDados();
-                empresaDados.setID(rs.getInt("id"));
-                empresaDados.setNome_Empresa(rs.getString("nome_empresa"));
-                empresaDados.setCNPJ(rs.getString("cnpj"));
-                
-                
-                resultados.add(empresaDados);
-            }
-        }
-        return resultados;
-    }
-
     public void addNew(Cad_EmpresaDados empresaDados) throws SQLException {
 
         String sql = "INSERT INTO EMPRESA (NOME_EMPRESA, CNPJ, EMAIL, DESCRICAO, TELEFONE, SENHA, QTD_MAX,"
-                + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO, AGENDAMENTO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
@@ -57,7 +34,8 @@ public class EmpresaDao {
                 stmt.setInt(10, empresaDados.getNumero_Rua());
                 stmt.setString(11, empresaDados.getRegras());
                 stmt.setString(12, "empresa"); // tipo de cadastro usado para login
-
+                stmt.setString(13, empresaDados.getAgendamento());
+                
                 int resultados = stmt.executeUpdate();
 
                 /*try (ResultSet rs = stmt.getGeneratedKeys()) {

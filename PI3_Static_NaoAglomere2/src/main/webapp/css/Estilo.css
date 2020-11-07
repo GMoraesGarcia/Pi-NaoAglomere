@@ -24,18 +24,29 @@ h1{
     text-align: center;
     margin: 4px 0;
     border-bottom: 1px solid black; 
-    
+
 }
 .botoes{
     margin: 10px 0;
-    
+
 }
 label{
     margin: 5px;
-    
+
 }
 .login{
     width: 300px;
-    
+
 }
 
+#modelo{
+    opacity: 0.2;
+}
+
+a.termos{
+    
+    border-bottom: 1px solid black;
+    color: red;
+    font-style: italic;
+    cursor: pointer;
+}

@@ -34,7 +34,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         sessao.removeAttribute("dados");
 
         request.setAttribute("dados", empresa_dados);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/CadEmpresaSaida.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -56,6 +56,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         String bairro = request.getParameter("bairro");
         String qtd_pessoasStr = request.getParameter("qtd_pessoas");
         String regras = request.getParameter("regras");
+        String agendamento = request.getParameter("agendamento");
 
         //Validação Nome
         boolean nomeValido = nome_empresa != null && nome_empresa.trim().length() > 0;
@@ -69,7 +70,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         }
 
         //validação senha
-        boolean senhaValida = (senha != null && senha.trim().length() <= 8);
+        boolean senhaValida = (senha != null && senha.trim().length() >= 8);
 
         //Senhas Iguais
         boolean ConfirmaSenhaValida = (confirmasenha != null && confirmasenha.equals(senha));
@@ -111,10 +112,13 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
         //Validação regras
         boolean regrasValidas = regras != null && regras.trim().length() > 0;
+        
+        //Validação Nome
+        boolean agendamentoValido = agendamento != null && agendamento.trim().length() > 0;
 
         boolean camposValidos = nomeValido && emailValido && validaCNPJ && telefoneValido && ruaValida
                 && numeroValido && bairroValido && descricaoValida && qtdValida && regrasValidas && senhaValida
-                && ConfirmaSenhaValida;
+                && ConfirmaSenhaValida && agendamentoValido;
 
         if (!camposValidos) {
 
@@ -154,6 +158,9 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             if (!regrasValidas) {
                 request.setAttribute("regrasErro", "Regras inválidas ou devem ser preenchidas");
             }
+            if(!agendamentoValido){
+                request.setAttribute("agendamentoErro", "Uma opção deve ser selecionada");
+            }
 
             request.setAttribute("nome_empresa", nome_empresa);
             request.setAttribute("CNPJ", CNPJ);
@@ -165,6 +172,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             request.setAttribute("bairro", bairro);
             request.setAttribute("qtd_pessoas", qtd_pessoasStr);
             request.setAttribute("regras", regras);
+            request.setAttribute("agendamento", agendamento);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Cad_Empresa.jsp");
             dispatcher.forward(request, response);
@@ -185,6 +193,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         empresa_dados.setBairro(bairro);
         empresa_dados.setQtd_max(qtdPessoas);
         empresa_dados.setRegras(regras);
+        empresa_dados.setAgendamento(agendamento);
 
         EmpresaDao dao = new EmpresaDao();
 
@@ -192,6 +201,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             dao.addNew(empresa_dados);
 
             request.setAttribute("dados", empresa_dados);
+            
             HttpSession sessao = request.getSession();
             sessao.setAttribute("dados", empresa_dados);
             response.sendRedirect("cad-empresa-salvar");
@@ -202,7 +212,6 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Cad_Empresa.jsp");
             dispatcher.forward(request, response);
-            return;
         }
 
     }
