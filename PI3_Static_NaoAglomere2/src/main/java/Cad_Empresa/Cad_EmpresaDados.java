@@ -13,7 +13,7 @@ public class Cad_EmpresaDados {
     private String email;
     
     private String Descricao;
-    
+
     private String Telefone;
     
     private String Senha;
@@ -124,5 +124,9 @@ public class Cad_EmpresaDados {
     public void setRegras(String Regras) {
         this.Regras = Regras;
     }
+    @Override
+    public String toString() {
+        return "Cad_EmpresaDados{" + "Nome_Empresa=" + Nome_Empresa + ", CNPJ=" + CNPJ + ", email=" + email + ", Descricao=" + Descricao + ", Telefone=" + Telefone + ", Senha=" + Senha + ", qtd_max=" + qtd_max + ", Rua=" + Rua + ", Bairro=" + Bairro + ", Numero_Rua=" + Numero_Rua + ", Regras=" + Regras + ", Agendamento=" + Agendamento + '}';
+    }        
     
 }
