@@ -23,7 +23,7 @@
         <c:if test="${dados.getTipo_cadastro() == 'usuário'}">
             <h1>Bem Vindo(a)! <c:out value="${user.getNome()}"/></h1>
             <div class="containerw">
-                <form class="form-group">
+                <form class="form-group" action="">
                     <label>CPF:</label>
                     <input  class="form-control" type="text" name="cpf" value="${user.getCpf()}" disabled>
 
@@ -124,6 +124,10 @@
                 </form> 
             </div>
         </c:if>
+            <div class="containerw">
+                <h2>Se ainda não é cadastrado efetue o cadastro!!</h2>
+                <p></p>
+           </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>

@@ -13,17 +13,17 @@ import java.time.LocalDate;
  * @author Gabriel
  */
 public class Agendamento {
-    private String nome;
+    private int nome;
     private String email;
     private String telefone;
     private LocalDate data;
     private String hora;
 
-    public String getNome() {
+    public int getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(int nome) {
         this.nome = nome;
     }
 

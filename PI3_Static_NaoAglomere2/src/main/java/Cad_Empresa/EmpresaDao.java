@@ -1,6 +1,6 @@
 package Cad_Empresa;
 
-import ConexãoBD.ConnectionUtilMySql;
+import ConexãoBD.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +16,7 @@ public class EmpresaDao {
         String sql = "INSERT INTO EMPRESA (NOME_EMPRESA, CNPJ, EMAIL, DESCRICAO, TELEFONE, SENHA, QTD_MAX,"
                 + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO, AGENDAMENTO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+        //ConnectionUtilMySql
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
             conn.setAutoCommit(false);

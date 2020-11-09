@@ -13,6 +13,7 @@ import java.time.LocalDate;
  */
 public class Cad_Usuario {
     
+   private int id; 
    private String nome;
    private String cpf;
    private String email;
@@ -20,6 +21,16 @@ public class Cad_Usuario {
    private String telefone;
    private String senha;
    private String confirmarSenha;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 
     public String getNome() {
         return nome;
