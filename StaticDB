@@ -17,17 +17,26 @@ Regras varchar(500) not null,
 Tipo_Cadastro varchar(8)
 );
 
+CREATE TABLE HorariosDisponiveis(
+id INT NOT NULL AUTO_INCREMENT,
+id_empresa INT NOT NULL,
+horario time,
+PRIMARY KEY (id),
+FOREIGN KEY (id_empresa) REFERENCES  empresa (ID_empresa)
+);
+
 CREATE TABLE agendamento (
     num_agendamento  INT NOT NULL auto_increment,
     email 			 VARCHAR(50),
-    usuario_id       VARCHAR(50) NOT NULL,
+    usuario_id       int NOT NULL,
     telefone 		 VARCHAR(20),
-		# empresa_id       INT NOT NULL,
+    empresa_id       INT NOT NULL,
     data_Agend        DATE NOT NULL,
     horario          time NOT NULL,
-    PRIMARY KEY ( num_agendamento )
-		#FOREIGN KEY ( empresa_id ) REFERENCES empresa ( id ),
-		#FOREIGN KEY ( usuario_id ) REFERENCES usuario ( id )
+    PRIMARY KEY ( num_agendamento ),
+    FOREIGN KEY (usuario_id) REFERENCES usuario (id),										
+    FOREIGN KEY (empresa_id ) REFERENCES Empresa (ID_empresa)
+	
 );
 
 CREATE TABLE usuario (
