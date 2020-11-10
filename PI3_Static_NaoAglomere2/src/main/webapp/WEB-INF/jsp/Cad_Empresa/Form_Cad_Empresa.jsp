@@ -34,59 +34,57 @@
 
                     <fieldset class="col-lg-6">
                         <div>
-                            <label id="Nome_Empresa">Nome da empresa: </label>
-                            <input type="text" class="form-control" name="nome_empresa" placeholder="Empresa" required value="${nome_empresa}">
+                            <label id="Nome_Empresa">Nome da empresa:</label>
+                            <input type="text" class="form-control" name="nome_empresa" placeholder="Empresa" value="${nome_empresa}">
                             <c:if test="${nomeErro != null}">
                                 <span class="erro"><c:out value="${nomeErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="CNPJ">CPNJ: </label> <label id="modelo">XX.XXX.XXX/XXXX-XX</label>
+                            <label id="CNPJ">CPNJ:</label> <label id="modelo">XX.XXX.XXX/XXXX-XX</label>
                             <input type="text" class="form-control" id="CNPJtext" name="CNPJ" placeholder="12.345.678/9012-34"
-                                   inputmode="numeric" minlength="18" maxlength="18" 
-                                   pattern="^[0-9]{2}.?[0-9]{3}.?[0-9]{3}/?[0-9]{4}-?[0-9]{2}" required value="${CNPJ}">
+                                   inputmode="numeric" minlength="18" maxlength="18" value="${CNPJ}">
                             <c:if test="${cnpjErro != null}">
                                 <span class="erro"><c:out value="${cnpjErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="Email">E-mail Corporativo: </label>
-                            <input type="email" class="form-control" name="email" placeholder="email@exemplo.com" 
-                                   pattern="^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$" required value="${email}">
+                            <label id="Email">E-mail Corporativo:</label>
+                            <input type="email" class="form-control" name="email" placeholder="email@exemplo.com" value="${email}">
                             <c:if test="${emailErro != null}">
                                 <span class="erro"><c:out value="${emailErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="senha">Senha: </label>
-                            <input type="password" class="form-control" name="senha" placeholder="*******" required>
+                            <label id="senha">Senha:</label>
+                            <input type="password" class="form-control" name="senha" placeholder="*******">
                             <c:if test="${senhaErro != null}">
                                 <span class="erro"><c:out value="${senhaErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="confirmasenha">Confirmar senha: </label>
+                            <label id="confirmasenha">Confirmar senha:</label>
                             <input type="password" class="form-control" name="confirmasenha" placeholder="*******" required>
                             <c:if test="${confirmaErro != null}">
                                 <span class="erro"><c:out value="${confirmaErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="telefone">Telefone: </label> <label id="modelo">(XX) XXXXX-XXXX ou (XX) XXXX-XXXX</label>
-                            <input type="tel" class="form-control" name="telefone" placeholder="(11) 91234-5678" 
-                                   pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"
-                                   inputmode="numeric" minlength="14" maxlength="15" required value="${telefone}">
+                            <label id="telefone">Telefone:</label> <label id="modelo">(XX) XXXXX-XXXX ou (XX) XXXX-XXXX</label>
+                            <input type="tel" class="form-control" name="telefone" placeholder="(11) 91234-5678" value="${telefone}">
                             <c:if test="${telefoneErro != null}">
                                 <span class="erro"><c:out value="${telefoneErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="descricao">Descrição: </label>
-                            <select class="custom-select" id="descricaoop" name="descricao" required>
+                            <label id="descricao">Descrição:</label>
+                            <select class="custom-select" id="descricaoop" name="descricao">
                                 <option disabled selected>Selecione uma opção</option>
                                 <option value="Mercado">Mercado</option>
-                                <option value="Estúdio de tatuagem">Estúdio de tatuagem</option>
-                                <option value="Cabelereiro">Cabelereiro</option>
+                                <option value="Bar ou Restaurante">Bar ou Restaurante</option>
+                                <option value="Loja">Loja</option>
+                                <option value="Salão de Beleza ou Estudio">Salão de Beleza ou Estudio</option>
+                                <option value="Banco">Banco</option>
                             </select>
                             <c:if test="${descricaoErro != null}">
                                 <span class="erro"><c:out value="${descricaoErro}"/></span>
@@ -94,7 +92,7 @@
                         </div>
                         <div>
                             <label>Agendamento obrigatório:</label>
-                            <select class="custom-select" id="agendamento" name="agendamento" required>
+                            <select class="custom-select" id="agendamento" name="agendamento">
                                 <option disabled selected>Selecione uma opção</option>
                                 <option value="Sim">Sim</option>
                                 <option value="Não">Não</option>
@@ -104,10 +102,9 @@
                             </c:if>
                         </div>
                         <div>
-                            <input type="checkbox"/> Li e aceito os <a class="termos" 
-                                                                       onclick="alert('Termos de responsabilidade:\n\Só poderá ser feito um agendamento por dia.')">termos de responsabilidade.</a>
-                        </div>    
-
+                            <input type="checkbox"> Li e aceito a <a class="termos" 
+                                                                  onclick="alert('Política de privacidade:\nA sua privacidade é importante para nós. É política do Não Aglomere respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no nosso site. Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei. O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade. O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais.')">Política de privacidade </a>e os <a class="termos" onclick="alert('Termos de uso:\nAo utilizar os serviços do Não Aglomere, você concorda em não agir com más intenções ou fazer mal uso da plataforma para quaisquer outros fins que não sejam:\n1-Realizar cadastro na plataforma.\n2-Fazer consultas de estabelecimentos com fins de se informar sobre a situação do mesmo.\n3-Gerar código de ida ao estabelecimento.*\n4-Realizar agendamento de ida ao estabelecimento.**\n5-Ser informado sobre novidades em relação ao COVID-19.\n*Só será possível gerar um único código por pessoa em cada estabelecimento a cada dia, os estabelecimentos poderão oferecer benefícios que julguem condizentes com a geração e apresentação do código no endereço cadastrado no site.\n**Caso a empresa reporte o não comparecimento ou o usuário não informe a empresa, na primeira vez haverá uma advertência, na próxima ocorrência o cadastro será suspenso.\nMais informações em contatonaoaglomere@gmail.com')">Termos de uso.</a>
+                        </div>
                         <div>
                             <button class="btn btn-success botoes botoes" type="submit" >Efetuar Cadastro</button> 
                             <button class=" btn btn-danger botoes" type="reset">Cancelar</button>
@@ -116,41 +113,37 @@
 
                     <fieldset class="col-lg-6">
                         <div>
-                            <label id="rua">Rua: </label>
-                            <input type="text" class="form-control" name="rua" placeholder="Exemplo: Rua um" required
-                                   value="${rua}">
+                            <label id="rua">Rua:</label>
+                            <input type="text" class="form-control" name="rua" placeholder="Exemplo: Rua um" value="${rua}">
                             <c:if test="${ruaErro != null}">
                                 <span class="erro"><c:out value="${ruaErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="numero">Número: </label>
-                            <input type="number" class="form-control" name="numero_rua" placeholder="Exemplo: 123" required
-                                   value="${numero_rua}">
+                            <label id="numero">Número:</label>
+                            <input type="number" class="form-control" name="numero_rua" placeholder="Exemplo: 123" value="${numero_rua}">
                             <c:if test="${numeroErro != null}">
                                 <span class="erro"><c:out value="${numeroErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="bairro">Bairro: </label>
-                            <input type="text" class="form-control" name="bairro" placeholder="Exemplo: Santo Amaro" required
-                                   value="${bairro}">
+                            <label id="bairro">Bairro:</label>
+                            <input type="text" class="form-control" name="bairro" placeholder="Exemplo: Santo Amaro" value="${bairro}">
                             <c:if test="${bairroErro != null}">
                                 <span class="erro"><c:out value="${bairroErro}"/></span>
                             </c:if>
                         </div>
                         <div>
-                            <label id="qtd_pessoas">Quantidade máxima de pessoas: </label>
-                            <input type="number" class="form-control" name="qtd_pessoas" min="1" placeholder="Exemplo: 25" required
-                                   value="${qtd_pessoas}">
+                            <label id="qtd_pessoas">Quantidade máxima de pessoas:</label>
+                            <input type="number" class="form-control" name="qtd_pessoas" placeholder="Exemplo: 25" value="${qtd_pessoas}">
                             <c:if test="${qtdErro != null}">
                                 <span class="erro"><c:out value="${qtdErro}"/></span>
                             </c:if>
                         </div>             
                         <div>
-                            <label id="regras">Regras: </label>
+                            <label id="regras">Regras:</label>
                             <textarea name="regras" class="form-control" rows="5" cols="64"
-                                      placeholder="Exemplo: Proibida a entrada sem máscara" required></textarea>
+                                      placeholder="Exemplo: Proibida a entrada sem máscara"></textarea>
                             <c:if test="${regrasErro != null}">
                                 <span class="erro"><c:out value="${regrasErro}"/></span>
                             </c:if>
@@ -159,17 +152,17 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <label>Horário de abertura:</label>
-                                    <input type="time" class="form-control" required>
+                                    <input type="time" class="form-control" placeholder="Ex: 08:00">
                                 </div>
                                 <div class="col-lg-6">
                                     <label>Horário de fechamento:</label>
-                                    <input type="time" class="form-control" required>
+                                    <input type="time" class="form-control" placeholder="Ex: 18:00">
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <label id="imagem">Carregar imagem: </label>
-                            <input  type="file" name="imagem">
+                            <label >Carregar imagem:</label>
+                            <input type="file" id="imagem" name="imagem" class="form-control">
                         </div>
                     </fieldset>
                 </div>
