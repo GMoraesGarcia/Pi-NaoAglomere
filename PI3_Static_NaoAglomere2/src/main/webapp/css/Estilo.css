@@ -50,3 +50,8 @@ a.termos{
     font-style: italic;
     cursor: pointer;
 }
+
+a.termos:hover{
+    color: black;
+    font-style: normal;
+}
