@@ -45,35 +45,52 @@
             </div>
         </c:if>
 
-        <c:if test="${dados.getTipo_cadastro() == 'empresa'}">
+        <c:if test="${Erro != null}">
+            <span class="erro"><c:out value="${Erro}"/></span>
+        </c:if>
+
+
+        <c:if test="${dados.getTipo_cadastro() == 'empresa' || empresa.getNome_Empresa() != null}">
             <h1>Bem Vindo(a)! <c:out value="${empresa.getNome_Empresa()}"/></h1>
             <div class="containerw">
-                <form class="form-group">
+                <form class="form-group" method="post" action="perfil-alterado" novalidate>
                     <div class="row">
                         <fieldset class="col-lg-6">
                             <div>
                                 <label id="Nome_Empresa">Nome da empresa:</label>
                                 <input type="text" class="form-control" name="nome_empresa" value="${empresa.getNome_Empresa()}">
+                                <c:if test="${nomeErro != null}">
+                                    <span class="erro"><c:out value="${nomeErro}"/></span>
+                                </c:if>
                             </div>
                             <div>
                                 <label id="CNPJ">CPNJ:</label>
-                                <input type="text" class="form-control" id="CNPJtext" name="CNPJ" value="${empresa.getCNPJ()}" disabled>
+                                <input type="text" class="form-control" id="CNPJtext" name="CNPJ" value="${empresa.getCNPJ()}" readonly="readonly">
                             </div>
                             <div>
                                 <label id="Email">E-mail Corporativo:</label>
-                                <input type="email" class="form-control" name="email" required value="${empresa.getEmail()}">
+                                <input type="email" class="form-control" name="email" value="${empresa.getEmail()}" >
+                                <c:if test="${emailErro != null}">
+                                    <span class="erro"><c:out value="${emailErro}"/></span>
+                                </c:if>
                             </div>
                             <div>
                                 <label id="telefone">Telefone:</label> <label id="modelo">(XX) XXXXX-XXXX ou (XX) XXXX-XXXX</label>
-                                <input type="tel" class="form-control" name="telefone" required value="${empresa.getTelefone()}">
+                                <input type="tel" class="form-control" name="telefone" value="${empresa.getTelefone()}">
+                                <c:if test="${telefoneErro != null}">
+                                    <span class="erro"><c:out value="${telefoneErro}"/></span>
+                                </c:if>
                             </div>
                             <div>
                                 <label id="descricao">Descrição:</label>
-                                <input type="text" class="form-control" name="descricao" required value="${empresa.getDescricao()}">
+                                <input type="text" class="form-control" name="descricao" value="${empresa.getDescricao()}" readonly="readonly">
                             </div>
                             <div>
                                 <label>Agendamento obrigatório:</label>
-                                <input type="text" class="form-control" name="agendamento" required value="${empresa.getAgendamento()}">
+                                <input type="text" class="form-control" name="agendamento"  value="${empresa.getAgendamento()}">
+                                <c:if test="${agendamentoErro != null}">
+                                    <span class="erro"><c:out value="${agendamentoErro}"/></span>
+                                </c:if>
                             </div>
 
                             <div>
@@ -85,38 +102,53 @@
                             <div>
                                 <label id="rua">Rua:</label>
                                 <input type="text" class="form-control" name="rua" value="${empresa.getRua()}">
+                                <c:if test="${ruaErro != null}">
+                                    <span class="erro"><c:out value="${ruaErro}"/></span>
+                                </c:if>
                             </div>
                             <div>
                                 <label id="numero">Número:</label>
                                 <input type="number" class="form-control" name="numero_rua" value="${empresa.getNumero_Rua()}">
+                                <c:if test="${numeroErro != null}">
+                                    <span class="erro"><c:out value="${numeroErro}"/></span>
+                                </c:if>
                             </div>
                             <div>
                                 <label id="bairro">Bairro:</label>
                                 <input type="text" class="form-control" name="bairro" value="${empresa.getBairro()}">
+                                <c:if test="${bairroErro != null}">
+                                    <span class="erro"><c:out value="${bairroErro}"/></span>
+                                </c:if>
                             </div>
                             <div>
                                 <label id="qtd_pessoas">Quantidade máxima de pessoas:</label>
                                 <input type="number" class="form-control" name="qtd_pessoas" value="${empresa.getQtd_max()}">
+                                <c:if test="${qtdErro != null}">
+                                    <span class="erro"><c:out value="${qtdErro}"/></span>
+                                </c:if>
                             </div>             
                             <div>
                                 <label id="regras">Regras:</label>
-                                <input name="regras" class="form-control" required value="${empresa.getRegras()}">
+                                <input class="form-control" name="regras" value="${empresa.getRegras()}">
+                                <c:if test="${regrasErro != null}">
+                                    <span class="erro"><c:out value="${regrasErro}"/></span>
+                                </c:if>
                             </div>
                             <div>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label>Horário de abertura:</label>
-                                        <input type="time" class="form-control" required value="">
+                                        <input type="time" class="form-control" >
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Horário de fechamento:</label>
-                                        <input type="time" class="form-control" required value="">
+                                        <input type="time" class="form-control" >
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <label id="imagem">Carregar imagem: </label>
-                                <input  type="file" name="imagem">
+                                <input class="form-control" type="file" name="imagem">
                             </div>
                         </fieldset>
                     </div>
@@ -124,12 +156,18 @@
                 </form> 
             </div>
         </c:if>
-            <div class="containerw">
-                <h2>Se ainda não é cadastrado efetue o cadastro!!</h2>
-                <p></p>
-           </div>
+        <div class="containerw">
+            <h2>Se ainda não é cadastrado efetue o cadastro!!</h2>
+            <p></p>
+        </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>
     </body>
+
+    <c:if test="${sucesso != null}">
+        <script>
+            alert("Alterado com sucesso!");
+        </script>
+    </c:if>
 </html>

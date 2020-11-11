@@ -21,7 +21,7 @@ public class EmpresaDao {
 
             conn.setAutoCommit(false);
 
-            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
                 stmt.setString(1, empresaDados.getNome_Empresa());
                 stmt.setString(2, empresaDados.getCNPJ());
@@ -37,15 +37,7 @@ public class EmpresaDao {
                 stmt.setString(12, "empresa"); // tipo de cadastro usado para login
                 stmt.setString(13, empresaDados.getAgendamento());
                 
-                int resultados = stmt.executeUpdate();
-
-                /*try (ResultSet rs = stmt.getGeneratedKeys()) {
-
-                    while (rs.next()) {
-                        Integer idGerado = rs.getInt(1);
-                        empresaDados.setID(idGerado);
-                    }
-                }*/
+                stmt.executeUpdate();
                 
                 conn.commit();
 
@@ -54,6 +46,42 @@ public class EmpresaDao {
                 throw e;
             }
         }
+    }
+    
+    public void update (Cad_EmpresaDados empresaDados) throws SQLException{
+        
+        String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
+                + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
+        
+        try (Connection conn = ConnectionUtilMySql.obterConexao()) {
+
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setString(1, empresaDados.getNome_Empresa());
+                stmt.setString(2, empresaDados.getEmail());
+                stmt.setString(3, empresaDados.getTelefone());
+                stmt.setString(4, empresaDados.getRua());
+                stmt.setInt(5, empresaDados.getNumero_Rua());
+                stmt.setString(6, empresaDados.getBairro());
+                stmt.setInt(7, empresaDados.getQtd_max());
+                stmt.setString(8, empresaDados.getRegras());
+                stmt.setString(9, empresaDados.getDescricao());
+                stmt.setString(10, empresaDados.getAgendamento());
+                stmt.setString(11, empresaDados.getCNPJ());
+                
+                stmt.executeUpdate();
+
+                conn.commit();
+
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            }
+        }
+        
+        
     }
     
 }
