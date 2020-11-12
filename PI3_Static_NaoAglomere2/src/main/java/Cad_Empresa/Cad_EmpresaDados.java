@@ -127,6 +127,17 @@ public class Cad_EmpresaDados {
     @Override
     public String toString() {
         return "Cad_EmpresaDados{" + "Nome_Empresa=" + Nome_Empresa + ", CNPJ=" + CNPJ + ", email=" + email + ", Descricao=" + Descricao + ", Telefone=" + Telefone + ", Senha=" + Senha + ", qtd_max=" + qtd_max + ", Rua=" + Rua + ", Bairro=" + Bairro + ", Numero_Rua=" + Numero_Rua + ", Regras=" + Regras + ", Agendamento=" + Agendamento + '}';
-    }        
+    }
+    
+    public int getNumberAgendamento(){
+        Cad_EmpresaDados ep = new Cad_EmpresaDados();
+        
+        if(ep.getAgendamento().equalsIgnoreCase("sim"))
+            return 1;
+        
+        return 0;
+        
+        
+    }
     
 }

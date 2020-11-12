@@ -42,7 +42,7 @@ public class Cad_Usuario_Salvar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
+Cad_Usuario novoUsuario = new Cad_Usuario();
         String nomeStr = request.getParameter("nome");
         String cpfStr = request.getParameter("cpf");
         String emailStr = request.getParameter("email");
@@ -68,7 +68,7 @@ public class Cad_Usuario_Salvar extends HttpServlet {
         boolean validaCpf = false;
         if (cpfStr != "" && cpfStr.matches("[0-9]+")) {
             char arrayCpf[] = cpfStr.toCharArray();
-            validaCpf = validaCPF(arrayCpf);
+            validaCpf = novoUsuario.validaCPF(arrayCpf);
         }
 
         //Validação do Telefone
@@ -124,7 +124,7 @@ public class Cad_Usuario_Salvar extends HttpServlet {
             return;
         }
 
-        Cad_Usuario novoUsuario = new Cad_Usuario();
+        
 
         novoUsuario.setNome(nomeStr);
         novoUsuario.setCpf(cpfStr);
@@ -150,46 +150,6 @@ public class Cad_Usuario_Salvar extends HttpServlet {
 
     }
 
-    public static boolean validaCPF(char ArrayCPF[]) {
-        String digito01 = String.valueOf(ArrayCPF[9]);
-        String digito02 = String.valueOf(ArrayCPF[10]);
-        int num = 10, r = 0, i = 0;
-
-        while (num >= 2) {
-            //Validação do primeiro digito
-            String m = String.valueOf(ArrayCPF[i]);
-            int m2 = Integer.parseInt(m);
-            r += m2 * num;
-            num--;
-            i++;
-        }
-        int mult = (r * 10) % 11;
-        if (mult == 10) {
-            mult = 0;
-        }
-        if (mult == Integer.parseInt(digito01)) {
-            //Validação para o segundo Digito
-            num = 11;
-            i = 0;
-            r = 0;
-            while (num >= 2) {
-                String valoresSegundoDigitos = String.valueOf(ArrayCPF[i]);
-                int valor2 = Integer.parseInt(valoresSegundoDigitos);
-                r += valor2 * num;
-                i++;
-                num--;
-            }
-            int mult2 = (r * 10) % 11;
-            if (mult2 == 10) {
-                mult2 = 0;
-            }
-            if (mult2 == Integer.parseInt(digito02)) {
-                return true;
-            }
-        }
-
-        return false;
-
-    }
+    
 
 }

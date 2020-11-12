@@ -20,9 +20,9 @@
         <header class="header">
             <c:import url="../header.jsp"/>
         </header>     
-       
+
         <div class="containerw">
-             <h1>Agendamento</h1>
+            <h1>Agendamento</h1>
             <form method="post" action="agendamento-salvar" class="form-group">
                 <div>
                     <label>Nome: </label>
@@ -59,11 +59,16 @@
                         <span class="erro"><c:out value="${horarioErro}"/></span> 
                     </c:if>
 
+                   
+
                 </div>
                 <button type="submit" class="btn btn-success botoes">Agendar</button>
                 <button type="reset"  class="btn btn-danger botoes">Cancelar</button>
 
             </form>
+                     <script>
+                        alert("Agendamento realizado com sucesso!");
+                    </script>
         </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>

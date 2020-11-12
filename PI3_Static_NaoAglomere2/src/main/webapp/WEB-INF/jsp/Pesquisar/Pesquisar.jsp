@@ -67,7 +67,7 @@
                                     <p>Bairro: <c:out value="${interesse.getBairro()}" /></p>
                                     <p>Numero: <c:out value="${interesse.getNumero_Rua()}" /></p>
                                     <p>Regras: <c:out value="${interesse.getRegras()}" /></p>
-                                    <a class="btn btn-info" href="${pageContext.request.contextPath}/agendamento" >Agendar</a>
+                                    <a class="btn btn-info" href="${pageContext.request.contextPath}/agendamento" >Agendar</a>               
                                 </c:forEach>
                             </ul>
                             

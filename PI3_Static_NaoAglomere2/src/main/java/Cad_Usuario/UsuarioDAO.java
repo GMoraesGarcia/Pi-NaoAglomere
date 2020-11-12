@@ -33,7 +33,7 @@ public class UsuarioDAO {
                 stmt.setString(6, user.getSenha());
                 stmt.setString(7, "usuário");
                 stmt.executeUpdate();
-                
+               
                 System.out.println("Cadastrado com secesso");
                 
                  conn.commit();
@@ -55,14 +55,14 @@ public class UsuarioDAO {
             
             try(PreparedStatement stmt = conn.prepareStatement(sql)){
                 stmt.setString(1, user.getNome());
-                stmt.setString(3, user.getEmail());
-                stmt.setString(4, String.valueOf(user.getDataNascimento()));
-                stmt.setString(5, user.getTelefone());
-                stmt.setString(2, user.getCpf());
-
-                stmt.executeUpdate();
+                stmt.setString(2, user.getEmail());
+                stmt.setString(3, String.valueOf(user.getDataNascimento()));
+                stmt.setString(4, user.getTelefone());
+                stmt.setString(5, user.getCpf());
+                System.out.println(user.getEmail());
                 
-                System.out.println("Cadastrado com secesso");
+                stmt.executeUpdate();
+                System.out.println("alterado com secesso");
                 
                  conn.commit();
             

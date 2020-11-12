@@ -22,23 +22,35 @@
         </header>
         <c:if test="${dados.getTipo_cadastro() == 'usuário'}">
             <h1>Bem Vindo(a)! <c:out value="${user.getNome()}"/></h1>
-            <div class="containerw">
-                <form class="form-group" action="">
+            <div class="containerw" >
+                <form class="form-group" method="post" action="perfil-alterado">
                     <label>CPF:</label>
-                    <input  class="form-control" type="text" name="cpf" value="${user.getCpf()}" disabled>
+                    <input  class="form-control" type="text" name="cpf" value="${user.getCpf()}" readonly="readonly">
 
                     <label>E-mail</label>
                     <input  class="form-control" type="text" name="email" value="${user.getEmail()}">
-
+                    <c:if test="${emailErro != null}">
+                        <span class="erro"><c:out value="${emailErro}"/></span> 
+                    </c:if>
+                        
                     <label>Nome:</label>
                     <input  class="form-control" type="text" name="nome" value="${user.getNome()}">
-
+                    <c:if test="${nomeErro != null}">
+                        <span class="erro"><c:out value="${nomeErro}"/></span> 
+                    </c:if>
+                        
                     <label>Data de Nascimento</label>
                     <input  class="form-control" type="date" name="dataNascimento" value="${user.getDataNascimento()}">
-
+                    <c:if test="${dtNascimentoErro != null}">
+                        <span class="erro"><c:out value="${dtNascimentoErro}"/></span> 
+                    </c:if>
+                        
                     <label>Telefone:</label>
                     <input  class="form-control" type="text" name="telefone" value="${user.getTelefone()}">
-
+                     <c:if test="${telefoneErro != null}">
+                        <span class="erro"><c:out value="${telefoneErro}"/></span> 
+                    </c:if>
+                        
                     <button type="submit" class="btn btn-success botoes" >Alterar</button>
 
                 </form> 
@@ -156,10 +168,7 @@
                 </form> 
             </div>
         </c:if>
-        <div class="containerw">
-            <h2>Se ainda não é cadastrado efetue o cadastro!!</h2>
-            <p></p>
-        </div>
+       
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>
