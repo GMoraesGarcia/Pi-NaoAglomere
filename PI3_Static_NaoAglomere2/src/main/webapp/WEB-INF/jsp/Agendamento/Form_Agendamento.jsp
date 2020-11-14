@@ -24,6 +24,7 @@
         <div class="containerw">
             <h1>Agendamento</h1>
             <form method="post" action="agendamento-salvar" class="form-group">
+                <label>ID: <c:out value="${sessionScope.busca.estabelecimentos.get(0).getId()}" /></label>
                 <div>
                     <label>Nome: </label>
                     <input type="text" name="nome" value="${nome}" class="form-control">
@@ -66,9 +67,7 @@
                 <button type="reset"  class="btn btn-danger botoes">Cancelar</button>
 
             </form>
-                     <script>
-                        alert("Agendamento realizado com sucesso!");
-                    </script>
+                   
         </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>

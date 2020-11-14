@@ -55,9 +55,7 @@ public class AgendamentoDAO {
                 if (rs.next()){
                 
                 a.setNome(rs.getInt("id"));
-                
-               
-                    //System.out.println(a.getNome());  
+
                 }
                 
             }

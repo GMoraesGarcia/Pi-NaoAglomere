@@ -1,5 +1,6 @@
 package Pesquisa;
 
+import Cad_Empresa.Cad_EmpresaDados;
 import Login.LoginDados;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +32,6 @@ public class PesquisarSalvarServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
         String pesquisa = request.getParameter("pesquisa");
 
         PesquisaDao dao = new PesquisaDao();
@@ -48,6 +48,7 @@ public class PesquisarSalvarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
             dispatcher.forward(request, response);
         }
+       
 
     }
 

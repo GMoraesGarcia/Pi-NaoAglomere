@@ -303,7 +303,6 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
             user.setNome(nomeStr);
             user.setCpf(cpfStr);
-            System.out.println(cpfStr);
             user.setEmail(emailStr);
             user.setDataNascimento(LocalDate.parse(dtNascimentoStr));
             user.setTelefone(telefoneStr);

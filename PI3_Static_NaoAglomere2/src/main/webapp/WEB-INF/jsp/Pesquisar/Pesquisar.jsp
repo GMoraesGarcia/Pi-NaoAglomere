@@ -57,7 +57,7 @@
                         <c:when test="${busca.getEstabelecimentos() != null }">               
                             <ul>                    
                                 <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">
-
+                                    <li><p>ID: <c:out value="${interesse.getId()}" /></p></li>
                                     <li><p>Nome: <c:out value="${interesse.getNome_Empresa()}" /></p></li>
                                     <li><p>Email: <c:out value="${interesse.getEmail()}" /></p></li>
                                     <li><p>Descrição: <c:out value="${interesse.getDescricao()}" /></p></li>
@@ -67,7 +67,7 @@
                                     <li><p>Bairro: <c:out value="${interesse.getBairro()}" /></p></li>
                                     <li><p>Numero: <c:out value="${interesse.getNumero_Rua()}" /></p></li>
                                     <li><p>Regras: <c:out value="${interesse.getRegras()}" /></p></li>
-                                    <li><a class="btn btn-info" href="${pageContext.request.contextPath}/agendamento" >Agendar</a>   </li>            
+                                    <li><a class="btn btn-info" href="${pageContext.request.contextPath}/agendamento" >Agendar</a></li>            
                                 </c:forEach>
                             </ul>
 
