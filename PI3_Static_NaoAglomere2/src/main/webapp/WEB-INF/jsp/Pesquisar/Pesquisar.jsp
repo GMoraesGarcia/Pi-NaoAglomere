@@ -50,27 +50,27 @@
                 <c:if test="${Erro != null}">
                     <span class="erro"><c:out value="${Erro}"/></span>
                 </c:if>
-                <c:if test="${dados.pesquisa != null}">
-                    <h1>Resultado dados Pesquisados</h1>
-                    <h2><c:out value ="${dados.pesquisa}" /></h2>
+                <c:if test="${busca.pesquisa != null}">
+                    <h1>Resultado da busca</h1>
+                    <h2><c:out value ="${busca.pesquisa}" /></h2>
                     <c:choose>
-                        <c:when test="${dados.getEstabelecimentos() != null }">               
+                        <c:when test="${busca.getEstabelecimentos() != null }">               
                             <ul>                    
-                                <c:forEach var="interesse" items="${dados.getEstabelecimentos()}">
-                                    
-                                    <p>Nome: <c:out value="${interesse.getNome_Empresa()}" /></p>
-                                    <p>Email: <c:out value="${interesse.getEmail()}" /></p>
-                                    <p>Descrição: <c:out value="${interesse.getDescricao()}" /></p>
-                                    <p>Telefone: <c:out value="${interesse.getTelefone()}" /></p>
-                                    <p>Quantidade Maxima de pessoas: <c:out value="${interesse.getQtd_max()}" /></p>
-                                    <p>Rua: <c:out value="${interesse.getRua()}" /></p>
-                                    <p>Bairro: <c:out value="${interesse.getBairro()}" /></p>
-                                    <p>Numero: <c:out value="${interesse.getNumero_Rua()}" /></p>
-                                    <p>Regras: <c:out value="${interesse.getRegras()}" /></p>
-                                    <a class="btn btn-info" href="${pageContext.request.contextPath}/agendamento" >Agendar</a>               
+                                <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">
+
+                                    <li><p>Nome: <c:out value="${interesse.getNome_Empresa()}" /></p></li>
+                                    <li><p>Email: <c:out value="${interesse.getEmail()}" /></p></li>
+                                    <li><p>Descrição: <c:out value="${interesse.getDescricao()}" /></p></li>
+                                    <li><p>Telefone: <c:out value="${interesse.getTelefone()}" /></p></li>
+                                    <li><p>Quantidade Maxima de pessoas: <c:out value="${interesse.getQtd_max()}" /></p></li>
+                                    <li><p>Rua: <c:out value="${interesse.getRua()}" /></p></li>
+                                    <li><p>Bairro: <c:out value="${interesse.getBairro()}" /></p></li>
+                                    <li><p>Numero: <c:out value="${interesse.getNumero_Rua()}" /></p></li>
+                                    <li><p>Regras: <c:out value="${interesse.getRegras()}" /></p></li>
+                                    <li><a class="btn btn-info" href="${pageContext.request.contextPath}/agendamento" >Agendar</a>   </li>            
                                 </c:forEach>
                             </ul>
-                            
+
                         </c:when>
                         <c:otherwise>
                             <p> Não tem nenhum interesse informado</p>

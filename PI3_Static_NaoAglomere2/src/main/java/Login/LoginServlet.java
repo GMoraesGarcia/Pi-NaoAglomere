@@ -60,43 +60,43 @@ public class LoginServlet extends HttpServlet {
 
         try {
 
-            LoginDados dados = dao.findLogin(emailStr, senhaStr); //procura o login e retorna o tipo de cadastro
+            LoginDados login = dao.findLogin(emailStr, senhaStr); //procura o login e retorna o tipo de cadastro
 
-            if (dados.getEmail() == null) { //caso email não esteja no banco de dados
+            if (login.getEmail() == null) { //caso email não esteja no banco de dados
                 request.setAttribute("Erro", "Email ou Senha inválida");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
                 dispatcher.forward(request, response);
                 return;
-            } else if (!dados.validarSenha(senhaStr)) { //caso a senha esteja errada
+            } else if (!login.validarSenha(senhaStr)) { //caso a senha esteja errada
                 request.setAttribute("Erro", "Email ou Senha inválida 2");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
                 dispatcher.forward(request, response);
             }
 
-            if (dados.getTipo_cadastro().equals("usuário")) { //processo de pesquisa de usuario para o perfil -----começo----
+            if (login.getTipo_cadastro().equals("usuário")) { //processo de pesquisa de usuario para o perfil -----começo----
 
                 try {
                     //nome,cpf,email,data_nascimento,telefone 
                     Cad_Usuario user = dao.findUsuario(emailStr, senhaStr);
                     HttpSession sessao = request.getSession();
                     sessao.setAttribute("user", user);
-                    sessao.setAttribute("dados", dados);
+                    sessao.setAttribute("login", login);
                     response.sendRedirect(request.getContextPath() + "/Perfil-usuario");
 
                 } catch (SQLException e) {
                     System.out.println(e);
                 }
             } //processo de pesquisa de usuario para o perfil -----FIM----
-            else if (dados.getTipo_cadastro().equals("empresa")) { //processo de pesquisa de empresa para o perfil -----começo----
+            else if (login.getTipo_cadastro().equals("empresa")) { //processo de pesquisa de empresa para o perfil -----começo----
 
                 try {
                     //nome,cnpj,email,descricao,telefone,qtd_max,rua,bairro,numero,regras,agendamento
                     Cad_EmpresaDados empresa = dao.findEmpresa(emailStr, senhaStr);
                     HttpSession sessao = request.getSession();
                     sessao.setAttribute("empresa", empresa);
-                    sessao.setAttribute("dados", dados);
+                    sessao.setAttribute("login", login);
                     response.sendRedirect(request.getContextPath() + "/Perfil-usuario");
                     return;
 

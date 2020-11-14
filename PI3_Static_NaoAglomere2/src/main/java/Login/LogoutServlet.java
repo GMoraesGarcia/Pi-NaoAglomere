@@ -6,7 +6,6 @@
 package Login;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +24,7 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
         sessao.invalidate();
-        response.sendRedirect("login-abrir");
+        response.sendRedirect("login");
     }
 
     @Override

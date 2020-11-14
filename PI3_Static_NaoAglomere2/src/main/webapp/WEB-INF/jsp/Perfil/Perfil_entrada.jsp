@@ -20,7 +20,7 @@
         <header class="header">
             <c:import url="../header.jsp"/>
         </header>
-        <c:if test="${dados.getTipo_cadastro() == 'usuário'}">
+        <c:if test="${login.getTipo_cadastro() == 'usuário'}">
             <h1>Bem Vindo(a)! <c:out value="${user.getNome()}"/></h1>
             <div class="containerw" >
                 <form class="form-group" method="post" action="perfil-alterado">
@@ -65,7 +65,7 @@
         </c:if>
 
 
-        <c:if test="${dados.getTipo_cadastro() == 'empresa' || empresa.getNome_Empresa() != null}">
+        <c:if test="${login.getTipo_cadastro() == 'empresa' || empresa.getNome_Empresa() != null}">
             <h1>Bem Vindo(a)! <c:out value="${empresa.getNome_Empresa()}"/></h1>
             <div class="containerw">
                 <form class="form-group" method="post" action="perfil-alterado" novalidate>

@@ -16,7 +16,7 @@ public class PesquisaDao {
 
     public PesquisarDados findEstabelecimento(String pesquisa) throws SQLException {
 
-        PesquisarDados dados = new PesquisarDados();
+        PesquisarDados busca = new PesquisarDados();
 
         ArrayList<Cad_EmpresaDados> empresas = new ArrayList<>();
 
@@ -38,11 +38,11 @@ public class PesquisaDao {
                 empresa.setRegras(rs.getString("REGRAS"));
                 empresa.setAgendamento(rs.getString("AGENDAMENTO"));
                 empresas.add(empresa);
-                dados.setPesquisa(pesquisa);
+                busca.setPesquisa(pesquisa);
             }
-            dados.setEstabelecimentos(empresas);//atualiza o array do objeto dados (referente a pesquisa)            
+            busca.setEstabelecimentos(empresas);//atualiza o array do objeto dados (referente a pesquisa)            
         }
-        return dados; // retorna a pesquisa que foi encontrada ou dados nulos caso a pesquisa não for encontrada
+        return busca; // retorna a pesquisa que foi encontrada ou dados nulos caso a pesquisa não for encontrada
     }
 
 }

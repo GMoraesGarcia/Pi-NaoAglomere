@@ -18,7 +18,7 @@ public class LoginDao {
 
     public LoginDados findLogin(String email, String senha) throws SQLException {
 
-        LoginDados dados = new LoginDados();
+        LoginDados login = new LoginDados();
 
         String sql = "SELECT EMAIL,SENHA,TIPO_CADASTRO FROM EMPRESA WHERE EMAIL=?";
 
@@ -30,12 +30,12 @@ public class LoginDao {
             try (ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
-                    dados = new LoginDados();
-                    dados.setEmail(rs.getString("EMAIL"));
-                    dados.setSenha(rs.getString("SENHA"));
-                    dados.setTipo_cadastro(rs.getString("TIPO_CADASTRO"));
+                    login = new LoginDados();
+                    login.setEmail(rs.getString("EMAIL"));
+                    login.setSenha(rs.getString("SENHA"));
+                    login.setTipo_cadastro(rs.getString("TIPO_CADASTRO"));
 
-                    return dados; // retorna tipo de cadastro = empresa
+                    return login; // retorna tipo de cadastro = empresa
                 }
             }
         }
@@ -50,17 +50,17 @@ public class LoginDao {
             try (ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
-                    dados = new LoginDados();
-                    dados.setEmail(rs.getString("EMAIL"));
-                    dados.setSenha(rs.getString("SENHA"));
-                    dados.setTipo_cadastro(rs.getString("TIPO_CADASTRO"));
+                    login = new LoginDados();
+                    login.setEmail(rs.getString("EMAIL"));
+                    login.setSenha(rs.getString("SENHA"));
+                    login.setTipo_cadastro(rs.getString("TIPO_CADASTRO"));
 
-                    return dados; // retorna tipo de cadastro = usuario
+                    return login; // retorna tipo de cadastro = usuario
                 }
             }
         }
 
-        return dados; // retorna dados nulos caso o email não esteja cadastrado
+        return login; // retorna dados nulos caso o email não esteja cadastrado
     }
 
     public Cad_Usuario findUsuario(String email, String senha) throws SQLException {
