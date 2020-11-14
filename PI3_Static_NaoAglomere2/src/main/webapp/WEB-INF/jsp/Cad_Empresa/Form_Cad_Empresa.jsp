@@ -27,9 +27,9 @@
         </c:if>
         <div>
 
-            <form class="containerw" method="post" action="cad-empresa-salvar" novalidate>
+            <form class="containerw" method="post" action="cad-empresa-salvar" novalidate enctype="multipart/form-data">
                 <h1>Dados da Empresa</h1>
-                
+
                 <div class="row">
 
                     <fieldset class="col-lg-6">
@@ -102,8 +102,11 @@
                             </c:if>
                         </div>
                         <div>
-                            <input type="checkbox"> Li e aceito a <a class="termos" 
-                                                                  onclick="alert('Política de privacidade:\nA sua privacidade é importante para nós. É política do Não Aglomere respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no nosso site. Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei. O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade. O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais.')">Política de privacidade </a>e os <a class="termos" onclick="alert('Termos de uso:\nAo utilizar os serviços do Não Aglomere, você concorda em não agir com más intenções ou fazer mal uso da plataforma para quaisquer outros fins que não sejam:\n1-Realizar cadastro na plataforma.\n2-Fazer consultas de estabelecimentos com fins de se informar sobre a situação do mesmo.\n3-Gerar código de ida ao estabelecimento.*\n4-Realizar agendamento de ida ao estabelecimento.**\n5-Ser informado sobre novidades em relação ao COVID-19.\n*Só será possível gerar um único código por pessoa em cada estabelecimento a cada dia, os estabelecimentos poderão oferecer benefícios que julguem condizentes com a geração e apresentação do código no endereço cadastrado no site.\n**Caso a empresa reporte o não comparecimento ou o usuário não informe a empresa, na primeira vez haverá uma advertência, na próxima ocorrência o cadastro será suspenso.\nMais informações em contatonaoaglomere@gmail.com')">Termos de uso.</a>
+                            <input name="check" type="checkbox"> Li e aceito a <a class="termos" 
+                                                                                  onclick="alert('Política de privacidade:\nA sua privacidade é importante para nós. É política do Não Aglomere respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no nosso site. Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei. O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade. O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais.')">Política de privacidade </a>e os <a class="termos" onclick="alert('Termos de uso:\nAo utilizar os serviços do Não Aglomere, você concorda em não agir com más intenções ou fazer mal uso da plataforma para quaisquer outros fins que não sejam:\n1-Realizar cadastro na plataforma.\n2-Fazer consultas de estabelecimentos com fins de se informar sobre a situação do mesmo.\n3-Gerar código de ida ao estabelecimento.*\n4-Realizar agendamento de ida ao estabelecimento.**\n5-Ser informado sobre novidades em relação ao COVID-19.\n*Só será possível gerar um único código por pessoa em cada estabelecimento a cada dia, os estabelecimentos poderão oferecer benefícios que julguem condizentes com a geração e apresentação do código no endereço cadastrado no site.\n**Caso a empresa reporte o não comparecimento ou o usuário não informe a empresa, na primeira vez haverá uma advertência, na próxima ocorrência o cadastro será suspenso.\nMais informações em contatonaoaglomere@gmail.com')">Termos de uso.</a>
+                            <c:if test="${checkEro != null}">
+                                <span class="erro"><c:out value="${checkErro}"/></span>
+                            </c:if>
                         </div>
                         <div>
                             <button class="btn btn-success botoes botoes" type="submit" >Efetuar Cadastro</button> 
@@ -149,20 +152,8 @@
                             </c:if>
                         </div>
                         <div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <label>Horário de abertura:</label>
-                                    <input type="time" class="form-control" placeholder="Ex: 08:00">
-                                </div>
-                                <div class="col-lg-6">
-                                    <label>Horário de fechamento:</label>
-                                    <input type="time" class="form-control" placeholder="Ex: 18:00">
-                                </div>
-                            </div>
-                        </div>
-                        <div>
                             <label >Carregar imagem:</label>
-                            <input type="file" id="imagem" name="imagem" class="form-control">
+                            <input type="file" id="imagem" name="foto" class="form-control">
                         </div>
                     </fieldset>
                 </div>

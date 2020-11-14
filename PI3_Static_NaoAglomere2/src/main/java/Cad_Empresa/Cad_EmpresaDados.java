@@ -1,5 +1,7 @@
 package Cad_Empresa;
 
+import java.io.InputStream;
+
 /**
  *
  * @author leona
@@ -29,6 +31,16 @@ public class Cad_EmpresaDados {
     private String Regras;
     
     private String Agendamento;
+    
+    private InputStream foto;
+
+    public InputStream getFoto() {
+        return foto;
+    }
+
+    public void setFoto(InputStream foto) {
+        this.foto = foto;
+    }
 
     public String getAgendamento() {
         return Agendamento;

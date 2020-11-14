@@ -6,23 +6,31 @@
 package Cad_Empresa;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author leona
  */
 @WebServlet(name = "Cad_EmpresaSalvarServlet", urlPatterns = {"/cad-empresa-salvar"})
+@MultipartConfig(maxFileSize = 20848820) // 5MB == 20848820 bytes == 5 * 1024 * 1024
 public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
     @Override
@@ -57,6 +65,18 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         String qtd_pessoasStr = request.getParameter("qtd_pessoas");
         String regras = request.getParameter("regras");
         String agendamento = request.getParameter("agendamento");
+        Part arquivo = request.getPart("foto");
+        
+        // Recupera nome original do arquivo enviado
+        //String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
+        
+        InputStream conteudoArquivo = arquivo.getInputStream();
+        
+        
+        //String check = request.getParameter("check");
+        
+        //Validação leitura dos termos
+        //boolean checkValido = check.equals("on");
 
         //Validação Nome
         boolean nomeValido = nome_empresa != null && nome_empresa.trim().length() > 0;
@@ -76,8 +96,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         boolean ConfirmaSenhaValida = (confirmasenha != null && confirmasenha.equals(senha));
 
         //Validação CNPJ
-        boolean validaCNPJ = CNPJ != null && CNPJ.trim().length() > 0;
-        //boolean validaCNPJ = isCNPJ(CNPJ); VALIDAR CNPJ REAL
+        boolean validaCNPJ = isCNPJ(CNPJ);
 
         //Validação telefone 
         boolean telefoneValido = telefone != null && telefone.trim().length() > 0;
@@ -118,7 +137,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
         boolean camposValidos = nomeValido && emailValido && validaCNPJ && telefoneValido && ruaValida
                 && numeroValido && bairroValido && descricaoValida && qtdValida && regrasValidas && senhaValida
-                && ConfirmaSenhaValida && agendamentoValido;
+                && ConfirmaSenhaValida && agendamentoValido /*&& checkValido*/;
 
         if (!camposValidos) {
 
@@ -161,6 +180,9 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             if(!agendamentoValido){
                 request.setAttribute("agendamentoErro", "Uma opção deve ser selecionada");
             }
+            /*if(!checkValido){
+                request.setAttribute("checkErro", "Opção deve ser selecionada");
+            }*/
 
             request.setAttribute("nome_empresa", nome_empresa);
             request.setAttribute("CNPJ", CNPJ);
@@ -194,6 +216,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         empresa_dados.setQtd_max(qtdPessoas);
         empresa_dados.setRegras(regras);
         empresa_dados.setAgendamento(agendamento);
+        empresa_dados.setFoto(conteudoArquivo);
 
         EmpresaDao dao = new EmpresaDao();
 
@@ -207,7 +230,6 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             response.sendRedirect("cad-empresa-salvar");
 
         } catch (SQLException e) {
-
             request.setAttribute("Erro", "Erro no banco de dados");
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Cad_Empresa.jsp");
