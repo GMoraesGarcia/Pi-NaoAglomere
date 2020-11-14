@@ -56,8 +56,7 @@
                     <c:choose>
                         <c:when test="${busca.getEstabelecimentos() != null }">               
                             <ul>                    
-                                <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">
-                                    <li><p>ID: <c:out value="${interesse.getId()}" /></p></li>
+                                <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">                                    
                                     <li><p>Nome: <c:out value="${interesse.getNome_Empresa()}" /></p></li>
                                     <li><p>Email: <c:out value="${interesse.getEmail()}" /></p></li>
                                     <li><p>Descrição: <c:out value="${interesse.getDescricao()}" /></p></li>
