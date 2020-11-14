@@ -1,21 +1,32 @@
 package Login;
 
+import java.io.Serializable;
+import org.mindrot.jbcrypt.BCrypt;
+
 /**
  *
- * @author leona
+ * @author Matheus
  */
-public class LoginDados {
-    
+public class LoginDados implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private String email;
-    
-    private String senha;
-    
+
+    private String hashSenha;
+
     private String tipo_cadastro;
-    
-    LoginDados(){
+
+    LoginDados() {
         email = null;
-        senha = null;
+        hashSenha = null;
         tipo_cadastro = null;
+    }
+
+    LoginDados(String email, String hashSenha, String tipo_cadastro) {
+        this.email = email;
+        this.hashSenha = hashSenha;
+        this.tipo_cadastro = tipo_cadastro;
     }
 
     public String getEmail() {
@@ -26,12 +37,12 @@ public class LoginDados {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getHashSenha() {
+        return hashSenha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setHashSenha(String hashSenha) {
+        this.hashSenha = hashSenha;
     }
 
     public String getTipo_cadastro() {
@@ -41,6 +52,13 @@ public class LoginDados {
     public void setTipo_cadastro(String tipo_cadastro) {
         this.tipo_cadastro = tipo_cadastro;
     }
-    
-    
+
+    public final void setSenha(String senhaAberta) {
+        this.hashSenha = BCrypt.hashpw(senhaAberta, BCrypt.gensalt());
+    }
+
+    public boolean validarSenha(String senhaAberta) {
+        return BCrypt.checkpw(senhaAberta, hashSenha);
+    }
+
 }

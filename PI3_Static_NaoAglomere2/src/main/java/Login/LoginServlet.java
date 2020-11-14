@@ -1,12 +1,9 @@
 package Login;
 
 import Cad_Empresa.Cad_EmpresaDados;
-import Cad_Empresa.EmpresaDao;
 import Cad_Usuario.Cad_Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,20 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "LoginSalvarServlet", urlPatterns = {"/Perfil-entrada"})
-public class LoginSalvarServlet extends HttpServlet {
+@WebServlet(name = "LoginSalvarServlet", urlPatterns = {"/login"})
+public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession sessao = request.getSession();
-        LoginDados novoLogin = (LoginDados) sessao.getAttribute("novoLogin");
-        sessao.removeAttribute("novoLogin");
-
-        request.setAttribute("novoLogin", novoLogin);
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
-        dispacher.forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp").forward(request, response);
     }
 
     @Override
@@ -77,7 +68,7 @@ public class LoginSalvarServlet extends HttpServlet {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
                 dispatcher.forward(request, response);
                 return;
-            } else if(!dados.getSenha().equals(senhaStr)) { //caso a senha esteja errada
+            } else if (!dados.validarSenha(senhaStr)) { //caso a senha esteja errada
                 request.setAttribute("Erro", "Email ou Senha inválida 2");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
@@ -89,10 +80,10 @@ public class LoginSalvarServlet extends HttpServlet {
                 try {
                     //nome,cpf,email,data_nascimento,telefone 
                     Cad_Usuario user = dao.findUsuario(emailStr, senhaStr);
-                    request.setAttribute("user", user);
-                    request.setAttribute("dados", dados);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
-                    dispatcher.forward(request, response);
+                    HttpSession sessao = request.getSession();
+                    sessao.setAttribute("user", user);
+                    sessao.setAttribute("dados", dados);
+                    response.sendRedirect(request.getContextPath() + "/Perfil-usuario");
 
                 } catch (SQLException e) {
                     System.out.println(e);
@@ -103,10 +94,10 @@ public class LoginSalvarServlet extends HttpServlet {
                 try {
                     //nome,cnpj,email,descricao,telefone,qtd_max,rua,bairro,numero,regras,agendamento
                     Cad_EmpresaDados empresa = dao.findEmpresa(emailStr, senhaStr);
-                    request.setAttribute("empresa", empresa);
-                    request.setAttribute("dados", dados);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
-                    dispatcher.forward(request, response);
+                    HttpSession sessao = request.getSession();
+                    sessao.setAttribute("empresa", empresa);
+                    sessao.setAttribute("dados", dados);
+                    response.sendRedirect(request.getContextPath() + "/Perfil-usuario");
                     return;
 
                 } catch (SQLException ex) {

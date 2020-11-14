@@ -24,7 +24,7 @@
         <div class="containerw">
 
 
-            <form method="post" action="Perfil-entrada" class="form-group">
+            <form method="post" action="${pageContext.request.contextPath}/login" class="form-group">
                 <div>
                     <label>E-mail: </label>
                     <input type="email" class="form-control"  name="email" value="${email}">

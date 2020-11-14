@@ -32,28 +32,31 @@
                     <c:if test="${emailErro != null}">
                         <span class="erro"><c:out value="${emailErro}"/></span> 
                     </c:if>
-                        
+
                     <label>Nome:</label>
                     <input  class="form-control" type="text" name="nome" value="${user.getNome()}">
                     <c:if test="${nomeErro != null}">
                         <span class="erro"><c:out value="${nomeErro}"/></span> 
                     </c:if>
-                        
+
                     <label>Data de Nascimento</label>
                     <input  class="form-control" type="date" name="dataNascimento" value="${user.getDataNascimento()}">
                     <c:if test="${dtNascimentoErro != null}">
                         <span class="erro"><c:out value="${dtNascimentoErro}"/></span> 
                     </c:if>
-                        
+
                     <label>Telefone:</label>
                     <input  class="form-control" type="text" name="telefone" value="${user.getTelefone()}">
-                     <c:if test="${telefoneErro != null}">
+                    <c:if test="${telefoneErro != null}">
                         <span class="erro"><c:out value="${telefoneErro}"/></span> 
                     </c:if>
-                        
+
                     <button type="submit" class="btn btn-success botoes" >Alterar</button>
 
                 </form> 
+
+                <a href="${pageContext.request.contextPath}/logout">Logout</a>
+
             </div>
         </c:if>
 
@@ -166,9 +169,12 @@
                     </div>
 
                 </form> 
+
+                <a href="${pageContext.request.contextPath}/logout">Logout</a>
+
             </div>
         </c:if>
-       
+
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>
