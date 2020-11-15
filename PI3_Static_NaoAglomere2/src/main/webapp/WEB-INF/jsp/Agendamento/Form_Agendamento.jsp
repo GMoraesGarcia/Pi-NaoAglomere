@@ -26,10 +26,13 @@
             <form method="post" action="agendamento-salvar" class="form-group">
                 <label>ID: <c:out value="${sessionScope.busca.estabelecimentos.get(0).getId()}" /></label>
                 <div>
-                    <label>Nome: </label>
+                    <label>Nome do Estabelecimento: </label>
                     <input type="text" name="nome" value="${nome}" class="form-control">
                     <c:if test="${nomeErro != null}">
                         <span class="erro"><c:out value="${nomeErro}"/></span> 
+                    </c:if>
+                    <c:if test="${empErro != null}">
+                        <span class="erro"><c:out value="${empErro}" /></span>
                     </c:if>
                 </div>
                 <div>

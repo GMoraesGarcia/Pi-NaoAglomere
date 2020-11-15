@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import Cad_Empresa.*;
 
 /**
  *
@@ -25,12 +26,12 @@ public class AgendamentoDAO {
             conn.setAutoCommit(false);
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, agend.getEmail());
-                stmt.setInt(2, agend.getNome());
+                stmt.setInt(2, agend.getIdUsuario());
                 stmt.setString(3, agend.getTelefone());
-                stmt.setInt(4, 1);
+                stmt.setInt(4, agend.getIdEmpresa());
                 stmt.setString(5, String.valueOf(agend.getData()));
                 stmt.setString(6, agend.getHora());
-                
+
                 stmt.executeUpdate();
                 conn.commit();
             } catch (SQLException e) {
@@ -42,7 +43,6 @@ public class AgendamentoDAO {
 
     }
 
-   
     public int findByEmail(String emailUser) throws SQLException {
         Agendamento a = new Agendamento();
         String sql = "select id from usuario where email = ?";
@@ -52,15 +52,39 @@ public class AgendamentoDAO {
 
             stmt.setString(1, emailUser);
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()){
-                
-                a.setNome(rs.getInt("id"));
+                if (rs.next()) {
+
+                    a.setIdUsuario(rs.getInt("id"));
 
                 }
-                
+
             }
         }
-         return a.getNome();
+        return a.getIdUsuario();
+    }
+
+    public int findyByNameEmp(String nomeEmp) throws SQLException {
+        Agendamento emp = new Agendamento();
+        int result = 0;
+
+        String sql = "select ID_empresa from empresa where Nome_Empresa = ?";
+
+        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, nomeEmp);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    emp.setIdEmpresa(rs.getInt("ID_empresa"));
+                    result = emp.getIdEmpresa();
+                }
+                else
+                    result = -1;
+
+            }
+        }
+        return result;
+                
     }
 
 }

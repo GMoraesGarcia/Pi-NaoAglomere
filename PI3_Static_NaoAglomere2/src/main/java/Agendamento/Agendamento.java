@@ -6,6 +6,7 @@
 package Agendamento;
 
 import Cad_Usuario.Cad_Usuario;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**
@@ -13,19 +14,36 @@ import java.time.LocalDate;
  * @author Gabriel
  */
 public class Agendamento {
-    private int nome;
+    private int id_usuario;
+    
+    private int id_empresa;
+    
     private String email;
+    
     private String telefone;
+    
     private LocalDate data;
+    
     private String hora;
+    
+    
 
-    public int getNome() {
-        return nome;
+    public int getIdUsuario() {
+        return id_usuario;
     }
 
-    public void setNome(int nome) {
-        this.nome = nome;
+    public void setIdUsuario(int nome) {
+        this.id_usuario = nome;
     }
+
+    public int getIdEmpresa() {
+        return id_empresa;
+    }
+
+    public void setIdEmpresa(int id_empresa) {
+        this.id_empresa = id_empresa;
+    }
+    
 
     public String getEmail() {
         return email;
@@ -59,6 +77,5 @@ public class Agendamento {
         this.hora = hora;
     }
     
-    
-    
+  
 }

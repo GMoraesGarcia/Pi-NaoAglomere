@@ -66,7 +66,7 @@ public class AutorizaçaoFilter implements Filter {
 
         String paginaAcessada = httpRequest.getRequestURI();
 
-        if (paginaAcessada.endsWith("/agendamento") && usuario.getTipo_cadastro().equals("usuario")) {
+        if (paginaAcessada.endsWith("/agendamento") && usuario.getTipo_cadastro().equals("usuário")) {
             return true;
         }
         

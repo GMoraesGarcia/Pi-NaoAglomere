@@ -45,8 +45,8 @@ public class Agendamento_Salvar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
-       
+        AgendamentoDAO dao = new AgendamentoDAO();
+        Agendamento a = new Agendamento();
 
         String nomeStr = request.getParameter("nome");
         String emailStr = request.getParameter("email");
@@ -57,6 +57,7 @@ public class Agendamento_Salvar extends HttpServlet {
         //Validação Nome
         boolean nomeValido = nomeStr != null && nomeStr.trim().length() > 0;
 
+        //Validação empresa cadastrada
         //Validação e-mail
         boolean emailValido = (emailStr != null && emailStr.trim().length() > 0);
 
@@ -83,7 +84,7 @@ public class Agendamento_Salvar extends HttpServlet {
         if (!camposValidos) {
             //mensagens de erro
             if (!nomeValido) {
-                request.setAttribute("nomeErro", "Nome deve ser preenchido ou Válido");
+                request.setAttribute("nomeErro", "Nome deve ser preenchido e Válido");
             }
             if (!emailValido) {
                 request.setAttribute("emailErro", "E-mail deve ser preenchido e/ou Válido");
@@ -110,13 +111,21 @@ public class Agendamento_Salvar extends HttpServlet {
         }
 
         try {
-            AgendamentoDAO dao = new AgendamentoDAO();
-            Agendamento a = new Agendamento();
-          
-          int num = dao.findByEmail(emailStr);
+            int num = dao.findByEmail(emailStr);
+            int idemp = dao.findyByNameEmp(nomeStr);
 
-            System.out.println(num);
-            a.setNome(num);
+            if (idemp < 0) {
+                request.setAttribute("empErro", "Empresa não cadastrada");
+                
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Agendamento/Form_Agendamento.jsp");
+                dispatcher.forward(request, response);
+                return;
+            } 
+               
+           
+            a.setIdEmpresa(idemp);
+            System.out.println(idemp);
+            a.setIdUsuario(num);
             a.setEmail(emailStr);
             a.setTelefone(telefoneStr);
             a.setData(LocalDate.parse(dataStr));
