@@ -7,32 +7,62 @@ import java.io.InputStream;
  * @author leona
  */
 public class Cad_EmpresaDados {
-    
+
     private String Nome_Empresa;
-    
+
     private String CNPJ;
-    
+
     private String email;
-    
+
     private String Descricao;
 
     private String Telefone;
-    
+
     private String Senha;
-    
+
     private int qtd_max;
-    
+
     private String Rua;
-    
+
     private String Bairro;
-    
+
     private int Numero_Rua;
-    
+
     private String Regras;
-    
+
     private String Agendamento;
-    
+
+    private String HoraAb;
+
+    private String HoraFh;
+
+    private String AtdHor;
+
     private InputStream foto;
+
+    public String getAtdHor() {
+        return AtdHor;
+    }
+
+    public void setAtdHor(String AtdHor) {
+        this.AtdHor = AtdHor;
+    }
+
+    public String getHoraAb() {
+        return HoraAb;
+    }
+
+    public void setHoraAb(String HoraAb) {
+        this.HoraAb = HoraAb;
+    }
+
+    public String getHoraFh() {
+        return HoraFh;
+    }
+
+    public void setHoraFh(String HoraFh) {
+        this.HoraFh = HoraFh;
+    }
 
     public InputStream getFoto() {
         return foto;
@@ -49,6 +79,7 @@ public class Cad_EmpresaDados {
     public void setAgendamento(String Agendamento) {
         this.Agendamento = Agendamento;
     }
+
     public String getNome_Empresa() {
         return Nome_Empresa;
     }
@@ -136,20 +167,21 @@ public class Cad_EmpresaDados {
     public void setRegras(String Regras) {
         this.Regras = Regras;
     }
+
     @Override
     public String toString() {
         return "Cad_EmpresaDados{" + "Nome_Empresa=" + Nome_Empresa + ", CNPJ=" + CNPJ + ", email=" + email + ", Descricao=" + Descricao + ", Telefone=" + Telefone + ", Senha=" + Senha + ", qtd_max=" + qtd_max + ", Rua=" + Rua + ", Bairro=" + Bairro + ", Numero_Rua=" + Numero_Rua + ", Regras=" + Regras + ", Agendamento=" + Agendamento + '}';
     }
-    
-    public int getNumberAgendamento(){
+
+    public int getNumberAgendamento() {
         Cad_EmpresaDados ep = new Cad_EmpresaDados();
-        
-        if(ep.getAgendamento().equalsIgnoreCase("sim"))
+
+        if (ep.getAgendamento().equalsIgnoreCase("sim")) {
             return 1;
-        
+        }
+
         return 0;
-        
-        
+
     }
-    
+
 }

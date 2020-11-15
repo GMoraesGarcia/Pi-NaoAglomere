@@ -85,4 +85,9 @@ public class EmpresaDao {
         
     }
     
+    public void addHorario (Cad_EmpresaDados empresaDados) throws SQLException{
+        
+        
+        
+    }
 }
