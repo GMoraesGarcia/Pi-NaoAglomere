@@ -14,6 +14,12 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <meta charset=UTF-8">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+        <script type="text/javascript">
+            $("#telefone").mask("(00) 00000-0000");
+            
+        </script>
 
         <title>Cadastro de Empresa</title>
     </head>
@@ -71,7 +77,7 @@
                         </div>
                         <div>
                             <label id="telefone">Telefone:</label> <label id="modelo">(XX) XXXXX-XXXX ou (XX) XXXX-XXXX</label>
-                            <input type="tel" class="form-control" name="telefone" placeholder="(11) 91234-5678" value="${telefone}">
+                            <input type="tel" class="form-control" name="telefone" placeholder="(11) 91234-5678" value="${telefone}" id="telefone">
                             <c:if test="${telefoneErro != null}">
                                 <span class="erro"><c:out value="${telefoneErro}"/></span>
                             </c:if>
