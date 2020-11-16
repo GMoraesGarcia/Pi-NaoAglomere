@@ -42,8 +42,10 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         sessao.removeAttribute("dados");
 
         request.setAttribute("dados", empresa_dados);
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Login/Login.jsp");
         dispatcher.forward(request, response);
+
     }
 
     @Override
@@ -66,18 +68,14 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         String regras = request.getParameter("regras");
         String agendamento = request.getParameter("agendamento");
         Part arquivo = request.getPart("foto");
-        
+
         // Recupera nome original do arquivo enviado
         //String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
-        
         InputStream conteudoArquivo = arquivo.getInputStream();
-        
-        
+
         //String check = request.getParameter("check");
-        
         //Validação leitura dos termos
         //boolean checkValido = check.equals("on");
-
         //Validação Nome
         boolean nomeValido = nome_empresa != null && nome_empresa.trim().length() > 0;
 
@@ -131,7 +129,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
         //Validação regras
         boolean regrasValidas = regras != null && regras.trim().length() > 0;
-        
+
         //Validação Nome
         boolean agendamentoValido = agendamento != null && agendamento.trim().length() > 0;
 
@@ -177,7 +175,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             if (!regrasValidas) {
                 request.setAttribute("regrasErro", "Regras inválidas ou devem ser preenchidas");
             }
-            if(!agendamentoValido){
+            if (!agendamentoValido) {
                 request.setAttribute("agendamentoErro", "Uma opção deve ser selecionada");
             }
             /*if(!checkValido){
@@ -224,10 +222,17 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             dao.addNew(empresa_dados);
 
             request.setAttribute("dados", empresa_dados);
-            
+
             HttpSession sessao = request.getSession();
             sessao.setAttribute("dados", empresa_dados);
-            response.sendRedirect("cad-empresa-salvar");
+            
+            System.out.println(empresa_dados.getAgendamento());
+            
+            if (empresa_dados.getAgendamento().equals("Sim")) {
+                response.sendRedirect("cad-horario-abrir");
+            } else {
+                response.sendRedirect("cad-empresa-salvar");
+            }
 
         } catch (SQLException e) {
             request.setAttribute("Erro", "Erro no banco de dados");

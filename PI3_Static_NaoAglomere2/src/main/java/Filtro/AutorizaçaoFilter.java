@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author leona
  */
-@WebFilter(filterName = "AutorizaçaoFilter", urlPatterns = {"/agendamento"})
+@WebFilter(filterName = "AutorizaçaoFilter", urlPatterns = {"/agendamento" , "/Perfil-usuario"})
 public class AutorizaçaoFilter implements Filter {
 
     @Override
@@ -66,7 +66,10 @@ public class AutorizaçaoFilter implements Filter {
 
         String paginaAcessada = httpRequest.getRequestURI();
 
-        if (paginaAcessada.endsWith("/agendamento") && usuario.getTipo_cadastro().equals("usuário")) {
+        if ((paginaAcessada.endsWith("/agendamento") || paginaAcessada.endsWith("/cad-horario-abrir")) && usuario.getTipo_cadastro().equals("usuário")) {
+            return true;
+        }
+        if(paginaAcessada.endsWith("/Perfil-usuario") && (usuario.getTipo_cadastro().equals("usuário") || usuario.getTipo_cadastro().equals("empresa"))){
             return true;
         }
         
