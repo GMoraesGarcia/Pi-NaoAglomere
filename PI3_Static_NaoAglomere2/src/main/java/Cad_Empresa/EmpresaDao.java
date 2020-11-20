@@ -36,7 +36,7 @@ public class EmpresaDao {
                 stmt.setString(11, empresaDados.getRegras());
                 stmt.setString(12, "empresa"); // tipo de cadastro usado para login
                 stmt.setString(13, empresaDados.getAgendamento());
-                stmt.setBlob(14, empresaDados.getFoto());
+                stmt.setString(14, empresaDados.getFoto());
 
                 stmt.executeUpdate();
 
@@ -52,7 +52,7 @@ public class EmpresaDao {
     public void update(Cad_EmpresaDados empresaDados) throws SQLException {
 
         String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
-                + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
+                + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ?, FOTO = ? WHERE CNPJ = ?";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
@@ -70,7 +70,8 @@ public class EmpresaDao {
                 stmt.setString(8, empresaDados.getRegras());
                 stmt.setString(9, empresaDados.getDescricao());
                 stmt.setString(10, empresaDados.getAgendamento());
-                stmt.setString(11, empresaDados.getCNPJ());
+                stmt.setString(11, empresaDados.getFoto());
+                stmt.setString(12, empresaDados.getCNPJ());
 
                 stmt.executeUpdate();
 

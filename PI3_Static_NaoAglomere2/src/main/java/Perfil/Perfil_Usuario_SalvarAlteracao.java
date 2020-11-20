@@ -10,24 +10,31 @@ import Cad_Empresa.EmpresaDao;
 import Cad_Usuario.Cad_Usuario;
 import Cad_Usuario.UsuarioDAO;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Gabriel
  */
 @WebServlet(name = "Perfil_Usuario_SalvarAlteracao", urlPatterns = {"/perfil-alterado"})
+@MultipartConfig(maxFileSize = 20848820) // 5MB == 20848820 bytes == 5 * 1024 * 1024
 public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
     @Override
@@ -35,12 +42,13 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-        String sucesso = (String) sessao.getAttribute("sucesso");
+        //String sucesso = (String) sessao.getAttribute("sucesso");
         Cad_EmpresaDados empresa_dados = (Cad_EmpresaDados) sessao.getAttribute("empresa");
-        sessao.removeAttribute("empresa");
+        request.getAttribute("sucesso");
+        //sessao.removeAttribute("empresa");
 
         request.setAttribute("empresa", empresa_dados);
-        request.setAttribute("sucesso", sucesso);
+        //request.setAttribute("sucesso", sucesso);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
         dispatcher.forward(request, response);
 
@@ -74,18 +82,18 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
         String qtd_pessoasStr = request.getParameter("qtd_pessoas");
         String regras = request.getParameter("regras");
         String agendamento = request.getParameter("agendamento");
+        Part arquivo = request.getPart("foto");
+        String caminho = null;
+
+        if (arquivo != null) {
+            String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
+            String diretorioDestino = "C:/PI-FOTOS";
+            InputStream conteudoArquivo = arquivo.getInputStream();
+            Path destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
+            Files.copy(conteudoArquivo, destino);
+            caminho = "/PI-FOTOS/" + nomeArquivo;
+        }
         if (CNPJ != null) {
-            /*  System.out.println(nome_empresa);
-        System.out.println(CNPJ);
-        System.out.println(email);
-        System.out.println(telefone);
-        System.out.println(descricao);
-        System.out.println(rua);
-        System.out.println(numeroStr);
-        System.out.println(bairro);
-        System.out.println(qtd_pessoasStr);
-        System.out.println(regras);
-        System.out.println(agendamento);*/
 
             //Validação Nome
             boolean nomeValido = nome_empresa != null && nome_empresa.trim().length() > 0;
@@ -104,7 +112,6 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             //boolean ConfirmaSenhaValida = (confirmasenha != null && confirmasenha.equals(senha));
             //Validação CNPJ
             boolean validaCNPJ = CNPJ != null && CNPJ.trim().length() > 0;
-            //boolean validaCNPJ = isCNPJ(CNPJ); VALIDAR CNPJ REAL
 
             //Validação telefone 
             boolean telefoneValido = telefone != null && telefone.trim().length() > 0;
@@ -222,7 +229,8 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             empresa_dados.setQtd_max(qtdPessoas);
             empresa_dados.setRegras(regras);
             empresa_dados.setAgendamento(agendamento);
-
+            empresa_dados.setFoto(caminho);
+            
             EmpresaDao dao = new EmpresaDao();
 
             try {
@@ -234,7 +242,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("empresa", empresa_dados);
-                sessao.setAttribute("sucesso", "Alterado com sucesso!");
+                //sessao.setAttribute("sucesso", "Alterado com sucesso!");
                 response.sendRedirect("perfil-alterado");
 
             } catch (SQLException e) {

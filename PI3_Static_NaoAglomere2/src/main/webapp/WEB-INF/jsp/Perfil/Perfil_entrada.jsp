@@ -68,7 +68,7 @@
         <c:if test="${login.getTipo_cadastro() == 'empresa' || empresa.getNome_Empresa() != null}">
             <h1>Bem Vindo(a)! <c:out value="${empresa.getNome_Empresa()}"/></h1>
             <div class="containerw">
-                <form class="form-group" method="post" action="perfil-alterado" novalidate>
+                <form class="form-group" method="post" action="perfil-alterado" novalidate enctype="multipart/form-data">
                     <div class="row">
                         <fieldset class="col-lg-6">
                             <div>
@@ -150,20 +150,16 @@
                                 </c:if>
                             </div>
                             <div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <label>Horário de abertura:</label>
-                                        <input type="time" class="form-control" >
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label>Horário de fechamento:</label>
-                                        <input type="time" class="form-control" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <label id="imagem">Carregar imagem: </label>
-                                <input class="form-control" type="file" name="imagem">
+                                <c:choose>
+                                    <c:when test="${empresa.getFoto() == null}">
+                                        <label id="imagem">Carregar imagem: </label>
+                                        <input class="form-control" type="file" name="foto">
+                                    </c:when>
+                                    <c:when test="${empresa.getFoto() != null}">
+                                        <label id="imagem">Foto: </label>
+                                        <img src="${empresa.getFoto()}">
+                                    </c:when>
+                                </c:choose>
                             </div>
                         </fieldset>
                     </div>

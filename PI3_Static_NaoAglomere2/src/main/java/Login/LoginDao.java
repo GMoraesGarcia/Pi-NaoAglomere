@@ -91,7 +91,7 @@ public class LoginDao {
 
     public Cad_EmpresaDados findEmpresa(String email, String senha) throws SQLException {
         Cad_EmpresaDados empresa = new Cad_EmpresaDados();
-        String sql = "SELECT NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
+        String sql = "SELECT NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO,FOTO FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
         
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -113,6 +113,7 @@ public class LoginDao {
                     empresa.setNumero_Rua(rs.getInt("NUMERO"));
                     empresa.setRegras(rs.getString("REGRAS"));
                     empresa.setAgendamento(rs.getString("AGENDAMENTO"));
+                    empresa.setFoto(rs.getString("FOTO"));
                     return empresa;
                 }
             }

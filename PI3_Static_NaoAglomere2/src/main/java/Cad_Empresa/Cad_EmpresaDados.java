@@ -1,6 +1,7 @@
 package Cad_Empresa;
 
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.sql.Time;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
  * @author leona
  */
 public class Cad_EmpresaDados {
+    
     private int empresa_id;
 
     private String Nome_Empresa;
@@ -37,6 +39,17 @@ public class Cad_EmpresaDados {
 
     private String HoraAb;
 
+    private String Foto;
+
+    public String getFoto() {
+        return Foto;
+    }
+
+    public void setFoto(String Foto) {
+        this.Foto = Foto;
+    }
+
+    
     public int getId() {
         return empresa_id;
     }
@@ -45,28 +58,12 @@ public class Cad_EmpresaDados {
         this.empresa_id = empresa_id;
     }
 
-   
-
-    private InputStream foto;
-
-   
-
     public String getHoraAb() {
         return HoraAb;
     }
 
     public void setHoraAb(String HoraAb) {
         this.HoraAb = HoraAb;
-    }
-
-   
-
-    public InputStream getFoto() {
-        return foto;
-    }
-
-    public void setFoto(InputStream foto) {
-        this.foto = foto;
     }
 
     public String getAgendamento() {

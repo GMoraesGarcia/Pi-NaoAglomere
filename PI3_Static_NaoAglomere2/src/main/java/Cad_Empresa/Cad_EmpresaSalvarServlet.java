@@ -69,13 +69,17 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         String agendamento = request.getParameter("agendamento");
         Part arquivo = request.getPart("foto");
 
-        // Recupera nome original do arquivo enviado
-        //String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
+        String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
+        String diretorioDestino = "C:/PI-FOTOS";
         InputStream conteudoArquivo = arquivo.getInputStream();
-
+        Path destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
+        Files.copy(conteudoArquivo, destino);
+        String caminho = "/PI-FOTOS/"+nomeArquivo;
+        
         //String check = request.getParameter("check");
         //Validação leitura dos termos
         //boolean checkValido = check.equals("on");
+        
         //Validação Nome
         boolean nomeValido = nome_empresa != null && nome_empresa.trim().length() > 0;
 
@@ -214,7 +218,8 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         empresa_dados.setQtd_max(qtdPessoas);
         empresa_dados.setRegras(regras);
         empresa_dados.setAgendamento(agendamento);
-        empresa_dados.setFoto(conteudoArquivo);
+        empresa_dados.setFoto(caminho);
+        
 
         EmpresaDao dao = new EmpresaDao();
 
