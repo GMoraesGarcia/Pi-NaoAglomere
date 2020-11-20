@@ -16,13 +16,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <meta charset=UTF-8">
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+        
         <script type="text/javascript">
             $("#telefone").mask("(00) 00000-0000");
             
         </script>
+          <meta charset=UTF-8">
 
         <title>Cadastro de Empresa</title>
     </head>
@@ -94,8 +94,8 @@
                                 <option value="Loja">Loja</option>
                                 <option value="Salão de Beleza ou Estudio">Salão de Beleza ou Estudio</option>
                                 <option value="Banco">Banco</option>
-                            </select>
-                            <c:if test="${descricaoErro != null}">
+                            </select> 
+                           <c:if test="${descricaoErro != null}">
                                 <span class="erro"><c:out value="${descricaoErro}"/></span>
                             </c:if>
                         </div>

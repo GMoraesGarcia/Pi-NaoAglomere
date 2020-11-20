@@ -23,23 +23,25 @@
         </c:if>
 
         <h1>Seleção de horários</h1>
-        <form method="post" action="cad-horario-salvar">
+        <form method="post" action="cad-agendamento-salvar" class="containerw">
             <div> 
                 <h5>Horário de funcionamento:</h5>
-                <input type="time" name="HoraAb" placeholder="Ex: 08:00" value="${HoraAb}">
+                <label>Horário de abertura:</label>
+                <input type="time" name="HoraAb" placeholder="Ex: 08:00" value="${HoraAb}" class="form-control">
                 <c:if test="${horaabErro != null}">
                     <span class="erro"><c:out value="${horaabErro}"/></span>
                 </c:if>
             </div>
             <div>
-                <input type="time" name="HoraFh" placeholder="Ex: 18:00" value="${HoraFh}">
+                <label>Horário de fechamento:</label>
+                <input type="time" name="HoraFh" placeholder="Ex: 18:00" value="${HoraFh}" class="form-control">
                 <c:if test="${horafhErro != null}">
                     <span class="erro"><c:out value="${horafhErro}"/></span>
                 </c:if>
             </div>
             <div>
                 <h5>Tempo de atendimento:</h5>
-                <input type="time" name="periodo" placeholder="Ex: 01:30" value="${Periodo}">
+                <input type="time" name="periodo" placeholder="Ex: 01:30" value="${Periodo}" class="form-control">
                 <c:if test="${periodoErro != null}">
                     <span class="erro"><c:out value="${periodoErro}"/></span>
                 </c:if>
@@ -48,6 +50,8 @@
                 <button class="btn btn-success botoes botoes" type="submit" >Concluído</button> 
             </div>
         </form>
-
+            <footer class="footer">
+            <c:import url="../footer.jsp"/>
+        </footer>      
     </body>
 </html>

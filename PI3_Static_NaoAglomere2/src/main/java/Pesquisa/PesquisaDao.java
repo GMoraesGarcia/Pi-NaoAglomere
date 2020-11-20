@@ -20,7 +20,7 @@ public class PesquisaDao {
 
         ArrayList<Cad_EmpresaDados> empresas = new ArrayList<>();
 
-        String sql = "SELECT NOME_EMPRESA, EMAIL, DESCRICAO, TELEFONE, QTD_MAX, RUA, BAIRRO, NUMERO, REGRAS, AGENDAMENTO FROM EMPRESA where DESCRICAO LIKE '%" + pesquisa + "%' OR NOME_EMPRESA LIKE '%" + pesquisa + "%'";
+        String sql = "SELECT NOME_EMPRESA, EMAIL, DESCRICAO, TELEFONE, QTD_MAX, RUA, BAIRRO, NUMERO, REGRAS, AGENDAMENTO, ID_empresa FROM EMPRESA where DESCRICAO LIKE '%" + pesquisa + "%' OR NOME_EMPRESA LIKE '%" + pesquisa + "%'";
 
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
@@ -37,7 +37,7 @@ public class PesquisaDao {
                 empresa.setNumero_Rua(rs.getInt("NUMERO"));
                 empresa.setRegras(rs.getString("REGRAS"));
                 empresa.setAgendamento(rs.getString("AGENDAMENTO"));
-              //  empresa.setId(rs.getInt("ID_empresa"));
+                empresa.setId(rs.getInt("ID_empresa"));
                 empresas.add(empresa);
                 busca.setPesquisa(pesquisa);
             }

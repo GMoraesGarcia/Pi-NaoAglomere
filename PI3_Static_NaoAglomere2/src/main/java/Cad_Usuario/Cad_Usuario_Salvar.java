@@ -73,11 +73,11 @@ Cad_Usuario novoUsuario = new Cad_Usuario();
 
         //Validação do Telefone
         boolean telefoneValido = telefoneStr != null && telefoneStr.trim().length() > 0;
-        /* if (telefoneValido) {
+      if (telefoneValido) {
             Pattern telefonePattern = Pattern.compile("(\\([0-9]{2}\\))\\s([9]{1})?([0-9]{4})-([0-9]{4})");
             Matcher telefoneMatcher = telefonePattern.matcher(telefoneStr);
             telefoneValido = telefoneValido && telefoneMatcher.matches();
-        }*/
+        }
         //validação senha
         boolean validarSenha = (senhaStr != null && senhaStr.trim().length() >= 8);
 

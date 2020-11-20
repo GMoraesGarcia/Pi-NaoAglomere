@@ -28,7 +28,9 @@ public class Form_Agendamento_Abrir extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getParameter("id");
          RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Agendamento/Form_Agendamento.jsp");
+        
        dispatcher.forward(request, response);
     }
 

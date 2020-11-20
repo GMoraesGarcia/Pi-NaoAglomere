@@ -37,9 +37,9 @@ public class EmpresaDao {
                 stmt.setString(12, "empresa"); // tipo de cadastro usado para login
                 stmt.setString(13, empresaDados.getAgendamento());
                 stmt.setBlob(14, empresaDados.getFoto());
-                
+
                 stmt.executeUpdate();
-                
+
                 conn.commit();
 
             } catch (SQLException e) {
@@ -48,12 +48,12 @@ public class EmpresaDao {
             }
         }
     }
-    
-    public void update (Cad_EmpresaDados empresaDados) throws SQLException{
-        
+
+    public void update(Cad_EmpresaDados empresaDados) throws SQLException {
+
         String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
                 + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
-        
+
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
             conn.setAutoCommit(false);
@@ -71,7 +71,7 @@ public class EmpresaDao {
                 stmt.setString(9, empresaDados.getDescricao());
                 stmt.setString(10, empresaDados.getAgendamento());
                 stmt.setString(11, empresaDados.getCNPJ());
-                
+
                 stmt.executeUpdate();
 
                 conn.commit();
@@ -81,13 +81,50 @@ public class EmpresaDao {
                 throw e;
             }
         }
-        
-        
+
     }
-    
-    public void addHorario (Cad_EmpresaDados empresaDados) throws SQLException{
-        
-        
-        
+
+    public void addHorario(Cad_EmpresaDados empresaDados) throws SQLException {
+        String sql = "insert into HorariosDisponiveis (id_empresa,horario) values (?,?);";
+
+        try (Connection conn = ConnectionUtilMySql.obterConexao()) {
+
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setInt(1, empresaDados.getId());
+                stmt.setString(2, empresaDados.getHoraAb());
+
+                stmt.executeUpdate();
+
+                conn.commit();
+
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            }
+        }
+
+    }
+
+    public int findLastEmp() throws SQLException {
+        String sql = "select ID_empresa from empresa order by ID_empresa  desc  limit 1;";
+        int id = 0;
+
+        try (Connection conn = Connection_db2.obterConexao();) {
+            try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+                if (rs.next()) {
+                    id = rs.getInt("ID_empresa");
+                }
+
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+
+            }
+        }
+
+        return id;
     }
 }

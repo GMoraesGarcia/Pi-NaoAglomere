@@ -24,7 +24,7 @@
         <div class="containerw">
 
 
-            <form method="post" action="${pageContext.request.contextPath}/login" class="form-group">
+            <form method="post" action="${pageContext.request.contextPath}/login" class="form-group" novalidate>
                 <div>
                     <label>E-mail: </label>
                     <input type="email" class="form-control"  name="email" value="${email}">

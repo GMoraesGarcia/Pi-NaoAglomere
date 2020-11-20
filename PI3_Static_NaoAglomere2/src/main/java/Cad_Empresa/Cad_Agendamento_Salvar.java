@@ -7,7 +7,8 @@ package Cad_Empresa;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +19,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author leona
+ * @author Gabriel
  */
-@WebServlet(name = "Cad_Agendamento", urlPatterns = {"/cad-horario-salvar"})
-public class Cad_AgendamentoSalvar extends HttpServlet {
+@WebServlet(name = "Cad_Agendamento_Salvar", urlPatterns = {"/cad-agendamento-salvar"})
+public class Cad_Agendamento_Salvar extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,8 +38,8 @@ public class Cad_AgendamentoSalvar extends HttpServlet {
 
         HttpSession sessao = request.getSession();
         Cad_EmpresaDados empresa = (Cad_EmpresaDados) sessao.getAttribute("dados");
-        
-        String CNPJ = empresa.getCNPJ(); // inserir busca da empresa pelo CNPJ para recuperar o ID para inserir os horários na tabela de horarios disponiveis
+
+        //String CNPJ = empresa.getCNPJ(); // inserir busca da empresa pelo CNPJ para recuperar o ID para inserir os horários na tabela de horarios disponiveis
 
         String HoraAb = request.getParameter("HoraAb");
         String HoraFh = request.getParameter("HoraFh");
@@ -72,18 +73,28 @@ public class Cad_AgendamentoSalvar extends HttpServlet {
             dispatcher.forward(request, response);
             return;
         }
-        
+
         //INSERIR AS CONVERSÕES E CONTAS DE HORÁRIO
-            
+        System.out.println(HoraAb + " " + HoraFh + " " +Periodo );
         try {
+            ArrayList<Time> horas;
             
-            EmpresaDao dao = new EmpresaDao();
+
+            Cad_EmpresaDados dados = new Cad_EmpresaDados();
+            float qtdAgendamentos = dados.agendPorDia(HoraAb, HoraFh, Periodo);
+            System.out.println(qtdAgendamentos);
+            horas = dados.horariosAgend(HoraAb, HoraFh, qtdAgendamentos);
+            for (int i = 0; i < horas.size(); i++) {
+                System.out.println(horas.get(i));
+            }
+
+           // EmpresaDao dao = new EmpresaDao();
             //inserir dao para adicionar horários na tabela de horários disponiveis
 
-                response.sendRedirect("cad-horario-salvar");
+            response.sendRedirect("cad-agendamento-salvar");
 
         } catch (/*SQL*/Exception e) {
-            request.setAttribute("Erro", "Erro no banco de dados");
+            request.setAttribute("Erro", e);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Empresa_Agendamento.jsp");
             dispatcher.forward(request, response);

@@ -14,7 +14,13 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/Estilo.css">
-        <title>JSP Page</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+        <script type="text/javascript">
+            $("#telefone, #celular").mask("(00) 00000-0000");
+        </script>
+
+        <title>Agendamento</title>
     </head>
     <body>
         <header class="header">
@@ -24,7 +30,7 @@
         <div class="containerw">
             <h1>Agendamento</h1>
             <form method="post" action="agendamento-salvar" class="form-group">
-                <label>ID: <c:out value="${sessionScope.busca.estabelecimentos.get(0).getId()}" /></label>
+                <label >ID: </label>
                 <div>
                     <label>Nome do Estabelecimento: </label>
                     <input type="text" name="nome" value="${nome}" class="form-control">
@@ -44,7 +50,8 @@
                 </div>
                 <div>
                     <label>Telefone:  </label>
-                    <input type="text" name="telefone" value="${telefone}" class="form-control">
+                    <input type="text" name="telefone" value="${telefone}" id="telefone"  class="form-control">
+
                     <c:if test="${telefoneErro != null}">
                         <span class="erro"><c:out value="${telefoneErro}"/></span> 
                     </c:if>
@@ -63,14 +70,14 @@
                         <span class="erro"><c:out value="${horarioErro}"/></span> 
                     </c:if>
 
-                   
+
 
                 </div>
                 <button type="submit" class="btn btn-success botoes">Agendar</button>
                 <button type="reset"  class="btn btn-danger botoes">Cancelar</button>
 
             </form>
-                   
+
         </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>

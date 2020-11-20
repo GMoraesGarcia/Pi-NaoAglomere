@@ -14,6 +14,12 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/Estilo.css">
         <link rel="stylesheet" href="css/footer.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+        <script type="text/javascript">
+            $("#telefone").mask("(00) 00000-0000");
+            
+        </script>
 
     </head>
     <body class="">
@@ -56,7 +62,7 @@
                 </div>
                 <div>
                     <label>Telefone:</label>
-                    <input type="text" class="form-control" placeholder="( )_____-____" name="telefone" value="${telefone}"
+                    <input type="text" class="form-control" id="telefone" name="telefone" value="${telefone}"
                            >
                     <c:if test="${telefoneErro != null}">
                         <span class="erro"><c:out value="${telefoneErro}"/></span> 

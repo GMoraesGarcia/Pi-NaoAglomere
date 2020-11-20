@@ -1,12 +1,15 @@
 package Cad_Empresa;
 
 import java.io.InputStream;
+import java.sql.Time;
+import java.util.ArrayList;
 
 /**
  *
  * @author leona
  */
 public class Cad_EmpresaDados {
+    private int empresa_id;
 
     private String Nome_Empresa;
 
@@ -34,19 +37,19 @@ public class Cad_EmpresaDados {
 
     private String HoraAb;
 
-    private String HoraFh;
+    public int getId() {
+        return empresa_id;
+    }
 
-    private String AtdHor;
+    public void setId(int empresa_id) {
+        this.empresa_id = empresa_id;
+    }
+
+   
 
     private InputStream foto;
 
-    public String getAtdHor() {
-        return AtdHor;
-    }
-
-    public void setAtdHor(String AtdHor) {
-        this.AtdHor = AtdHor;
-    }
+   
 
     public String getHoraAb() {
         return HoraAb;
@@ -56,13 +59,7 @@ public class Cad_EmpresaDados {
         this.HoraAb = HoraAb;
     }
 
-    public String getHoraFh() {
-        return HoraFh;
-    }
-
-    public void setHoraFh(String HoraFh) {
-        this.HoraFh = HoraFh;
-    }
+   
 
     public InputStream getFoto() {
         return foto;
@@ -183,5 +180,37 @@ public class Cad_EmpresaDados {
         return 0;
 
     }
+    
+    public float agendPorDia(String horarioAbertura, String horarioFechamento, String duracaoAtendimento){
+        System.out.println(horarioAbertura + " " + horarioFechamento + " " + duracaoAtendimento);
+        float hrAbertura = Float.parseFloat(horarioAbertura);
+        System.out.println(hrAbertura);
+        float hrFechamneto = Float.parseFloat(horarioFechamento);
+        float duracao = Float.parseFloat(duracaoAtendimento);
+        
+        float qtdAgend = hrFechamneto - hrAbertura;
+        float x = qtdAgend / duracao;
+        
+        return x;
+    
+    }
+   public ArrayList<Time>horariosAgend (String horarioAbertura,String horarioFechamento,float x){
+      ArrayList<Time> horarios = new ArrayList<>();
+      
+        int i =0;
+        while(i<x){
+            if(i == 0){
+                horarios.add(Time.valueOf(horarioAbertura));
+            }  
+            else{
+                float novoHorario = Integer.parseInt(horarioAbertura +i);
+                
+                horarios.add(Time.valueOf(String.valueOf(novoHorario)));
+            }
+     
+        }
+        return horarios;
+    }
+    
 
 }
