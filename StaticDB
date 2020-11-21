@@ -52,17 +52,27 @@ CREATE TABLE usuario (
      UNIQUE(cpf)
 );
 
-
-############ VIEWS ########
-CREATE VIEW Agend_Empresa as
+DELIMITER $$
+CREATE PROCEDURE Sp_selectAgentEmpresa (CNPJn varchar(18))
+BEGIN
 select ep.Nome_Empresa,us.nome,ag.data_Agend,ag.horario from agendamento as ag
 INNER JOIN empresa as ep on  ag.empresa_id = ep.ID_empresa
 INNER JOIN usuario as us on ag.usuario_id = us.id
+WHERE ep.cnpj = CNPJn
 ORDER BY ag.data_Agend;
+end $$
 
-CREATE VIEW Agend_User as
+call Sp_selectAgentEmpresa('41.173.747/0001-80'); #Chamada da procedure 
+
+
+DELIMITER $$
+CREATE PROCEDURE Sp_selectAgendUser(cpfn VARCHAR(11))
+BEGIN
 SELECT u.nome,e.nome_empresa,ag.data_agend,ag.horario FROM agendamento as ag
 INNER JOIN usuario as u on ag.usuario_id = u.id
 INNER JOIN empresa as e on ag.empresa_id = e.ID_empresa
-where u.email  = 'g.moraes.garcia@gmail.com'
+where u.cpf  = cpfn
 ORDER BY ag.data_Agend;
+end $$
+
+call Sp_selectAgendUser('89547563210'); #Chamada da procedure 
