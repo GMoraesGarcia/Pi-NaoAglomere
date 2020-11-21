@@ -48,7 +48,7 @@ public class Agendamento_Salvar extends HttpServlet {
         AgendamentoDAO dao = new AgendamentoDAO();
         Agendamento a = new Agendamento();
 
-        
+        String idStr = request.getParameter("id");
         String nomeStr = request.getParameter("nome");
         String emailStr = request.getParameter("email");
         String telefoneStr = request.getParameter("telefone");
@@ -115,19 +115,10 @@ public class Agendamento_Salvar extends HttpServlet {
 
         try {
             int num = dao.findByEmail(emailStr);
-            int idemp = dao.findyByNameEmp(nomeStr);
+          
 
-            if (idemp < 0) {
-                request.setAttribute("empErro", "Empresa não cadastrada");
-                
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Agendamento/Form_Agendamento.jsp");
-                dispatcher.forward(request, response);
-                return;
-            } 
-               
-           
-            a.setIdEmpresa(idemp);
-            System.out.println(idemp);
+      
+            a.setIdEmpresa(Integer.parseInt(idStr));
             a.setIdUsuario(num);
             a.setEmail(emailStr);
             a.setTelefone(telefoneStr);

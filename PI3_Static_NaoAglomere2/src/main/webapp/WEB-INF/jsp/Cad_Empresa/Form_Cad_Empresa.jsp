@@ -80,7 +80,7 @@
                         </div>
                         <div>
                             <label id="telefone">Telefone:</label> <label id="modelo">(XX) XXXXX-XXXX ou (XX) XXXX-XXXX</label>
-                            <input type="tel" class="form-control" name="telefone" placeholder="(11) 91234-5678" value="${telefone}" id="telefone">
+                            <input id="telefone" type="tel" class="form-control" name="telefone" placeholder="(11) 91234-5678" value="${telefone}" >
                             <c:if test="${telefoneErro != null}">
                                 <span class="erro"><c:out value="${telefoneErro}"/></span>
                             </c:if>

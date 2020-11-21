@@ -30,9 +30,10 @@
         <div class="containerw">
             <h1>Agendamento</h1>
             <form method="post" action="agendamento-salvar" class="form-group">
-                <label >ID: </label>
+                <input name="id" value="${id}" type="hidden" >
                 <div>
-                    <label>Nome do Estabelecimento: </label>
+                    
+                    <label>Nome </label>
                     <input type="text" name="nome" value="${nome}" class="form-control">
                     <c:if test="${nomeErro != null}">
                         <span class="erro"><c:out value="${nomeErro}"/></span> 
