@@ -51,3 +51,18 @@ CREATE TABLE usuario (
      PRIMARY KEY ( id ),
      UNIQUE(cpf)
 );
+
+
+############ VIEWS ########
+CREATE VIEW Agend_Empresa as
+select ep.Nome_Empresa,us.nome,ag.data_Agend,ag.horario from agendamento as ag
+INNER JOIN empresa as ep on  ag.empresa_id = ep.ID_empresa
+INNER JOIN usuario as us on ag.usuario_id = us.id
+ORDER BY ag.data_Agend;
+
+CREATE VIEW Agend_User as
+SELECT u.nome,e.nome_empresa,ag.data_agend,ag.horario FROM agendamento as ag
+INNER JOIN usuario as u on ag.usuario_id = u.id
+INNER JOIN empresa as e on ag.empresa_id = e.ID_empresa
+where u.email  = 'g.moraes.garcia@gmail.com'
+ORDER BY ag.data_Agend;
