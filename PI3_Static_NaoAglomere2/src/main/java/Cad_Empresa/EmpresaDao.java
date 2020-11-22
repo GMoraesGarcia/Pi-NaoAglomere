@@ -52,7 +52,7 @@ public class EmpresaDao {
     public void update(Cad_EmpresaDados empresaDados) throws SQLException {
 
         String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
-                + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ?, FOTO = ? WHERE CNPJ = ?";
+                + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
