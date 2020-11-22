@@ -37,19 +37,18 @@ public class Cad_Agendamento_Salvar extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-        Cad_EmpresaDados empresa = (Cad_EmpresaDados) sessao.getAttribute("dados");
+        cad_Empresadados empresa = (cad_Empresadados) sessao.getAttribute("dados");
 
         //String CNPJ = empresa.getCNPJ(); // inserir busca da empresa pelo CNPJ para recuperar o ID para inserir os horários na tabela de horarios disponiveis
+        String horaAb = request.getParameter("HoraAb");
+        String horaFh = request.getParameter("HoraFh");
+        String periodo = request.getParameter("periodo");
 
-        String HoraAb = request.getParameter("HoraAb");
-        String HoraFh = request.getParameter("HoraFh");
-        String Periodo = request.getParameter("periodo");
+        boolean horaabValida = horaAb != null && horaAb.trim().length() > 0;
 
-        boolean horaabValida = HoraAb != null && HoraAb.trim().length() > 0;
+        boolean horafhValida = horaFh != null && horaFh.trim().length() > 0;
 
-        boolean horafhValida = HoraFh != null && HoraFh.trim().length() > 0;
-
-        boolean periodoValido = Periodo != null && Periodo.trim().length() > 0;
+        boolean periodoValido = periodo != null && periodo.trim().length() > 0;
 
         boolean camposValidos = horaabValida && horafhValida && periodoValido;
 
@@ -65,9 +64,9 @@ public class Cad_Agendamento_Salvar extends HttpServlet {
                 request.setAttribute("periodoErro", "Nome inválido ou deve ser preenchido");
             }
 
-            request.setAttribute("HoraAb", HoraAb);
-            request.setAttribute("HoraFh", HoraFh);
-            request.setAttribute("Periodo", Periodo);
+            request.setAttribute("HoraAb", horaAb);
+            request.setAttribute("HoraFh", horaFh);
+            request.setAttribute("Periodo", periodo);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Empresa_Agendamento.jsp");
             dispatcher.forward(request, response);
@@ -75,22 +74,20 @@ public class Cad_Agendamento_Salvar extends HttpServlet {
         }
 
         //INSERIR AS CONVERSÕES E CONTAS DE HORÁRIO
-        System.out.println(HoraAb + " " + HoraFh + " " +Periodo );
+        System.out.println(horaAb + " " + horaFh + " " + periodo);
         try {
             ArrayList<Time> horas;
-            
 
-            Cad_EmpresaDados dados = new Cad_EmpresaDados();
-            float qtdAgendamentos = dados.agendPorDia(HoraAb, HoraFh, Periodo);
+            cad_Empresadados dados = new cad_Empresadados();
+            float qtdAgendamentos = dados.agendPorDia(horaAb, horaFh, periodo);
             System.out.println(qtdAgendamentos);
-            horas = dados.horariosAgend(HoraAb, HoraFh, qtdAgendamentos);
+            horas = dados.horariosAgend(horaAb, horaFh, qtdAgendamentos);
             for (int i = 0; i < horas.size(); i++) {
                 System.out.println(horas.get(i));
             }
 
-           // EmpresaDao dao = new EmpresaDao();
+            // EmpresaDao dao = new EmpresaDao();
             //inserir dao para adicionar horários na tabela de horários disponiveis
-
             response.sendRedirect("cad-agendamento-salvar");
 
         } catch (/*SQL*/Exception e) {

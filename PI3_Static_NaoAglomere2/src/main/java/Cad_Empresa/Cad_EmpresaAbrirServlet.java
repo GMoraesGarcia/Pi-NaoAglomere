@@ -24,9 +24,9 @@ public class Cad_EmpresaAbrirServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Cad_Empresa.jsp");
         dispatcher.forward(request, response);
     }
-    
+
 }

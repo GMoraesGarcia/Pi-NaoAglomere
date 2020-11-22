@@ -11,7 +11,7 @@ import java.util.List;
 
 public class EmpresaDao {
 
-    public void addNew(Cad_EmpresaDados empresaDados) throws SQLException {
+    public void addNew(cad_Empresadados empresaDados) throws SQLException {
 
         String sql = "INSERT INTO EMPRESA (NOME_EMPRESA, CNPJ, EMAIL, DESCRICAO, TELEFONE, SENHA, QTD_MAX,"
                 + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO, AGENDAMENTO, FOTO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -23,8 +23,8 @@ public class EmpresaDao {
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-                stmt.setString(1, empresaDados.getNome_Empresa());
-                stmt.setString(2, empresaDados.getCNPJ());
+                stmt.setString(1, empresaDados.getNome_empresa());
+                stmt.setString(2, empresaDados.getCnpj());
                 stmt.setString(3, empresaDados.getEmail());
                 stmt.setString(4, empresaDados.getDescricao());
                 stmt.setString(5, empresaDados.getTelefone());
@@ -32,7 +32,7 @@ public class EmpresaDao {
                 stmt.setInt(7, empresaDados.getQtd_max());
                 stmt.setString(8, empresaDados.getRua());
                 stmt.setString(9, empresaDados.getBairro());
-                stmt.setInt(10, empresaDados.getNumero_Rua());
+                stmt.setInt(10, empresaDados.getNumero_rua());
                 stmt.setString(11, empresaDados.getRegras());
                 stmt.setString(12, "empresa"); // tipo de cadastro usado para login
                 stmt.setString(13, empresaDados.getAgendamento());
@@ -49,7 +49,7 @@ public class EmpresaDao {
         }
     }
 
-    public void update(Cad_EmpresaDados empresaDados) throws SQLException {
+    public void update(cad_Empresadados empresaDados) throws SQLException {
 
         String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
                 + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
@@ -60,18 +60,18 @@ public class EmpresaDao {
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-                stmt.setString(1, empresaDados.getNome_Empresa());
+                stmt.setString(1, empresaDados.getNome_empresa());
                 stmt.setString(2, empresaDados.getEmail());
                 stmt.setString(3, empresaDados.getTelefone());
                 stmt.setString(4, empresaDados.getRua());
-                stmt.setInt(5, empresaDados.getNumero_Rua());
+                stmt.setInt(5, empresaDados.getNumero_rua());
                 stmt.setString(6, empresaDados.getBairro());
                 stmt.setInt(7, empresaDados.getQtd_max());
                 stmt.setString(8, empresaDados.getRegras());
                 stmt.setString(9, empresaDados.getDescricao());
                 stmt.setString(10, empresaDados.getAgendamento());
                 stmt.setString(11, empresaDados.getFoto());
-                stmt.setString(12, empresaDados.getCNPJ());
+                stmt.setString(12, empresaDados.getCnpj());
 
                 stmt.executeUpdate();
 
@@ -85,7 +85,7 @@ public class EmpresaDao {
 
     }
 
-    public void addHorario(Cad_EmpresaDados empresaDados) throws SQLException {
+    public void addHorario(cad_Empresadados empresaDados) throws SQLException {
         String sql = "insert into HorariosDisponiveis (id_empresa,horario) values (?,?);";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
@@ -93,7 +93,7 @@ public class EmpresaDao {
             conn.setAutoCommit(false);
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setInt(1, empresaDados.getId());
+                stmt.setInt(1, empresaDados.getEmpresa_id());
                 stmt.setString(2, empresaDados.getHoraAb());
 
                 stmt.executeUpdate();

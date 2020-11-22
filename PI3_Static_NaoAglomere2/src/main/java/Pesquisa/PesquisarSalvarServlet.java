@@ -1,6 +1,6 @@
 package Pesquisa;
 
-import Cad_Empresa.Cad_EmpresaDados;
+import Cad_Empresa.cad_Empresadados;
 import Login.LoginDados;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,7 +48,7 @@ public class PesquisarSalvarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
             dispatcher.forward(request, response);
         }
-       
+
     }
 
 }

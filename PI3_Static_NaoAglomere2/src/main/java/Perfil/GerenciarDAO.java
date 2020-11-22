@@ -25,27 +25,23 @@ public class GerenciarDAO {
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
-            try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery() ) {
-                
-                
+            try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             } catch (SQLException e) {
                 conn.rollback();
                 throw e;
             }
         }
-        return null; 
+        return null;
     }
-    
+
     public ArrayList<GerenciarDados> Empresa(String cnpj) throws SQLException {
-        
+
         String sql = "call Sp_selectAgentEmpresa(?)";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
             try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
-              
-                
             } catch (SQLException e) {
                 conn.rollback();
                 throw e;

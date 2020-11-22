@@ -38,7 +38,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-        Cad_EmpresaDados empresa_dados = (Cad_EmpresaDados) sessao.getAttribute("dados");
+        cad_Empresadados empresa_dados = (cad_Empresadados) sessao.getAttribute("dados");
         sessao.removeAttribute("dados");
 
         request.setAttribute("dados", empresa_dados);
@@ -55,7 +55,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String nome_empresa = request.getParameter("nome_empresa");
-        String CNPJ = request.getParameter("CNPJ");
+        String cnpj = request.getParameter("CNPJ");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         String confirmasenha = request.getParameter("confirmasenha");
@@ -68,6 +68,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         String regras = request.getParameter("regras");
         String agendamento = request.getParameter("agendamento");
         Part arquivo = request.getPart("foto");
+
         String caminho = null;
         InputStream conteudoArquivo = null;
         Path destino = null;
@@ -101,7 +102,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         boolean ConfirmaSenhaValida = (confirmasenha != null && confirmasenha.equals(senha));
 
         //Validação CNPJ
-        boolean validaCNPJ = isCNPJ(CNPJ);
+        boolean validaCNPJ = isCNPJ(cnpj);
 
         //Validação telefone 
         boolean telefoneValido = telefone != null && telefone.trim().length() > 0;
@@ -190,7 +191,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             }*/
 
             request.setAttribute("nome_empresa", nome_empresa);
-            request.setAttribute("CNPJ", CNPJ);
+            request.setAttribute("CNPJ", cnpj);
             request.setAttribute("email", email);
             request.setAttribute("telefone", telefone);
             request.setAttribute("descricao", descricao);
@@ -207,16 +208,16 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
         }
 
-        Cad_EmpresaDados empresa_dados = new Cad_EmpresaDados();
+        cad_Empresadados empresa_dados = new cad_Empresadados();
 
-        empresa_dados.setNome_Empresa(nome_empresa);
-        empresa_dados.setCNPJ(CNPJ);
+        empresa_dados.setNome_empresa(nome_empresa);
+        empresa_dados.setCnpj(cnpj);
         empresa_dados.setEmail(email);
         empresa_dados.setSenha(senha);
         empresa_dados.setTelefone(telefone);
         empresa_dados.setDescricao(descricao);
         empresa_dados.setRua(rua);
-        empresa_dados.setNumero_Rua(numero);
+        empresa_dados.setNumero_rua(numero);
         empresa_dados.setBairro(bairro);
         empresa_dados.setQtd_max(qtdPessoas);
         empresa_dados.setRegras(regras);

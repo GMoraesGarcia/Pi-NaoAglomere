@@ -5,7 +5,7 @@
  */
 package br.senac.tads.pi3_static_naoaglomere2;
 
-import Cad_Empresa.Cad_EmpresaDados;
+import Cad_Empresa.cad_Empresadados;
 import java.sql.Time;
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class teste {
         ArrayList<Time> horas;
         
         
-         Cad_EmpresaDados dados = new Cad_EmpresaDados();
+         cad_Empresadados dados = new cad_Empresadados();
            float qtdAgendamentos =  dados.agendPorDia("7:00", "18:30", "1:00");
           horas = dados.horariosAgend("7:00", "18:30", qtdAgendamentos);
           

@@ -54,7 +54,6 @@ public class Agendamento_Salvar extends HttpServlet {
         String telefoneStr = request.getParameter("telefone");
         String dataStr = request.getParameter("data");
         String horaStr = request.getParameter("horario");
-        
 
         //Validação Nome
         boolean nomeValido = nomeStr != null && nomeStr.trim().length() > 0;
@@ -99,14 +98,13 @@ public class Agendamento_Salvar extends HttpServlet {
             }
             if (!dataAgendamentoValida) {
                 request.setAttribute("dataAgendamentoErro", " Data de Agendamento deve ser preenchido ou Válido");
-            }   
-            
+            }
+
             request.setAttribute("nome", nomeStr);
             request.setAttribute("email", emailStr);
             request.setAttribute("horario", horaStr);
             request.setAttribute("dataAgendamento", dataStr);
             request.setAttribute("telefone", telefoneStr);
-            
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Agendamento/Form_Agendamento.jsp");
             dispatcher.forward(request, response);
@@ -115,9 +113,7 @@ public class Agendamento_Salvar extends HttpServlet {
 
         try {
             int num = dao.findByEmail(emailStr);
-          
 
-      
             a.setIdEmpresa(Integer.parseInt(idStr));
             a.setIdUsuario(num);
             a.setEmail(emailStr);

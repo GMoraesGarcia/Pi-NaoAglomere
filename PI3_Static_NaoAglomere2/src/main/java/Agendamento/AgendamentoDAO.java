@@ -77,14 +77,14 @@ public class AgendamentoDAO {
                 if (rs.next()) {
                     emp.setIdEmpresa(rs.getInt("ID_empresa"));
                     result = emp.getIdEmpresa();
-                }
-                else
+                } else {
                     result = -1;
+                }
 
             }
         }
         return result;
-                
+
     }
 
 }

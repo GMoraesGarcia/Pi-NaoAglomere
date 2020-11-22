@@ -5,7 +5,7 @@
  */
 package Perfil;
 
-import Cad_Empresa.Cad_EmpresaDados;
+import Cad_Empresa.cad_Empresadados;
 import Cad_Empresa.EmpresaDao;
 import Cad_Usuario.Cad_Usuario;
 import Cad_Usuario.UsuarioDAO;
@@ -43,7 +43,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
         HttpSession sessao = request.getSession();
         //String sucesso = (String) sessao.getAttribute("sucesso");
-        Cad_EmpresaDados empresa_dados = (Cad_EmpresaDados) sessao.getAttribute("empresa");
+        cad_Empresadados empresa_dados = (cad_Empresadados) sessao.getAttribute("empresa");
         request.getAttribute("sucesso");
         //sessao.removeAttribute("empresa");
 
@@ -70,7 +70,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String nome_empresa = request.getParameter("nome_empresa");
-        String CNPJ = request.getParameter("CNPJ");
+        String cnpj = request.getParameter("CNPJ");
         String email = request.getParameter("email");
         //String senha = request.getParameter("senha");
         //String confirmasenha = request.getParameter("confirmasenha");
@@ -93,7 +93,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             Files.copy(conteudoArquivo, destino);
             caminho = "/PI-FOTOS/" + nomeArquivo;
         }
-        if (CNPJ != null) {
+        if (cnpj != null) {
 
             //Validação Nome
             boolean nomeValido = nome_empresa != null && nome_empresa.trim().length() > 0;
@@ -111,7 +111,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             //Senhas Iguais
             //boolean ConfirmaSenhaValida = (confirmasenha != null && confirmasenha.equals(senha));
             //Validação CNPJ
-            boolean validaCNPJ = CNPJ != null && CNPJ.trim().length() > 0;
+            boolean validaCNPJ = cnpj != null && cnpj.trim().length() > 0;
 
             //Validação telefone 
             boolean telefoneValido = telefone != null && telefone.trim().length() > 0;
@@ -197,7 +197,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
                 }
 
                 request.setAttribute("nome_empresa", nome_empresa);
-                request.setAttribute("CNPJ", CNPJ);
+                request.setAttribute("CNPJ", cnpj);
                 request.setAttribute("email", email);
                 request.setAttribute("telefone", telefone);
                 request.setAttribute("descricao", descricao);
@@ -215,22 +215,22 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
             }
 
-            Cad_EmpresaDados empresa_dados = new Cad_EmpresaDados();
+            cad_Empresadados empresa_dados = new cad_Empresadados();
 
-            empresa_dados.setNome_Empresa(nome_empresa);
-            empresa_dados.setCNPJ(CNPJ);
+            empresa_dados.setNome_empresa(nome_empresa);
+            empresa_dados.setCnpj(cnpj);
             empresa_dados.setEmail(email);
             //empresa_dados.setSenha(senha);
             empresa_dados.setTelefone(telefone);
             empresa_dados.setDescricao(descricao);
             empresa_dados.setRua(rua);
-            empresa_dados.setNumero_Rua(numero);
+            empresa_dados.setNumero_rua(numero);
             empresa_dados.setBairro(bairro);
             empresa_dados.setQtd_max(qtdPessoas);
             empresa_dados.setRegras(regras);
             empresa_dados.setAgendamento(agendamento);
             empresa_dados.setFoto(caminho);
-            
+
             EmpresaDao dao = new EmpresaDao();
 
             try {

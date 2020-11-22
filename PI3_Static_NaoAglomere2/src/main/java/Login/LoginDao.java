@@ -1,6 +1,6 @@
 package Login;
 
-import Cad_Empresa.Cad_EmpresaDados;
+import Cad_Empresa.cad_Empresadados;
 import Cad_Usuario.Cad_Usuario;
 import ConexãoBD.Connection_db2;
 import java.sql.Connection;
@@ -89,8 +89,8 @@ public class LoginDao {
         return user;
     }
 
-    public Cad_EmpresaDados findEmpresa(String email, String senha) throws SQLException {
-        Cad_EmpresaDados empresa = new Cad_EmpresaDados();
+    public cad_Empresadados findEmpresa(String email, String senha) throws SQLException {
+        cad_Empresadados empresa = new cad_Empresadados();
         String sql = "SELECT NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO,FOTO FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
         
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
@@ -102,15 +102,15 @@ public class LoginDao {
             try (ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
-                    empresa.setNome_Empresa(rs.getString("NOME_EMPRESA"));
-                    empresa.setCNPJ(rs.getString("CNPJ"));
+                    empresa.setNome_empresa(rs.getString("NOME_EMPRESA"));
+                    empresa.setCnpj(rs.getString("CNPJ"));
                     empresa.setEmail(rs.getString("EMAIL"));
                     empresa.setDescricao(rs.getString("DESCRICAO"));
                     empresa.setTelefone(rs.getString("TELEFONE"));
                     empresa.setQtd_max(rs.getInt("QTD_MAX"));
                     empresa.setRua(rs.getString("RUA"));
                     empresa.setBairro(rs.getString("BAIRRO"));
-                    empresa.setNumero_Rua(rs.getInt("NUMERO"));
+                    empresa.setNumero_rua(rs.getInt("NUMERO"));
                     empresa.setRegras(rs.getString("REGRAS"));
                     empresa.setAgendamento(rs.getString("AGENDAMENTO"));
                     empresa.setFoto(rs.getString("FOTO"));

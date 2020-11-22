@@ -14,19 +14,18 @@ import java.time.LocalDate;
  * @author Gabriel
  */
 public class Agendamento {
+
     private int id_usuario;
-    
+
     private int id_empresa;
-    
+
     private String email;
-    
+
     private String telefone;
-    
+
     private LocalDate data;
-    
+
     private String hora;
-    
-    
 
     public int getIdUsuario() {
         return id_usuario;
@@ -43,7 +42,6 @@ public class Agendamento {
     public void setIdEmpresa(int id_empresa) {
         this.id_empresa = id_empresa;
     }
-    
 
     public String getEmail() {
         return email;
@@ -76,6 +74,5 @@ public class Agendamento {
     public void setHora(String hora) {
         this.hora = hora;
     }
-    
-  
+
 }
