@@ -45,7 +45,7 @@ CREATE TABLE usuario (
     cpf              VARCHAR(11) NOT NULL,
     email            VARCHAR(50) NOT NULL,
     data_nascimento  DATE NOT NULL,
-    telefone         VARCHAR(14) NOT NULL,
+    telefone         VARCHAR(30) NOT NULL,
     senha            VARCHAR(20) NOT NULL,
     tipo_cadastro    varchar(20) NOT NULL,
      PRIMARY KEY ( id ),
