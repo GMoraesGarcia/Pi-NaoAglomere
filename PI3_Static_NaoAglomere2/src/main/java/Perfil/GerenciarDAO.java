@@ -21,7 +21,7 @@ public class GerenciarDAO {
 
     public ArrayList<GerenciarDados> User(String cpf) throws SQLException {
 
-        String sql = "";
+        String sql = "call Sp_selectAgendUser(?)";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
@@ -39,7 +39,7 @@ public class GerenciarDAO {
     
     public ArrayList<GerenciarDados> Empresa(String cnpj) throws SQLException {
         
-        String sql = "";
+        String sql = "call Sp_selectAgentEmpresa(?)";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
             try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {

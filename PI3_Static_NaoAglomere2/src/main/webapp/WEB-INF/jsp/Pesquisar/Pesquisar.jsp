@@ -67,7 +67,14 @@
                                     <li><p>Bairro: <c:out value="${interesse.getBairro()}" /></p></li>
                                     <li><p>Numero: <c:out value="${interesse.getNumero_Rua()}" /></p></li>
                                     <li><p>Regras: <c:out value="${interesse.getRegras()}" /></p></li>
-                                    <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/agendamento?id=${interesse.getId()}" >Agendar</a></li>            
+
+                                    <c:if test="${interesse.getAgendamento() == 'Sim'}">
+                                        <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/agendamento?id=${interesse.getId()}" >Agendar</a></li>   
+                                        </c:if> 
+                                        <c:if test="${interesse.getAgendamento() == 'Não'}">
+                                        <li><a class="btn btn-info"  href="" >Gerar Código</a></li>   
+
+                                    </c:if>
                                 </c:forEach>
                             </ul>
 

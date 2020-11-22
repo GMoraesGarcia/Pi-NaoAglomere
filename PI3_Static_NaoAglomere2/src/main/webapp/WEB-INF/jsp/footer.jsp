@@ -1,5 +1,5 @@
 <div class="opcoes-menu ">
-    <p>©Todos os direitos reservados<a href="https://github.com/MatheusSantosDev/PI-Static">/Projeto-Static</a></p>
+    <p>©Todos os direitos reservados<a href="https://github.com/MatheusSantosDev/PI-Static">/Projeto-Static</a>/Não Aglomere</p>
     <ul class="criadores">
         <li>Criadores:</li>
         <li><a href="https://github.com/GMoraesGarcia">Gabriel Moraes</li>
