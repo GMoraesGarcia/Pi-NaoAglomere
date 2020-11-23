@@ -1,6 +1,6 @@
 package Pesquisa;
 
-import Cad_Empresa.cad_Empresadados;
+import Cad_Empresa.Cad_Empresadados;
 import ConexãoBD.Connection_db2;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ public class PesquisaDao {
 
         PesquisarDados busca = new PesquisarDados();
 
-        ArrayList<cad_Empresadados> empresas = new ArrayList<>();
+        ArrayList<Cad_Empresadados> empresas = new ArrayList<>();
 
         String sql = "SELECT NOME_EMPRESA, EMAIL, DESCRICAO, TELEFONE, QTD_MAX, RUA, BAIRRO, NUMERO, REGRAS, AGENDAMENTO, ID_empresa FROM EMPRESA where DESCRICAO LIKE '%" + pesquisa + "%' OR NOME_EMPRESA LIKE '%" + pesquisa + "%'";
 
@@ -26,7 +26,7 @@ public class PesquisaDao {
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {// enquanto tiver empresas adiciona no array
-                cad_Empresadados empresa = new cad_Empresadados();
+                Cad_Empresadados empresa = new Cad_Empresadados();
                 empresa.setNome_empresa(rs.getString("NOME_EMPRESA"));
                 empresa.setEmail(rs.getString("EMAIL"));
                 empresa.setDescricao(rs.getString("DESCRICAO"));

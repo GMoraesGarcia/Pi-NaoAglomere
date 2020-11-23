@@ -71,10 +71,16 @@
                                         <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/agendamento?id=${interesse.getEmpresa_Id()}" >Agendar</a></li>   
                                         </c:if> 
                                         <c:if test="${interesse.getAgendamento() == 'Não'}">
-                                        <li><a class="btn btn-info"  href="" >Gerar Código</a></li>   
-
-                                    </c:if>
-                                </c:forEach>
+                                            <c:choose>
+                                                <c:when test="${sessionScope.user != null}">
+                                                <li><a class="btn btn-info"  href="" >Gerar Código</a></li>   
+                                                </c:when>                                                
+                                                <c:otherwise>
+                                                <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/login" >Fazer Login para Gerar Código</a></li>   
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:if>
+                                    </c:forEach>
                             </ul>
 
                         </c:when>

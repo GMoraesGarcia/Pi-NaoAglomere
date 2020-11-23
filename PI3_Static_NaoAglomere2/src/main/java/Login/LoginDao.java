@@ -1,6 +1,6 @@
 package Login;
 
-import Cad_Empresa.cad_Empresadados;
+import Cad_Empresa.Cad_Empresadados;
 import Cad_Usuario.Cad_Usuario;
 import ConexãoBD.Connection_db2;
 import java.sql.Connection;
@@ -89,9 +89,9 @@ public class LoginDao {
         return user;
     }
 
-    public cad_Empresadados findEmpresa(String email, String senha) throws SQLException {
-        cad_Empresadados empresa = new cad_Empresadados();
-        String sql = "SELECT NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO,FOTO FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
+    public Cad_Empresadados findEmpresa(String email, String senha) throws SQLException {
+        Cad_Empresadados empresa = new Cad_Empresadados();
+        String sql = "SELECT NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO"/*,FOTO*/+" FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
         
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -113,7 +113,7 @@ public class LoginDao {
                     empresa.setNumero_rua(rs.getInt("NUMERO"));
                     empresa.setRegras(rs.getString("REGRAS"));
                     empresa.setAgendamento(rs.getString("AGENDAMENTO"));
-                    empresa.setFoto(rs.getString("FOTO"));
+                    //empresa.setFoto(rs.getString("FOTO"));
                     return empresa;
                 }
             }

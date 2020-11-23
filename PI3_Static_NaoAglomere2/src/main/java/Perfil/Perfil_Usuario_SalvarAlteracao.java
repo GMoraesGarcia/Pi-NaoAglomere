@@ -5,7 +5,7 @@
  */
 package Perfil;
 
-import Cad_Empresa.cad_Empresadados;
+import Cad_Empresa.Cad_Empresadados;
 import Cad_Empresa.EmpresaDao;
 import Cad_Usuario.Cad_Usuario;
 import Cad_Usuario.UsuarioDAO;
@@ -43,7 +43,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
         HttpSession sessao = request.getSession();
         //String sucesso = (String) sessao.getAttribute("sucesso");
-        cad_Empresadados empresa_dados = (cad_Empresadados) sessao.getAttribute("empresa");
+        Cad_Empresadados empresa_dados = (Cad_Empresadados) sessao.getAttribute("empresa");
         request.getAttribute("sucesso");
         //sessao.removeAttribute("empresa");
 
@@ -215,7 +215,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
             }
 
-            cad_Empresadados empresa_dados = new cad_Empresadados();
+            Cad_Empresadados empresa_dados = new Cad_Empresadados();
 
             empresa_dados.setNome_empresa(nome_empresa);
             empresa_dados.setCnpj(cnpj);

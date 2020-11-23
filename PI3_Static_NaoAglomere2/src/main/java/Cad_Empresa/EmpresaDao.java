@@ -11,7 +11,7 @@ import java.util.List;
 
 public class EmpresaDao {
 
-    public void addNew(cad_Empresadados empresaDados) throws SQLException {
+    public void addNew(Cad_Empresadados empresaDados) throws SQLException {
 
         String sql = "INSERT INTO EMPRESA (NOME_EMPRESA, CNPJ, EMAIL, DESCRICAO, TELEFONE, SENHA, QTD_MAX,"
                 + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO, AGENDAMENTO, FOTO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -49,7 +49,7 @@ public class EmpresaDao {
         }
     }
 
-    public void update(cad_Empresadados empresaDados) throws SQLException {
+    public void update(Cad_Empresadados empresaDados) throws SQLException {
 
         String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
                 + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
@@ -85,7 +85,7 @@ public class EmpresaDao {
 
     }
 
-    public void addHorario(cad_Empresadados empresaDados) throws SQLException {
+    public void addHorario(Cad_Empresadados empresaDados) throws SQLException {
         String sql = "insert into HorariosDisponiveis (id_empresa,horario) values (?,?);";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
@@ -93,7 +93,7 @@ public class EmpresaDao {
             conn.setAutoCommit(false);
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                stmt.setInt(1, empresaDados.getEmpresa_id());
+                stmt.setInt(1, empresaDados.getEmpresa_Id());
                 stmt.setString(2, empresaDados.getHoraAb());
 
                 stmt.executeUpdate();

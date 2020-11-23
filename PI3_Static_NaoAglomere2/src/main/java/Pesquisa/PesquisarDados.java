@@ -5,7 +5,7 @@
  */
 package Pesquisa;
 
-import Cad_Empresa.cad_Empresadados;
+import Cad_Empresa.Cad_Empresadados;
 import java.util.ArrayList;
 
 /**
@@ -15,13 +15,13 @@ import java.util.ArrayList;
 public class PesquisarDados {
 
     private String pesquisa;
-    private ArrayList<cad_Empresadados> estabelecimentos;
+    private ArrayList<Cad_Empresadados> estabelecimentos;
 
-    public ArrayList<cad_Empresadados> getEstabelecimentos() {
+    public ArrayList<Cad_Empresadados> getEstabelecimentos() {
         return estabelecimentos;
     }
 
-    public void setEstabelecimentos(ArrayList<cad_Empresadados> estabelecimentos) {
+    public void setEstabelecimentos(ArrayList<Cad_Empresadados> estabelecimentos) {
         this.estabelecimentos = estabelecimentos;
     }
 
@@ -34,7 +34,7 @@ public class PesquisarDados {
     }
 
     //Inseri uma empresa na pesquisa
-    public void addEstabelecimento(cad_Empresadados c) {
+    public void addEstabelecimento(Cad_Empresadados c) {
         estabelecimentos.add(c);
     }
 

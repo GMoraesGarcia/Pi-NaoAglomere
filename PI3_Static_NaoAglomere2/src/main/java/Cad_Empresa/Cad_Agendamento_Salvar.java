@@ -37,7 +37,7 @@ public class Cad_Agendamento_Salvar extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-        cad_Empresadados empresa = (cad_Empresadados) sessao.getAttribute("dados");
+        Cad_Empresadados empresa = (Cad_Empresadados) sessao.getAttribute("dados");
 
         //String CNPJ = empresa.getCNPJ(); // inserir busca da empresa pelo CNPJ para recuperar o ID para inserir os horários na tabela de horarios disponiveis
         String horaAb = request.getParameter("horaAb");
@@ -78,7 +78,7 @@ public class Cad_Agendamento_Salvar extends HttpServlet {
         try {
             ArrayList<Time> horas;
 
-            cad_Empresadados dados = new cad_Empresadados();
+            Cad_Empresadados dados = new Cad_Empresadados();
             float qtdAgendamentos = dados.agendPorDia(horaAb, horaFh, periodo);
             System.out.println(qtdAgendamentos);
             horas = dados.horariosAgend(horaAb, horaFh, qtdAgendamentos);

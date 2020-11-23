@@ -38,7 +38,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-        cad_Empresadados empresa_dados = (cad_Empresadados) sessao.getAttribute("dados");
+        Cad_Empresadados empresa_dados = (Cad_Empresadados) sessao.getAttribute("dados");
         sessao.removeAttribute("dados");
 
         request.setAttribute("dados", empresa_dados);
@@ -207,7 +207,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
         }
 
-        cad_Empresadados empresa_dados = new cad_Empresadados();
+        Cad_Empresadados empresa_dados = new Cad_Empresadados();
 
         empresa_dados.setNome_empresa(nome_empresa);
         empresa_dados.setCnpj(cnpj);

@@ -1,6 +1,6 @@
 package Login;
 
-import Cad_Empresa.cad_Empresadados;
+import Cad_Empresa.Cad_Empresadados;
 import Cad_Usuario.Cad_Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -93,7 +93,7 @@ public class LoginServlet extends HttpServlet {
 
                 try {
                     //nome,cnpj,email,descricao,telefone,qtd_max,rua,bairro,numero,regras,agendamento
-                    cad_Empresadados empresa = dao.findEmpresa(emailStr, senhaStr);
+                    Cad_Empresadados empresa = dao.findEmpresa(emailStr, senhaStr);
                     HttpSession sessao = request.getSession();
                     sessao.setAttribute("empresa", empresa);
                     sessao.setAttribute("login", login);
