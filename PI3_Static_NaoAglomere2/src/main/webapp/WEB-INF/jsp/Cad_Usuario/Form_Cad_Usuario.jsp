@@ -16,9 +16,10 @@
         <link rel="stylesheet" href="css/footer.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
         <script type="text/javascript">
             $("#telefone").mask("(00) 00000-0000");
-            
+            $("#dataNascimento").mask("0000-00-00");
         </script>
 
     </head>
@@ -55,7 +56,7 @@
                 </div>
                 <div>
                     <label>Data de Nascimento:</label>
-                    <input type="date" class="form-control" name="dataNascimento" value="${dataNascimento}">
+                    <input id="dataNascimento" type="date" class="form-control" name="dataNascimento"  placeholder="XXXX-XX-XX" value="${dataNascimento}">
                     <c:if test="${dtNascimentoErro != null}">
                         <span class="erro"><c:out value="${dtNascimentoErro}"/></span> 
                     </c:if>

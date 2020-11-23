@@ -26,7 +26,7 @@
             <nav class="sugestões">
                 <form method="post" action="pesquisar-Salvar">
                     <div>            
-                        <input  type="submit" class="btn btn-info" name="pesquisa" value="mercado">    
+                        <input  type="submit" class="btn btn-info" name="pesquisa" value="Mercados">    
                         <input  type="submit" class="btn btn-info" name="pesquisa" value="Salões de Beleza e Estudios"> 
                         <input  type="submit" class="btn btn-info" name="pesquisa" value="Bares e restaurantes"> 
                         <input  type="submit" class="btn btn-info" name="pesquisa" value="Lojas">   
@@ -56,20 +56,19 @@
                     <c:choose>
                         <c:when test="${busca.getEstabelecimentos() != null }">               
                             <ul>                    
-                                <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">    
-                                    <li><p>ID: <c:out value="${interesse.getId()}" /> </p></li>
-                                    <li><p>Nome: <c:out value="${interesse.getNome_Empresa()}" /></p></li>
+                                <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">
+                                    <li><p>Nome: <c:out value="${interesse.getNome_empresa()}" /></p></li>
                                     <li><p>Email: <c:out value="${interesse.getEmail()}" /></p></li>
                                     <li><p>Descrição: <c:out value="${interesse.getDescricao()}" /></p></li>
                                     <li><p>Telefone: <c:out value="${interesse.getTelefone()}" /></p></li>
                                     <li><p>Quantidade Maxima de pessoas: <c:out value="${interesse.getQtd_max()}" /></p></li>
                                     <li><p>Rua: <c:out value="${interesse.getRua()}" /></p></li>
                                     <li><p>Bairro: <c:out value="${interesse.getBairro()}" /></p></li>
-                                    <li><p>Numero: <c:out value="${interesse.getNumero_Rua()}" /></p></li>
+                                    <li><p>Numero: <c:out value="${interesse.getNumero_rua()}" /></p></li>
                                     <li><p>Regras: <c:out value="${interesse.getRegras()}" /></p></li>
 
                                     <c:if test="${interesse.getAgendamento() == 'Sim'}">
-                                        <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/agendamento?id=${interesse.getId()}" >Agendar</a></li>   
+                                        <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/agendamento?id=${interesse.getEmpresa_Id()}" >Agendar</a></li>   
                                         </c:if> 
                                         <c:if test="${interesse.getAgendamento() == 'Não'}">
                                         <li><a class="btn btn-info"  href="" >Gerar Código</a></li>   

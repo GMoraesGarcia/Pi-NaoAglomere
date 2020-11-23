@@ -65,22 +65,22 @@
         </c:if>
 
 
-        <c:if test="${login.getTipo_cadastro() == 'empresa' || empresa.getNome_Empresa() != null}">
-            <h1>Bem Vindo(a)! <c:out value="${empresa.getNome_Empresa()}"/></h1>
+        <c:if test="${login.getTipo_cadastro() == 'empresa' || empresa.getNome_empresa() != null}">
+            <h1>Bem Vindo(a)! <c:out value="${empresa.getNome_empresa()}"/></h1>
             <div class="containerw">
                 <form class="form-group" method="post" action="perfil-alterado" novalidate enctype="multipart/form-data">
                     <div class="row">
                         <fieldset class="col-lg-6">
                             <div>
                                 <label id="Nome_Empresa">Nome da empresa:</label>
-                                <input type="text" class="form-control" name="nome_empresa" value="${empresa.getNome_Empresa()}">
+                                <input type="text" class="form-control" name="nome_empresa" value="${empresa.getNome_empresa()}">
                                 <c:if test="${nomeErro != null}">
                                     <span class="erro"><c:out value="${nomeErro}"/></span>
                                 </c:if>
                             </div>
                             <div>
                                 <label id="CNPJ">CPNJ:</label>
-                                <input type="text" class="form-control" id="CNPJtext" name="CNPJ" value="${empresa.getCNPJ()}" readonly="readonly">
+                                <input type="text" class="form-control" id="CNPJtext" name="CNPJ" value="${empresa.getCnpj()}" readonly="readonly">
                             </div>
                             <div>
                                 <label id="Email">E-mail Corporativo:</label>
@@ -123,7 +123,7 @@
                             </div>
                             <div>
                                 <label id="numero">Número:</label>
-                                <input type="number" class="form-control" name="numero_rua" value="${empresa.getNumero_Rua()}">
+                                <input type="number" class="form-control" name="numero_rua" value="${empresa.getNumero_rua()}">
                                 <c:if test="${numeroErro != null}">
                                     <span class="erro"><c:out value="${numeroErro}"/></span>
                                 </c:if>

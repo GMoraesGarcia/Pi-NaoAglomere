@@ -67,23 +67,22 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         String qtd_pessoasStr = request.getParameter("qtd_pessoas");
         String regras = request.getParameter("regras");
         String agendamento = request.getParameter("agendamento");
-        Part arquivo = request.getPart("foto");
+        /*Part arquivo = request.getPart("foto");
 
+        System.out.println(arquivo);
         String caminho = null;
         InputStream conteudoArquivo = null;
         Path destino = null;
 
-        if (arquivo != null) {
-            String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
-            String diretorioDestino = "C:/PI-FOTOS";
-            conteudoArquivo = arquivo.getInputStream();
-            destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
-            caminho = "/PI-FOTOS/" + nomeArquivo;
-        }
+        String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
+        String diretorioDestino = "C:/PI-FOTOS";
+        conteudoArquivo = arquivo.getInputStream();
+        destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
+        caminho = "/PI-FOTOS/" + nomeArquivo;*/
+
         //String check = request.getParameter("check");
         //Validação leitura dos termos
         //boolean checkValido = check.equals("on");
-
         //Validação Nome
         boolean nomeValido = nome_empresa != null && nome_empresa.trim().length() > 0;
 
@@ -222,18 +221,18 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         empresa_dados.setQtd_max(qtdPessoas);
         empresa_dados.setRegras(regras);
         empresa_dados.setAgendamento(agendamento);
-        if (caminho != null) {
+        /*if (caminho != null) {
             empresa_dados.setFoto(caminho);
-        }
+        }*/
 
         EmpresaDao dao = new EmpresaDao();
 
         try {
             dao.addNew(empresa_dados);
 
-            if (caminho != null) {
+            /*if (caminho != null) {
                 Files.copy(conteudoArquivo, destino);
-            }
+            }*/
             request.setAttribute("dados", empresa_dados);
 
             HttpSession sessao = request.getSession();
@@ -248,6 +247,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             }
 
         } catch (SQLException e) {
+            System.out.println(e);
             request.setAttribute("Erro", "Erro no banco de dados");
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Cad_Empresa.jsp");

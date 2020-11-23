@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/Estilo.css">
         <link rel="stylesheet" href="css/header.css">
@@ -17,12 +18,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-
-        <script type="text/javascript">
-            $("#telefone").mask("(00) 00000-0000");
-
-        </script>
-        <meta charset=UTF-8">
 
         <title>Cadastro de Empresa</title>
     </head>
@@ -50,12 +45,15 @@
                             </c:if>
                         </div>
                         <div>
-                            <label id="CNPJ">CPNJ:</label> <label id="modelo">XX.XXX.XXX/XXXX-XX</label>
+                            <label id="CNPJ">CPNJ:</label>
                             <input type="text" class="form-control" id="CNPJtext" name="CNPJ" placeholder="12.345.678/9012-34"
                                    inputmode="numeric" minlength="18" maxlength="18" value="${CNPJ}">
                             <c:if test="${cnpjErro != null}">
                                 <span class="erro"><c:out value="${cnpjErro}"/></span>
                             </c:if>
+                            <script>
+                                $("#CNPJtext").mask("00.000.000/0000-00");
+                            </script>
                         </div>
                         <div>
                             <label id="Email">E-mail Corporativo:</label>
@@ -79,21 +77,24 @@
                             </c:if>
                         </div>
                         <div>
-                            <label id="telefone">Telefone:</label> <label id="modelo">(XX) XXXXX-XXXX ou (XX) XXXX-XXXX</label>
-                            <input id="telefone" type="tel" class="form-control" name="telefone" placeholder="(11) 91234-5678" value="${telefone}" >
+                            <label>Telefone:</label>
+                            <input id="telefone" type="text" class="form-control" name="telefone" placeholder="(11) 91234-5678" value="${telefone}">
                             <c:if test="${telefoneErro != null}">
                                 <span class="erro"><c:out value="${telefoneErro}"/></span>
                             </c:if>
+                            <script>
+                                $("#telefone").mask("(00) 00000-0000");
+                            </script>
                         </div>
                         <div>
                             <label id="descricao">Descrição:</label>
                             <select class="custom-select" id="descricaoop" name="descricao">
                                 <option disabled selected>Selecione uma opção</option>
-                                <option value="Mercado">Mercado</option>
-                                <option value="Bar ou Restaurante">Bar ou Restaurante</option>
-                                <option value="Loja">Loja</option>
-                                <option value="Salão de Beleza ou Estudio">Salão de Beleza ou Estudio</option>
-                                <option value="Banco">Banco</option>
+                                <option value="Mercados">Mercados</option>
+                                <option value="Bares e restaurantes">Bares e Restaurantes</option>
+                                <option value="Lojas">Lojas</option>
+                                <option value="Salões de Beleza e Estudios">Salões de Beleza e Estudios</option>
+                                <option value="Bancos">Bancos</option>
                             </select> 
                             <c:if test="${descricaoErro != null}">
                                 <span class="erro"><c:out value="${descricaoErro}"/></span>

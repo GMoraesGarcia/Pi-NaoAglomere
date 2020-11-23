@@ -54,7 +54,7 @@
         </footer>
     </body>
 
-    <c:if test="${dados.getCNPJ() != null}">
+    <c:if test="${dados.getCnpj() != null}">
         <script>
             alert("Cadastrado com sucesso!");
         </script>

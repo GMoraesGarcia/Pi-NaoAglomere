@@ -40,8 +40,8 @@ public class Cad_Agendamento_Salvar extends HttpServlet {
         cad_Empresadados empresa = (cad_Empresadados) sessao.getAttribute("dados");
 
         //String CNPJ = empresa.getCNPJ(); // inserir busca da empresa pelo CNPJ para recuperar o ID para inserir os horários na tabela de horarios disponiveis
-        String horaAb = request.getParameter("HoraAb");
-        String horaFh = request.getParameter("HoraFh");
+        String horaAb = request.getParameter("horaAb");
+        String horaFh = request.getParameter("horaFh");
         String periodo = request.getParameter("periodo");
 
         boolean horaabValida = horaAb != null && horaAb.trim().length() > 0;
@@ -64,9 +64,9 @@ public class Cad_Agendamento_Salvar extends HttpServlet {
                 request.setAttribute("periodoErro", "Nome inválido ou deve ser preenchido");
             }
 
-            request.setAttribute("HoraAb", horaAb);
-            request.setAttribute("HoraFh", horaFh);
-            request.setAttribute("Periodo", periodo);
+            request.setAttribute("horaAb", horaAb);
+            request.setAttribute("horaFh", horaFh);
+            request.setAttribute("periodo", periodo);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Empresa_Agendamento.jsp");
             dispatcher.forward(request, response);
