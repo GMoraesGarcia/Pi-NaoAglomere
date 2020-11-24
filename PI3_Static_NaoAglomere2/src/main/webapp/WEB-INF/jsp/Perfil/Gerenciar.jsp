@@ -22,8 +22,26 @@
         </header>
 
         <h1>Gerenciar agendamentos</h1>
-        
-        
+
+        <c:if test="${login.getTipo_cadastro() == 'usuário'}">
+
+            <c:choose>
+                <c:when test="${agendamentos != null }">               
+                    <ul>                    
+                        <c:forEach var="agendamento" items="${agendamentos}">
+                            <li><p>Nome: <c:out value="${agendamento.getNomeUser()}" /></p></li>
+                            <li><p>Nome da empresa: <c:out value="${agendamento.getNomeEmpresa()}" /></p></li>
+                            <li><p>Data: <c:out value="${agendamento.getData()}" /></p></li>
+                            <li><p>Horário: <c:out value="${agendamento.getHorario()}" /></p></li>
+                        </c:forEach>
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    <p>Nenhum agendamento feito.</p>
+                </c:otherwise>
+            </c:choose>         
+        </c:if>
+
 
         <footer class="footer">
             <c:import url="../footer.jsp"/>

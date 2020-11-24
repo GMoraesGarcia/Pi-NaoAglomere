@@ -37,7 +37,8 @@ public class Agendamento_Salvar extends HttpServlet {
         sessao.removeAttribute("a");
 
         request.setAttribute("a", a);
-        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Saida.jsp");
+        request.setAttribute("agendamento", "Agendamento feito com sucesso!");
+        RequestDispatcher dispacher = request.getRequestDispatcher("/WEB-INF/jsp/Home/Home.jsp");
         dispacher.forward(request, response);
     }
 
@@ -91,13 +92,13 @@ public class Agendamento_Salvar extends HttpServlet {
                 request.setAttribute("emailErro", "E-mail deve ser preenchido e/ou Válido");
             }
             if (!horarioValido) {
-                request.setAttribute("horarioErro", " Campo com horário deve ser preeenchido");
+                request.setAttribute("horarioErro", "Campo com horário deve ser preeenchido");
             }
             if (!telefoneValido) {
-                request.setAttribute("telefoneErro", " Telefone deve ser preenchido ou Válido");
+                request.setAttribute("telefoneErro", "Telefone deve ser preenchido ou Válido");
             }
             if (!dataAgendamentoValida) {
-                request.setAttribute("dataAgendamentoErro", " Data de Agendamento deve ser preenchido ou Válido");
+                request.setAttribute("dataAgendamentoErro", "Data de Agendamento deve ser preenchido ou Válido");
             }
 
             request.setAttribute("nome", nomeStr);

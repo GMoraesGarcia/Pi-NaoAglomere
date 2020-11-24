@@ -7,30 +7,30 @@ package Perfil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Gabriel
+ * @author leona
  */
-@WebServlet(name = "Perfil_usuario", urlPatterns = {"/Perfil-usuario"})
-public class Perfil_usuario_Servlet extends HttpServlet {
+@WebServlet(name = "GerenciarSalvar", urlPatterns = {"/gerenciar-salvar"})
+public class GerenciarSalvar extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sessao = request.getSession();
+
         
-        sessao.getAttribute("user");
-        sessao.getAttribute("dados");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
-        dispatcher.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
     }
 
 }

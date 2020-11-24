@@ -25,7 +25,6 @@
             <c:import url="../header.jsp"/> 
         </header>
         <div class="containerw">       
-
             <h1>Não Aglomere</h1>
 
         </div>
@@ -33,4 +32,10 @@
             <c:import url="../footer.jsp"/>
         </footer>
     </body>
+
+    <c:if test="${agendamento != null}">
+        <script>
+            alert("${agendamento}");
+        </script>
+    </c:if>
 </html>

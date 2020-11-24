@@ -18,6 +18,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
         <script type="text/javascript">
             $("#telefone, #celular").mask("(00) 00000-0000");
+            $("#data").mask("0000-00-00");
+            $("#horario").mask("00:00");
         </script>
 
         <title>Agendamento</title>
@@ -32,8 +34,8 @@
             <form method="post" action="agendamento-salvar" class="form-group">
                 <input name="id" value="${id}" type="hidden" >
                 <div>
-                    
-                    <label>Nome </label>
+
+                    <label>Nome:</label>
                     <input type="text" name="nome" value="${nome}" class="form-control">
                     <c:if test="${nomeErro != null}">
                         <span class="erro"><c:out value="${nomeErro}"/></span> 
@@ -43,40 +45,36 @@
                     </c:if>
                 </div>
                 <div>
-                    <label>E-mail: </label>
+                    <label>E-mail:</label>
                     <input type="email" name="email" value="${email}" class="form-control">
                     <c:if test="${emailErro != null}">
                         <span class="erro"> <c:out value="${emailErro}"/></span> 
                     </c:if>
                 </div>
                 <div>
-                    <label>Telefone:  </label>
+                    <label>Telefone:</label>
                     <input type="text" name="telefone" value="${telefone}" id="telefone"  class="form-control">
-
                     <c:if test="${telefoneErro != null}">
                         <span class="erro"><c:out value="${telefoneErro}"/></span> 
                     </c:if>
                 </div>
                 <div>
-                    <label>data </label>
-                    <input type="date" name="data" value="${data}" class="form-control">
+                    <label>Data:</label>
+                    <input id="data" type="date" name="data" value="${data}" class="form-control">
                     <c:if test="${dataAgendamentoErro != null}">
                         <span class="erro"><c:out value="${dataAgendamentoErro}"/></span> 
                     </c:if>
                 </div>
                 <div>
-                    <label>Horário </label>
-                    <input type="time" name="horario" value="horario" class="form-control">
+                    <label>Horário:</label>
+                    <input id="horario" type="time" name="horario" value="${horario}" class="form-control">
                     <c:if test="${horarioErro != null}">
                         <span class="erro"><c:out value="${horarioErro}"/></span> 
                     </c:if>
 
-
-
                 </div>
                 <button type="submit" class="btn btn-success botoes">Agendar</button>
                 <button type="reset"  class="btn btn-danger botoes">Cancelar</button>
-
             </form>
 
         </div>
