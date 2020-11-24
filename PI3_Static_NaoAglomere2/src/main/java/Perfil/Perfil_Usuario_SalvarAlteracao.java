@@ -9,6 +9,7 @@ import Cad_Empresa.Cad_Empresadados;
 import Cad_Empresa.EmpresaDao;
 import Cad_Usuario.Cad_Usuario;
 import Cad_Usuario.UsuarioDAO;
+import Login.LoginDao;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -42,13 +43,11 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-        //String sucesso = (String) sessao.getAttribute("sucesso");
         Cad_Empresadados empresa_dados = (Cad_Empresadados) sessao.getAttribute("empresa");
-        request.getAttribute("sucesso");
         //sessao.removeAttribute("empresa");
 
         request.setAttribute("empresa", empresa_dados);
-        //request.setAttribute("sucesso", sucesso);
+        request.setAttribute("sucesso", "Alterado com sucesso");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
         dispatcher.forward(request, response);
 
@@ -83,15 +82,19 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
         String regras = request.getParameter("regras");
         String agendamento = request.getParameter("agendamento");
         Part arquivo = request.getPart("foto");
+
         String caminho = null;
+        InputStream conteudoArquivo = null;
+        Path destino = null;
 
         if (arquivo != null) {
-            String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
-            String diretorioDestino = "C:/PI-FOTOS";
-            InputStream conteudoArquivo = arquivo.getInputStream();
-            Path destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
-            Files.copy(conteudoArquivo, destino);
-            caminho = "/PI-FOTOS/" + nomeArquivo;
+            if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
+                String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
+                String diretorioDestino = "C:/PI-FOTOS";
+                conteudoArquivo = arquivo.getInputStream();
+                destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
+                caminho = "/PI-FOTOS/" + nomeArquivo;
+            }
         }
         if (cnpj != null) {
 
@@ -110,6 +113,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             //boolean senhaValida = (senha != null && senha.trim().length() >= 8);
             //Senhas Iguais
             //boolean ConfirmaSenhaValida = (confirmasenha != null && confirmasenha.equals(senha));
+            
             //Validação CNPJ
             boolean validaCNPJ = cnpj != null && cnpj.trim().length() > 0;
 
@@ -166,11 +170,11 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
                     request.setAttribute("cnpjErro", "CPNJ inválido ou deve ser preenchido");
                 }
                 /*if (!senhaValida) {
-                request.setAttribute("senhaErro", "Senha inválida ou deve ser preenchida");
-            }
-            if (!ConfirmaSenhaValida) {
-                request.setAttribute("confirmaErro", "Senhas devem ser iguais");
-            }*/
+                    request.setAttribute("senhaErro", "Senha inválida ou deve ser preenchida");
+                }
+                if (!ConfirmaSenhaValida) {
+                    request.setAttribute("confirmaErro", "Senhas devem ser iguais");
+                }*/
                 if (!telefoneValido) {
                     request.setAttribute("telefoneErro", "Telefone inválido ou deve ser preenchido");
                 }
@@ -229,24 +233,37 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             empresa_dados.setQtd_max(qtdPessoas);
             empresa_dados.setRegras(regras);
             empresa_dados.setAgendamento(agendamento);
-            empresa_dados.setFoto(caminho);
-
+            if (arquivo != null) {
+                if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
+                    empresa_dados.setFoto(caminho);
+                }
+            }
             EmpresaDao dao = new EmpresaDao();
-
+            
             try {
 
                 dao.update(empresa_dados);
 
-                request.setAttribute("empresa", empresa_dados);
-                request.setAttribute("sucesso", "Alterado com sucesso!");
+                if (arquivo != null) {
+                    if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
 
+                        dao.updateImage(empresa_dados);
+
+                        Files.copy(conteudoArquivo, destino);
+                    }
+                }
+                request.setAttribute("empresa", empresa_dados);
+
+                //Pegar os dados atualizados do banco da empresa
+                Cad_Empresadados dadosEmpresa = dao.findEmpresa(empresa_dados.getCnpj());
+                
                 HttpSession sessao = request.getSession();
-                sessao.setAttribute("empresa", empresa_dados);
-                //sessao.setAttribute("sucesso", "Alterado com sucesso!");
+                sessao.setAttribute("empresa", dadosEmpresa);
+                
                 response.sendRedirect("perfil-alterado");
 
             } catch (SQLException e) {
-
+                System.out.println(e);
                 request.setAttribute("Erro", "Erro no banco de dados");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
