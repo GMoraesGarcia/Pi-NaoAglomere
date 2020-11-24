@@ -67,22 +67,29 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         String qtd_pessoasStr = request.getParameter("qtd_pessoas");
         String regras = request.getParameter("regras");
         String agendamento = request.getParameter("agendamento");
-        /*Part arquivo = request.getPart("foto");
+        Part arquivo = request.getPart("foto");
+        String check = request.getParameter("check");
 
-        System.out.println(arquivo);
         String caminho = null;
         InputStream conteudoArquivo = null;
         Path destino = null;
 
-        String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
-        String diretorioDestino = "C:/PI-FOTOS";
-        conteudoArquivo = arquivo.getInputStream();
-        destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
-        caminho = "/PI-FOTOS/" + nomeArquivo;*/
+        if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
+            String nomeArquivo = Paths.get(arquivo.getSubmittedFileName()).getFileName().toString();
+            String diretorioDestino = "C:/PI-FOTOS";
+            conteudoArquivo = arquivo.getInputStream();
+            destino = Paths.get(diretorioDestino + "/" + nomeArquivo);
+            caminho = "/PI-FOTOS/" + nomeArquivo;
+        }
 
-        //String check = request.getParameter("check");
         //Validação leitura dos termos
-        //boolean checkValido = check.equals("on");
+        boolean checkValido = false;
+        if (check != null) {
+            if (check.equals("on")) {
+                checkValido = true;
+            }
+        }
+
         //Validação Nome
         boolean nomeValido = nome_empresa != null && nome_empresa.trim().length() > 0;
 
@@ -142,7 +149,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
         boolean camposValidos = nomeValido && emailValido && validaCNPJ && telefoneValido && ruaValida
                 && numeroValido && bairroValido && descricaoValida && qtdValida && regrasValidas && senhaValida
-                && ConfirmaSenhaValida && agendamentoValido /*&& checkValido*/;
+                && ConfirmaSenhaValida && agendamentoValido && checkValido;
 
         if (!camposValidos) {
 
@@ -185,9 +192,9 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             if (!agendamentoValido) {
                 request.setAttribute("agendamentoErro", "Uma opção deve ser selecionada");
             }
-            /*if(!checkValido){
+            if (!checkValido) {
                 request.setAttribute("checkErro", "Opção deve ser selecionada");
-            }*/
+            }
 
             request.setAttribute("nome_empresa", nome_empresa);
             request.setAttribute("CNPJ", cnpj);
@@ -221,19 +228,22 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         empresa_dados.setQtd_max(qtdPessoas);
         empresa_dados.setRegras(regras);
         empresa_dados.setAgendamento(agendamento);
-        /*if (caminho != null) {
+        if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
             empresa_dados.setFoto(caminho);
-        }*/
+        }
 
         EmpresaDao dao = new EmpresaDao();
 
         try {
             dao.addNew(empresa_dados);
 
-            /*if (caminho != null) {
+            if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
                 Files.copy(conteudoArquivo, destino);
-            }*/
+
+            }
             request.setAttribute("cadastroE", empresa_dados);
+
+            request.setAttribute("dados", empresa_dados);
 
             HttpSession sessao = request.getSession();
             sessao.setAttribute("cadastroE", empresa_dados);

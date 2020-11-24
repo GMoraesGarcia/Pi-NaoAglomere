@@ -70,8 +70,8 @@ public class EmpresaDao {
                 stmt.setString(8, empresaDados.getRegras());
                 stmt.setString(9, empresaDados.getDescricao());
                 stmt.setString(10, empresaDados.getAgendamento());
-                stmt.setString(11, empresaDados.getFoto());
-                stmt.setString(12, empresaDados.getCnpj());
+                //stmt.setString(11, empresaDados.getFoto());
+                stmt.setString(11, empresaDados.getCnpj());
 
                 stmt.executeUpdate();
 
@@ -83,6 +83,30 @@ public class EmpresaDao {
             }
         }
 
+    }
+
+    public void updateImage(Cad_Empresa_dados empresaDados) throws SQLException {
+
+        String sql = "UPDATE EMPRESA SET FOTO = ? WHERE CNPJ = ?";
+
+        try (Connection conn = ConnectionUtilMySql.obterConexao()) {
+
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setString(1, empresaDados.getFoto());
+                stmt.setString(2, empresaDados.getCnpj());
+
+                stmt.executeUpdate();
+
+                conn.commit();
+
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            }
+        }
     }
 
     public void addHorarios(Cad_Empresa_dados empresaDados) throws SQLException {
@@ -126,5 +150,38 @@ public class EmpresaDao {
         }
 
         return id;
+    }
+    
+    public Cad_Empresa_dados findEmpresa(String cnpj) throws SQLException {
+        Cad_Empresa_dados empresa = new Cad_Empresa_dados();
+        
+        String sql = "SELECT NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO,FOTO FROM EMPRESA WHERE CNPJ = ?";
+        
+        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, cnpj);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                if (rs.next()) {
+                    empresa.setNome_empresa(rs.getString("NOME_EMPRESA"));
+                    empresa.setCnpj(rs.getString("CNPJ"));
+                    empresa.setEmail(rs.getString("EMAIL"));
+                    empresa.setDescricao(rs.getString("DESCRICAO"));
+                    empresa.setTelefone(rs.getString("TELEFONE"));
+                    empresa.setQtd_max(rs.getInt("QTD_MAX"));
+                    empresa.setRua(rs.getString("RUA"));
+                    empresa.setBairro(rs.getString("BAIRRO"));
+                    empresa.setNumero_rua(rs.getInt("NUMERO"));
+                    empresa.setRegras(rs.getString("REGRAS"));
+                    empresa.setAgendamento(rs.getString("AGENDAMENTO"));
+                    empresa.setFoto(rs.getString("FOTO"));
+                    return empresa;
+                }
+            }
+        }
+        
+        return empresa;
     }
 }

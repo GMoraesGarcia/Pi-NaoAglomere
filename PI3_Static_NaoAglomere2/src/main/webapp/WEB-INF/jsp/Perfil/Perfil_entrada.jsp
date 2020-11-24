@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
         <link rel="stylesheet" href="css/Estilo.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
         <title>Perfil de Usuário</title>
     </head>
     <body>
@@ -40,16 +42,22 @@
                     </c:if>
 
                     <label>Data de Nascimento</label>
-                    <input  class="form-control" type="date" name="dataNascimento" value="${user.getDataNascimento()}">
+                    <input id="dataNascimento" class="form-control" type="date" name="dataNascimento" value="${user.getDataNascimento()}">
                     <c:if test="${dtNascimentoErro != null}">
                         <span class="erro"><c:out value="${dtNascimentoErro}"/></span> 
                     </c:if>
+                    <script type="text/javascript">
+                        $("#dataNascimento").mask("0000-00-00");
+                    </script>
 
                     <label>Telefone:</label>
-                    <input  class="form-control" type="text" name="telefone" value="${user.getTelefone()}">
+                    <input id="telefone" class="form-control" type="text" name="telefone" value="${user.getTelefone()}">
                     <c:if test="${telefoneErro != null}">
                         <span class="erro"><c:out value="${telefoneErro}"/></span> 
                     </c:if>
+                    <script>
+                        $("#telefone").mask("(00) 00000-0000");
+                    </script>
 
                     <button type="submit" class="btn btn-success botoes" >Alterar</button>
 
@@ -90,11 +98,14 @@
                                 </c:if>
                             </div>
                             <div>
-                                <label id="telefone">Telefone:</label> <label id="modelo">(XX) XXXXX-XXXX ou (XX) XXXX-XXXX</label>
-                                <input type="tel" class="form-control" name="telefone" value="${empresa.getTelefone()}">
+                                <label>Telefone:</label>
+                                <input id="telefone" type="tel" class="form-control" name="telefone" value="${empresa.getTelefone()}">
                                 <c:if test="${telefoneErro != null}">
                                     <span class="erro"><c:out value="${telefoneErro}"/></span>
                                 </c:if>
+                                <script>
+                                    $("#telefone").mask("(00) 00000-0000");
+                                </script>
                             </div>
                             <div>
                                 <label id="descricao">Descrição:</label>
