@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author leona
  */
-public class Cad_Empresadados {
+public class Cad_Empresa_dados {
 
     private int empresa_id;
 
@@ -37,7 +37,9 @@ public class Cad_Empresadados {
 
     private String agendamento;
 
-    private String horaAb;
+    private String horaAbertura;
+    
+    private String horaFechamento;
 
     private String foto;
 
@@ -144,15 +146,7 @@ public class Cad_Empresadados {
     public void setAgendamento(String agendamento) {
         this.agendamento = agendamento;
     }
-
-    public String getHoraAb() {
-        return horaAb;
-    }
-
-    public void setHoraAb(String horaAb) {
-        this.horaAb = horaAb;
-    }
-
+    
     public String getFoto() {
         return foto;
     }
@@ -161,13 +155,29 @@ public class Cad_Empresadados {
         this.foto = foto;
     }
 
+    public String getHoraAbertura() {
+        return horaAbertura;
+    }
+
+    public void setHoraAbertura(String horaAbertura) {
+        this.horaAbertura = horaAbertura;
+    }
+
+    public String getHoraFechamento() {
+        return horaFechamento;
+    }
+
+    public void setHoraFechamento(String horaFechamento) {
+        this.horaFechamento = horaFechamento;
+    }
+
     @Override
     public String toString() {
         return "Cad_EmpresaDados{" + "Nome_Empresa=" + nome_empresa + ", CNPJ=" + cnpj + ", email=" + email + ", Descricao=" + descricao + ", Telefone=" + telefone + ", Senha=" + senha + ", qtd_max=" + qtd_max + ", Rua=" + rua + ", Bairro=" + bairro + ", Numero_Rua=" + numero_rua + ", Regras=" + regras + ", Agendamento=" + agendamento + '}';
     }
 
     public int getNumberAgendamento() {
-        Cad_Empresadados ep = new Cad_Empresadados();
+        Cad_Empresa_dados ep = new Cad_Empresa_dados();
 
         if (ep.getAgendamento().equalsIgnoreCase("sim")) {
             return 1;
@@ -177,35 +187,7 @@ public class Cad_Empresadados {
 
     }
 
-    public float agendPorDia(String horarioAbertura, String horarioFechamento, String duracaoAtendimento) {
-        System.out.println(horarioAbertura + " " + horarioFechamento + " " + duracaoAtendimento);
-        float hrAbertura = Float.parseFloat(horarioAbertura);
-        System.out.println(hrAbertura);
-        float hrFechamneto = Float.parseFloat(horarioFechamento);
-        float duracao = Float.parseFloat(duracaoAtendimento);
 
-        float qtdAgend = hrFechamneto - hrAbertura;
-        float x = qtdAgend / duracao;
-
-        return x;
-
-    }
-
-    public ArrayList<Time> horariosAgend(String horarioAbertura, String horarioFechamento, float x) {
-        ArrayList<Time> horarios = new ArrayList<>();
-
-        int i = 0;
-        while (i < x) {
-            if (i == 0) {
-                horarios.add(Time.valueOf(horarioAbertura));
-            } else {
-                float novoHorario = Integer.parseInt(horarioAbertura + i);
-
-                horarios.add(Time.valueOf(String.valueOf(novoHorario)));
-            }
-
-        }
-        return horarios;
-    }
+    
 
 }

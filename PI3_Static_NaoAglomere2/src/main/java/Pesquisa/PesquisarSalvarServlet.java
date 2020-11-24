@@ -1,6 +1,6 @@
 package Pesquisa;
 
-import Cad_Empresa.Cad_Empresadados;
+import Cad_Empresa.Cad_Empresa_dados;
 import Login.LoginDados;
 import java.io.IOException;
 import java.io.PrintWriter;

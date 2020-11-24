@@ -23,34 +23,31 @@
         </c:if>
 
         <h1>Seleção de horários</h1>
-        <form method="post" action="cad-agendamento-salvar" class="containerw">
+        <form method="post" action="${pageContext.request.contextPath}/cad-horario-salvar" class="containerw">
+            <div>
+                <p>id ${sessionScope.cadastroE.nome_empresa}</p>
+            </div>
             <div> 
                 <h5>Horário de funcionamento:</h5>
                 <label>Horário de abertura:</label>
-                <input type="time" name="HoraAb" placeholder="Ex: 08:00" value="${horaAb}" class="form-control">
+                <input type="text" name="HoraAb" placeholder="Ex: 08:00" value="${horaAb}" class="form-control">
                 <c:if test="${horaabErro != null}">
                     <span class="erro"><c:out value="${horaabErro}"/></span>
                 </c:if>
             </div>
             <div>
                 <label>Horário de fechamento:</label>
-                <input type="time" name="HoraFh" placeholder="Ex: 18:00" value="${horaFh}" class="form-control">
+                <input type="text" name="HoraFh" placeholder="Ex: 18:00" value="${horaFh}" class="form-control">
                 <c:if test="${horafhErro != null}">
                     <span class="erro"><c:out value="${horafhErro}"/></span>
                 </c:if>
             </div>
-            <div>
-                <h5>Tempo de atendimento:</h5>
-                <input type="time" name="periodo" placeholder="Ex: 01:30" value="${periodo}" class="form-control">
-                <c:if test="${periodoErro != null}">
-                    <span class="erro"><c:out value="${periodoErro}"/></span>
-                </c:if>
-            </div>
+           
             <div>
                 <button class="btn btn-success botoes botoes" type="submit" >Concluído</button> 
             </div>
         </form>
-            <footer class="footer">
+        <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>      
     </body>

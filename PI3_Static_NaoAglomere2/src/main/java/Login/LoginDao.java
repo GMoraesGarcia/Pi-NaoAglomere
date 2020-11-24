@@ -1,6 +1,6 @@
 package Login;
 
-import Cad_Empresa.Cad_Empresadados;
+import Cad_Empresa.Cad_Empresa_dados;
 import Cad_Usuario.Cad_Usuario;
 import ConexãoBD.Connection_db2;
 import java.sql.Connection;
@@ -89,8 +89,8 @@ public class LoginDao {
         return user;
     }
 
-    public Cad_Empresadados findEmpresa(String email, String senha) throws SQLException {
-        Cad_Empresadados empresa = new Cad_Empresadados();
+    public Cad_Empresa_dados findEmpresa(String email, String senha) throws SQLException {
+        Cad_Empresa_dados empresa = new Cad_Empresa_dados();
         String sql = "SELECT NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO"/*,FOTO*/+" FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
         
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão

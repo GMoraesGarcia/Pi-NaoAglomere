@@ -11,10 +11,10 @@ import java.util.List;
 
 public class EmpresaDao {
 
-    public void addNew(Cad_Empresadados empresaDados) throws SQLException {
+    public void addNew(Cad_Empresa_dados empresaDados) throws SQLException {
 
         String sql = "INSERT INTO EMPRESA (NOME_EMPRESA, CNPJ, EMAIL, DESCRICAO, TELEFONE, SENHA, QTD_MAX,"
-                + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO, AGENDAMENTO, FOTO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO, AGENDAMENTO"/*, FOTO*/ + ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?" +/*,?*/ ")";
 
         //ConnectionUtilMySql
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
@@ -36,7 +36,7 @@ public class EmpresaDao {
                 stmt.setString(11, empresaDados.getRegras());
                 stmt.setString(12, "empresa"); // tipo de cadastro usado para login
                 stmt.setString(13, empresaDados.getAgendamento());
-                stmt.setString(14, empresaDados.getFoto());
+                //stmt.setString(14, empresaDados.getFoto());
 
                 stmt.executeUpdate();
 
@@ -49,7 +49,7 @@ public class EmpresaDao {
         }
     }
 
-    public void update(Cad_Empresadados empresaDados) throws SQLException {
+    public void update(Cad_Empresa_dados empresaDados) throws SQLException {
 
         String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
                 + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
@@ -85,8 +85,8 @@ public class EmpresaDao {
 
     }
 
-    public void addHorario(Cad_Empresadados empresaDados) throws SQLException {
-        String sql = "insert into HorariosDisponiveis (id_empresa,horario) values (?,?);";
+    public void addHorarios(Cad_Empresa_dados empresaDados) throws SQLException {
+        String sql = "insert into HorariosDisponiveis (id_empresa,horario_abertura,horario_fechamento) values (?,?,?);";
 
         try (Connection conn = ConnectionUtilMySql.obterConexao()) {
 
@@ -94,10 +94,9 @@ public class EmpresaDao {
 
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, empresaDados.getEmpresa_Id());
-                stmt.setString(2, empresaDados.getHoraAb());
-
+                stmt.setString(2, empresaDados.getHoraAbertura());
+                stmt.setString(3, empresaDados.getHoraFechamento());
                 stmt.executeUpdate();
-
                 conn.commit();
 
             } catch (SQLException e) {

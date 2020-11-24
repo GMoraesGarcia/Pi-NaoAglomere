@@ -38,7 +38,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-        Cad_Empresadados empresa_dados = (Cad_Empresadados) sessao.getAttribute("dados");
+        Cad_Empresa_dados empresa_dados = (Cad_Empresa_dados) sessao.getAttribute("dados");
         sessao.removeAttribute("dados");
 
         request.setAttribute("dados", empresa_dados);
@@ -207,7 +207,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
 
         }
 
-        Cad_Empresadados empresa_dados = new Cad_Empresadados();
+        Cad_Empresa_dados empresa_dados = new Cad_Empresa_dados();
 
         empresa_dados.setNome_empresa(nome_empresa);
         empresa_dados.setCnpj(cnpj);
@@ -233,10 +233,10 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             /*if (caminho != null) {
                 Files.copy(conteudoArquivo, destino);
             }*/
-            request.setAttribute("dados", empresa_dados);
+            request.setAttribute("cadastroE", empresa_dados);
 
             HttpSession sessao = request.getSession();
-            sessao.setAttribute("dados", empresa_dados);
+            sessao.setAttribute("cadastroE", empresa_dados);
 
             System.out.println(empresa_dados.getAgendamento());
 

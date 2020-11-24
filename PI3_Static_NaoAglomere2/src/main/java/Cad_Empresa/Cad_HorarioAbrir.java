@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author leona
  */
 @WebServlet(name = "Cad_Agendamento", urlPatterns = {"/cad-horario-abrir"})
-public class Cad_AgendamentoAbrir extends HttpServlet {
+public class Cad_HorarioAbrir extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
