@@ -62,6 +62,7 @@
                                     <li><p>Descrição: <c:out value="${interesse.getDescricao()}" /></p></li>
                                     <li><p>Telefone: <c:out value="${interesse.getTelefone()}" /></p></li>
                                     <li><p>Quantidade Maxima de pessoas: <c:out value="${interesse.getQtd_max()}" /></p></li>
+                                    <li><p>Quantidade de Pessoas: <c:out value="${interesse.getQtdAgendamentos()}" /></p></li>
                                     <li><p>Rua: <c:out value="${interesse.getRua()}" /></p></li>
                                     <li><p>Bairro: <c:out value="${interesse.getBairro()}" /></p></li>
                                     <li><p>Numero: <c:out value="${interesse.getNumero_rua()}" /></p></li>

@@ -22,6 +22,12 @@ public class Cad_Usuario {
    private String senha;
    private String confirmarSenha;
 
+    public Cad_Usuario() {
+       
+    }
+   
+   
+
     public int getId() {
         return id;
     }

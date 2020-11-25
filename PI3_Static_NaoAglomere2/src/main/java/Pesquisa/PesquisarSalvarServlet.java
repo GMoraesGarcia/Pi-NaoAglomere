@@ -44,7 +44,7 @@ public class PesquisarSalvarServlet extends HttpServlet {
 
         } catch (SQLException e) {
             request.setAttribute("Erro", "Erro no banco de dados");
-
+            System.out.println(e);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
             dispatcher.forward(request, response);
         }

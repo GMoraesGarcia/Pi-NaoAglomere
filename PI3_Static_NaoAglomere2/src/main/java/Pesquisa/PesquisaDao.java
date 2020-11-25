@@ -1,7 +1,9 @@
 package Pesquisa;
 
 import Cad_Empresa.Cad_Empresa_dados;
+import ConexãoBD.ConnectionUtilMySql;
 import ConexãoBD.Connection_db2;
+import Perfil.GerenciarDados;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +26,9 @@ public class PesquisaDao {
 
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+            //String idEmp = rs.getString("ID_empresa");
+           
+           
 
             while (rs.next()) {// enquanto tiver empresas adiciona no array
                 Cad_Empresa_dados empresa = new Cad_Empresa_dados();
@@ -38,12 +43,41 @@ public class PesquisaDao {
                 empresa.setRegras(rs.getString("REGRAS"));
                 empresa.setAgendamento(rs.getString("AGENDAMENTO"));
                 empresa.setEmpresa_id(rs.getInt("ID_empresa"));
+                 int qtdAgend = getQtdAgendamentos(String.valueOf(empresa.getEmpresa_Id()));
+                 empresa.setQtdAgendamentos(qtdAgend);
+                 System.out.println(qtdAgend);
                 empresas.add(empresa);
                 busca.setPesquisa(pesquisa);
             }
             busca.setEstabelecimentos(empresas);//atualiza o array do objeto dados (referente a pesquisa)            
         }
         return busca; // retorna a pesquisa que foi encontrada ou dados nulos caso a pesquisa não for encontrada
+    }
+    
+    public int getQtdAgendamentos(String IdEmpresa) throws SQLException {
+        String sql = "call Sp_Qtd_Agend (sysdate(),?)";
+
+          try (Connection conn = Connection_db2.obterConexao();
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+         
+            stmt.setString(1, IdEmpresa);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                if (rs.next()) {
+                    int res = rs.getInt("qtd_Agend");
+                
+                  return res;
+                    
+                }
+
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            }
+        }
+        return -1;
     }
 
 }
