@@ -25,7 +25,7 @@ public class GerenciarDAO {
 
         String sql = "call Sp_selectAgendUser(?)";
 
-        try (Connection conn = ConnectionUtilMySql.obterConexao();
+        try (Connection conn = Connection_db2.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, cpf);
@@ -59,7 +59,7 @@ public class GerenciarDAO {
 
         String sql = "call Sp_selectAgentEmpresa(?)";
 
-        try (Connection conn = ConnectionUtilMySql.obterConexao();
+        try (Connection conn = Connection_db2.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, cnpj);

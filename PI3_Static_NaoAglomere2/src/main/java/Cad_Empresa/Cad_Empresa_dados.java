@@ -42,6 +42,17 @@ public class Cad_Empresa_dados {
     private String horaFechamento;
 
     private String foto;
+    
+    private int qtdAgendamentos;
+
+    public int getQtdAgendamentos() {
+        return qtdAgendamentos;
+    }
+
+    public void setQtdAgendamentos(int qtdAgendamentos) {
+        this.qtdAgendamentos = qtdAgendamentos;
+    }
+    
 
     public int getEmpresa_Id() {
         return empresa_id;
