@@ -63,6 +63,8 @@
 
                 </form> 
 
+
+
                 <a href="${pageContext.request.contextPath}/logout">Logout</a>
 
             </div>
@@ -174,17 +176,26 @@
                             </div>
                         </fieldset>
                     </div>
-
-                </form> 
-
+                </form>
+                <c:choose>
+                    <c:when test="${empresa.getHorariosDisponiveis() != null }">               
+                        <ul>
+                            <li><p>horarios: <c:out value="${empresa.getHorariosDisponiveis()}" /></p></li>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <p> Não tem nenhum interesse informado</p>
+                    </c:otherwise>
+                </c:choose>        
                 <a href="${pageContext.request.contextPath}/logout">Logout</a>
 
             </div>
-        </c:if>
 
-        <footer class="footer">
-            <c:import url="../footer.jsp"/>
-        </footer>
+
+            <footer class="footer">
+                <c:import url="../footer.jsp"/>
+            </footer>
+        </c:if>
     </body>
 
     <c:if test="${sucesso != null}">

@@ -36,37 +36,61 @@ public class Cad_HorarioSalvar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession();
         Cad_Empresa_dados empresa = (Cad_Empresa_dados) sessao.getAttribute("cadastroE");
 
-        //String CNPJ = empresa.getCNPJ(); // inserir busca da empresa pelo CNPJ para recuperar o ID para inserir os horários na tabela de horarios disponiveis
         String horaAb = request.getParameter("HoraAb");
         String horaFh = request.getParameter("HoraFh");
+        String horaAt = request.getParameter("HoraAt");
 
         boolean horaabValida = horaAb != null && horaAb.trim().length() > 0;
 
         boolean horafhValida = horaFh != null && horaFh.trim().length() > 0;
 
-        boolean camposValidos = horaabValida && horafhValida;
+        boolean horaatValida = horaAt != null && horaAt.trim().length() > 0;
+
+        boolean camposValidos = horaabValida && horafhValida && horaatValida;
 
         if (!camposValidos) {
 
             if (!horaabValida) {
-                request.setAttribute("horaabErro", "hora inválido ou deve ser preenchida");
+                request.setAttribute("horabErro", "hora inválido ou deve ser preenchida");
             }
             if (!horafhValida) {
                 request.setAttribute("horafhErro", "hora inválido ou deve ser preenchida");
             }
+            if (!horaatValida) {
+                request.setAttribute("horaatErro", "duração do atendimento inválida ou deve ser preenchida");
+            }
 
-            request.setAttribute("horaAb", horaAb);
-            request.setAttribute("horaFh", horaFh);
+            request.setAttribute("HoraAb", horaAb);
+            request.setAttribute("HoraFh", horaFh);
+            request.setAttribute("HoraAt", horaAt);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Empresa_Agendamento.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Empresa/Form_Empresa_Horarios.jsp");
             dispatcher.forward(request, response);
             return;
+        }
+        // inicio dos calculos para disponibilzação do array horarios disponiveis
+        DataHelper dataAbertura = new DataHelper(horaAb);
+        DataHelper dataFechamento = new DataHelper(horaFh);
+        DataHelper dataAtendimento = new DataHelper(horaAt);
+
+        System.out.println("dataAbertura: " + dataAbertura.getHoras() + dataAbertura.getMinutos());
+        System.out.println("dataFechamento: " + dataFechamento.getHoras() + dataFechamento.getMinutos());
+        System.out.println("dataAtendimento: " + dataAtendimento.getHoras() + dataAtendimento.getMinutos());
+
+        //loop encadeado para ir adicionando horarios no array da empresa desde a abertura até o fechamento
+        for (DataHelper temp = dataAbertura; temp.comparar(dataFechamento.getData()) <= 0;
+                temp.adicionarHorasEMinutos(dataAtendimento.getHoras(), dataAtendimento.getMinutos())) {
+            //for encadeado caso o numero de pessoas simultaneas seja 1 ou mmais pessoas
+            for (int i = 0; i < empresa.getQtd_max(); i++) {
+                empresa.addHorario(temp.getAsString());
+                System.out.println("empresa:" + empresa);
+            }
         }
 
         EmpresaDao dao = new EmpresaDao();
@@ -74,10 +98,7 @@ public class Cad_HorarioSalvar extends HttpServlet {
         try {
             dao.addHorarios(empresa);
 
-            request.setAttribute("horarios", empresa);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
-            dispatcher.forward(request, response);
+            response.sendRedirect("login");
 
         } catch (/*SQL*/Exception e) {
 

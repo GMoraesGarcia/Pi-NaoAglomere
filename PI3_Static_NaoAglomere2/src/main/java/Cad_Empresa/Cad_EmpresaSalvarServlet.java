@@ -228,6 +228,7 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         empresa_dados.setQtd_max(qtdPessoas);
         empresa_dados.setRegras(regras);
         empresa_dados.setAgendamento(agendamento);
+
         if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
             empresa_dados.setFoto(caminho);
         }
@@ -235,7 +236,8 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
         EmpresaDao dao = new EmpresaDao();
 
         try {
-            dao.addNew(empresa_dados);
+            dao.addNew(empresa_dados);            
+            empresa_dados.setEmpresa_id(dao.findLastEmp());
 
             if (!Paths.get(arquivo.getSubmittedFileName()).getFileName().toString().equals("")) {
                 Files.copy(conteudoArquivo, destino);
@@ -243,12 +245,8 @@ public class Cad_EmpresaSalvarServlet extends HttpServlet {
             }
             request.setAttribute("cadastroE", empresa_dados);
 
-            request.setAttribute("dados", empresa_dados);
-
             HttpSession sessao = request.getSession();
             sessao.setAttribute("cadastroE", empresa_dados);
-
-            System.out.println(empresa_dados.getAgendamento());
 
             if (empresa_dados.getAgendamento().equals("Sim")) {
                 response.sendRedirect("cad-horario-abrir");

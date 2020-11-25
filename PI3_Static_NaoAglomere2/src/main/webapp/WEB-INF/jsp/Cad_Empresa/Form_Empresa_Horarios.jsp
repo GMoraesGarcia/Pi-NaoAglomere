@@ -24,22 +24,30 @@
 
         <h1>Seleção de horários</h1>
         <form method="post" action="${pageContext.request.contextPath}/cad-horario-salvar" class="containerw">
-            <div>
-                <p>id ${sessionScope.cadastroE.nome_empresa}</p>
+            <div>            
+                <input type="text" name="NomeEmp" value="nome da empresa: ${sessionScope.cadastroE.nome_empresa}" class="form-control" readonly>                
             </div>
             <div> 
                 <h5>Horário de funcionamento:</h5>
                 <label>Horário de abertura:</label>
-                <input type="text" name="HoraAb" placeholder="Ex: 08:00" value="${horaAb}" class="form-control">
-                <c:if test="${horaabErro != null}">
+                <input type="time" name="HoraAb" placeholder="Ex: 08:00" class="form-control">
+                <c:if test="${horabErro != null}">
                     <span class="erro"><c:out value="${horaabErro}"/></span>
                 </c:if>
             </div>
             <div>
                 <label>Horário de fechamento:</label>
-                <input type="text" name="HoraFh" placeholder="Ex: 18:00" value="${horaFh}" class="form-control">
+                <input type="time" name="HoraFh" placeholder="Ex: 18:00" class="form-control">
                 <c:if test="${horafhErro != null}">
                     <span class="erro"><c:out value="${horafhErro}"/></span>
+                </c:if>
+            </div>
+                
+                <div>
+                <label>tempo de cada atendimento:</label>
+                <input type="time" name="HoraAt" placeholder="Ex: 01:30" class="form-control">
+                <c:if test="${horaatErro != null}">
+                    <span class="erro"><c:out value="${horaatErro}"/></span>
                 </c:if>
             </div>
            

@@ -91,7 +91,7 @@ public class LoginDao {
 
     public Cad_Empresa_dados findEmpresa(String email, String senha) throws SQLException {
         Cad_Empresa_dados empresa = new Cad_Empresa_dados();
-        String sql = "SELECT NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO,FOTO FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
+        String sql = "SELECT ID_EMPRESA,NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO"/*,FOTO*/ + " FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
 
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -102,6 +102,7 @@ public class LoginDao {
             try (ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
+                    empresa.setEmpresa_id(rs.getInt("ID_EMPRESA"));
                     empresa.setNome_empresa(rs.getString("NOME_EMPRESA"));
                     empresa.setCnpj(rs.getString("CNPJ"));
                     empresa.setEmail(rs.getString("EMAIL"));
@@ -113,7 +114,7 @@ public class LoginDao {
                     empresa.setNumero_rua(rs.getInt("NUMERO"));
                     empresa.setRegras(rs.getString("REGRAS"));
                     empresa.setAgendamento(rs.getString("AGENDAMENTO"));
-                    empresa.setFoto(rs.getString("FOTO"));
+                    //empresa.setFoto(rs.getString("FOTO"));
                     return empresa;
                 }
             }
@@ -122,4 +123,24 @@ public class LoginDao {
         return empresa;
     }
 
+    public ArrayList<String> findHorarios(int id) throws SQLException {
+
+        ArrayList horarios = new ArrayList();
+
+        String sql = "SELECT ID_EMPRESA,HORARIOS_DISPONIVEIS,STATUS_HORARIOS FROM HORARIOSDISPONIVEIS WHERE ID_EMPRESA = ?";
+
+        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                horarios.add(rs.getString("HORARIOS_DISPONIVEIS"));
+                horarios.add(rs.getString("STATUS_HORARIOS"));
+            }
+
+        }
+        return horarios;
+    }
 }

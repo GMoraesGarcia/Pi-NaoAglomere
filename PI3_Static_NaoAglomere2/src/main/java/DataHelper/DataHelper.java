@@ -22,17 +22,18 @@ public class DataHelper {
     SimpleDateFormat formatter;
 
     public DataHelper(Date data) {
-        this.formatter = new SimpleDateFormat("hh:mm");
+        this.formatter = new SimpleDateFormat("HH:mm");
         this.gc = new GregorianCalendar();
         this.gc.setTime(data);
         this.dataParaManipular = data;
     }
 
     public DataHelper(String data) {
-        this.formatter = new SimpleDateFormat("hh:mm");
+        this.formatter = new SimpleDateFormat("HH:mm");
         try {
             this.gc = new GregorianCalendar();
             this.gc.setTime(formatter.parse(data));
+            this.dataParaManipular = formatter.parse(data);
         } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -42,13 +43,13 @@ public class DataHelper {
     public Date getData() {
         return this.dataParaManipular;
     }
-        
+
     public int getMinutos() {
         return getCampo(Calendar.MINUTE);
     }
 
     public int getHoras() {
-        return getCampo(Calendar.HOUR);
+        return getCampo(Calendar.HOUR_OF_DAY);
     }
 
     private int getCampo(int tipoCampo) {
@@ -73,6 +74,24 @@ public class DataHelper {
 
     public String getAsString() {
         return formatter.format(dataParaManipular);
+    }
+
+    public void adicionarHoras(int quantidade) {
+        adicionar(quantidade, Calendar.HOUR_OF_DAY);
+    }
+
+    public void adicionarMinutos(int quantidade) {
+        adicionar(quantidade, Calendar.MINUTE);
+    }
+    
+    public void adicionarHorasEMinutos(int quantidadeHoras, int quantidadeMinutos) {
+        adicionar(quantidadeHoras, Calendar.HOUR_OF_DAY);
+        adicionar(quantidadeMinutos, Calendar.MINUTE);
+    }
+
+    private void adicionar(int quantidade, int tipoCampo) {
+        gc.add(tipoCampo, quantidade);
+        dataParaManipular = gc.getTime();
     }
 
 }
