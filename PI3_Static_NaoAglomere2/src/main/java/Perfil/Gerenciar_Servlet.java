@@ -39,7 +39,7 @@ public class Gerenciar_Servlet extends HttpServlet {
         Cad_Usuario usuario = (Cad_Usuario) sessao.getAttribute("user");
         Cad_Empresa_dados empresa = (Cad_Empresa_dados) sessao.getAttribute("empresa");
 
-        if (usuario.getCpf() != null) {
+        if (usuario != null) {
 
             GerenciarDAO dao = new GerenciarDAO();
 
@@ -51,10 +51,10 @@ public class Gerenciar_Servlet extends HttpServlet {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-        }
 
-        /*if (empresa.getCnpj() != null) {
-            
+        }
+        if (empresa != null) {
+
             GerenciarDAO dao = new GerenciarDAO();
 
             try {
@@ -66,8 +66,8 @@ public class Gerenciar_Servlet extends HttpServlet {
             } catch (SQLException ex) {
                 System.out.println(ex);
             }
-        }*/
 
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Gerenciar.jsp");
         dispatcher.forward(request, response);
     }

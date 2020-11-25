@@ -70,10 +70,10 @@ public class GerenciarDAO {
 
                     GerenciarDados agendamento = new GerenciarDados();
 
-                    agendamento.setNomeUser("nome");
-                    agendamento.setNomeEmpresa("nome_empresa");
-                    agendamento.setData("data_agend");
-                    agendamento.setHorario("horario");
+                    agendamento.setNomeUser(rs.getString("nome"));
+                    agendamento.setNomeEmpresa(rs.getString("nome_empresa"));
+                    agendamento.setData(rs.getString("data_agend"));
+                    agendamento.setHorario(rs.getString("horario"));
 
                     agendamentos.add(agendamento);
                 }
