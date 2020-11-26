@@ -77,3 +77,11 @@ ORDER BY ag.data_Agend;
 end $$
 
 call Sp_selectAgendUser('89547563210'); #Chamada da procedure 
+
+
+DELIMITER $$
+CREATE PROCEDURE Sp_Qtd_Agend(dataHj timestamp, empresa int)
+BEGIN
+SELECT  count(*) as qtd_Agend from agendamento as ag
+where data_agend = dataHj and empresa_id = empresa;
+end $$
