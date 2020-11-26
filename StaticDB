@@ -20,9 +20,10 @@ Tipo_Cadastro varchar(8)
 CREATE TABLE HorariosDisponiveis(
 id INT NOT NULL AUTO_INCREMENT,
 id_empresa INT NOT NULL,
-horario time,
+horarios_disponiveis time,
+Status_horarios VARCHAR(10), 
 PRIMARY KEY (id),
-FOREIGN KEY (id_empresa) REFERENCES  empresa (ID_empresa)
+FOREIGN KEY (id_empresa) REFERENCES  Empresa (ID_empresa)
 );
 
 CREATE TABLE agendamento (
