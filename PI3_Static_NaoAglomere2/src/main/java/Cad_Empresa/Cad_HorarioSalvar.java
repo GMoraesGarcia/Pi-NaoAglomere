@@ -88,8 +88,7 @@ public class Cad_HorarioSalvar extends HttpServlet {
                 temp.adicionarHorasEMinutos(dataAtendimento.getHoras(), dataAtendimento.getMinutos())) {
             //for encadeado caso o numero de pessoas simultaneas seja 1 ou mmais pessoas
             for (int i = 0; i < empresa.getQtd_max(); i++) {
-                empresa.addHorario(temp.getAsString());
-                System.out.println("empresa:" + empresa);
+                empresa.addHorario(temp.getAsString());                
             }
         }
 

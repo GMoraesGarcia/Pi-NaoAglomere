@@ -38,7 +38,7 @@ public class Cad_Empresa_dados {
 
     private String agendamento;
 
-    private ArrayList<String> horariosDisponiveis;
+    private ArrayList<String> horariosDisponiveis = new ArrayList<>();;
 
     private String foto;
 
@@ -51,7 +51,7 @@ public class Cad_Empresa_dados {
     public void setQtdAgendamentos(int qtdAgendamentos) {
         this.qtdAgendamentos = qtdAgendamentos;
     }
-   
+
     public int getEmpresa_Id() {
         return empresa_id;
     }
@@ -165,12 +165,10 @@ public class Cad_Empresa_dados {
     }
 
     public ArrayList<String> getHorariosDisponiveis() {
-        this.horariosDisponiveis = new ArrayList<>();
         return horariosDisponiveis;
     }
 
     public void setHorariosDisponiveis(ArrayList<String> horariosDisponiveis) {
-        this.horariosDisponiveis = new ArrayList<>();
         this.horariosDisponiveis = horariosDisponiveis;
     }
 
