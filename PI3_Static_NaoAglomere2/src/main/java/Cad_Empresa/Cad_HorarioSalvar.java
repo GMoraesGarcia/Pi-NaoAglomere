@@ -8,6 +8,7 @@ package Cad_Empresa;
 import DataHelper.DataHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -99,7 +100,7 @@ public class Cad_HorarioSalvar extends HttpServlet {
 
             response.sendRedirect("login");
 
-        } catch (/*SQL*/Exception e) {
+        } catch (SQLException e) {
 
             request.setAttribute("Erro", e);
 

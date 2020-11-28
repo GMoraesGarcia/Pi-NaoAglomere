@@ -36,7 +36,7 @@
                 <div>
 
                     <label>Nome:</label>
-                    <input type="text" name="nome" value="${nome}" class="form-control">
+                    <input type="text" name="nome" value="${sessionScope.user.nome}" class="form-control">
                     <c:if test="${nomeErro != null}">
                         <span class="erro"><c:out value="${nomeErro}"/></span> 
                     </c:if>
@@ -46,14 +46,14 @@
                 </div>
                 <div>
                     <label>E-mail:</label>
-                    <input type="email" name="email" value="${email}" class="form-control">
+                    <input type="email" name="email" value="${sessionScope.user.email}" class="form-control">
                     <c:if test="${emailErro != null}">
                         <span class="erro"> <c:out value="${emailErro}"/></span> 
                     </c:if>
                 </div>
                 <div>
                     <label>Telefone:</label>
-                    <input type="text" name="telefone" value="${telefone}" id="telefone"  class="form-control">
+                    <input type="text" name="telefone" value="${sessionScope.user.telefone}" id="telefone"  class="form-control">
                     <c:if test="${telefoneErro != null}">
                         <span class="erro"><c:out value="${telefoneErro}"/></span> 
                     </c:if>
