@@ -57,6 +57,7 @@
                         <c:when test="${busca.getEstabelecimentos() != null }">               
                             <ul>                    
                                 <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">
+                                   
                                     <li><p>Nome: <c:out value="${interesse.getNome_empresa()}" /></p></li>
                                     <li><p>Email: <c:out value="${interesse.getEmail()}" /></p></li>
                                     <li><p>Descrição: <c:out value="${interesse.getDescricao()}" /></p></li>
@@ -74,7 +75,10 @@
                                         <c:if test="${interesse.getAgendamento() == 'Não'}">
                                             <c:choose>
                                                 <c:when test="${sessionScope.user != null}">
-                                                <li><a class="btn btn-info"  href="" >Gerar Código</a></li>   
+                                                <form method="post" action="pesquisar-Salvar">
+                                                    <input name="id_Emp" type="hidden" value="${interesse.getEmpresa_Id()}">
+                                                 <button class="btn btn-info" type="submit"  >Gerar Código</button>
+                                                </form>
                                                 </c:when>                                                
                                                 <c:otherwise>
                                                 <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/login" >Fazer Login para Gerar Código</a></li>   
@@ -83,7 +87,7 @@
                                         </c:if>
                                     </c:forEach>
                             </ul>
-
+                        
                         </c:when>
                         <c:otherwise>
                             <p> Não tem nenhum interesse informado</p>

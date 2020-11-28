@@ -63,28 +63,6 @@ public class AgendamentoDAO {
         return a.getIdUsuario();
     }
 
-    public int findyByNameEmp(String nomeEmp) throws SQLException {
-        Agendamento emp = new Agendamento();
-        int result = 0;
-
-        String sql = "select ID_empresa from empresa where Nome_Empresa = ?";
-
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
-                PreparedStatement stmt = conn.prepareStatement(sql);) {
-
-            stmt.setString(1, nomeEmp);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    emp.setIdEmpresa(rs.getInt("ID_empresa"));
-                    result = emp.getIdEmpresa();
-                } else {
-                    result = -1;
-                }
-
-            }
-        }
-        return result;
-
-    }
+   
 
 }

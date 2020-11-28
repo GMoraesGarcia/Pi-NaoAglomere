@@ -17,53 +17,80 @@
         <title>Gerenciar agendamentos</title>
     </head>
     <body>
-        <header class="header">
-            <c:import url="../header.jsp"/>
-        </header>
+        <div class="containerw">
+            <header class="header">
+                <c:import url="../header.jsp"/>
+            </header>
 
-        <h1>Gerenciar agendamentos</h1>
+            <h1>Gerenciar agendamentos</h1>
 
-        <c:if test="${login.getTipo_cadastro() == 'usuário'}">
+            <c:if test="${login.getTipo_cadastro() == 'usuário'}">
 
-            <c:choose>
-                <c:when test="${agendamentos != null }">               
-                    <ul>                    
-                        <c:forEach var="agendamento" items="${agendamentos}">
-                            <li><p>Nome: <c:out value="${agendamento.getNomeUser()}" /></p></li>
-                            <li><p>Nome da empresa: <c:out value="${agendamento.getNomeEmpresa()}" /></p></li>
-                            <li><p>Data: <c:out value="${agendamento.getData()}" /></p></li>
-                            <li><p>Horário: <c:out value="${agendamento.getHorario()}" /></p></li>
+                <c:choose>
+                    <c:when test="${agendamentos != null }">  
+                        <table class="table ">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Empresa</th>
+                                    <th>Data</th>
+                                    <th>Horário</th>
+                                </tr>
+                            </thead>            
+                            <c:forEach var="agendamento" items="${agendamentos}">
+                                <tbody>
+                                    <tr>
+                                        <td> <c:out value="${agendamento.getNomeUser()}" /></td>  
+                                        <td><c:out value="${agendamento.getNomeEmpresa()}" /></td> 
+                                        <td> <c:out value="${agendamento.getData()}" /></td>
+                                        <td><c:out value="${agendamento.getHorario()}" /></td> 
+                                    </tr>
+                                </tbody>
                             </c:forEach>
-                    </ul>
-                </c:when>
-                <c:otherwise>
-                    <p>Nenhum agendamento feito.</p>
-                </c:otherwise>
-            </c:choose>         
-        </c:if>
+                        </table>  
+                    </c:when>
+                    <c:otherwise>
+                        <p>Nenhum agendamento feito.</p>
+                    </c:otherwise>
+                </c:choose>         
+            </c:if>
 
-        <c:if test="${login.getTipo_cadastro() == 'empresa'}">
+            <c:if test="${login.getTipo_cadastro() == 'empresa'}">
 
-            <c:choose>
-                <c:when test="${agendamentos != null }">               
-                    <ul>                    
-                        <c:forEach var="agendamento" items="${agendamentos}">
-                            <li><p>Nome da empresa: <c:out value="${agendamento.getNomeEmpresa()}" /></p></li>
-                            <li><p>Nome: <c:out value="${agendamento.getNomeUser()}" /></p></li>
-                            <li><p>Data: <c:out value="${agendamento.getData()}" /></p></li>
-                            <li><p>Horário: <c:out value="${agendamento.getHorario()}" /></p></li>
+                <c:choose>
+                    <c:when test="${agendamentos != null }">    
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Empresa</th>
+                                    <th>Cliente</th>
+                                    <th>Data de Agendamento</th>
+                                    <th>Horário</th>
+                                </tr>
+                            </thead>            
+                            <c:forEach var="agendamento" items="${agendamentos}">
+                                <tbody>
+                                    <tr>
+                                        <td>Nome da empresa: <c:out value="${agendamento.getNomeEmpresa()}" /></td>
+                                        <td>Nome: <c:out value="${agendamento.getNomeUser()}" /></td>
+                                        <td>Data: <c:out value="${agendamento.getData()}" /></td>
+                                        <td>Horário: <c:out value="${agendamento.getHorario()}" /></td>
+                                    </tr>
+                                </tbody> 
                             </c:forEach>
-                    </ul>
-                </c:when>
-                <c:otherwise>
-                    <p>Nenhum agendamento feito.</p>
-                </c:otherwise>
-            </c:choose>         
-        </c:if>
+                        </table>
+                    </c:when>
 
+                    <c:otherwise>
+                        <p>Nenhum agendamento feito.</p>
+                    </c:otherwise>
+                </c:choose>         
+            </c:if>
 
+        </div>
         <footer class="footer">
             <c:import url="../footer.jsp"/>
         </footer>
+
     </body>
 </html>

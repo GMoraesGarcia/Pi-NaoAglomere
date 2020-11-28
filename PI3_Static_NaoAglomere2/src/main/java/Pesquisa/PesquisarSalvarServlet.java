@@ -1,6 +1,7 @@
 package Pesquisa;
 
 import Cad_Empresa.Cad_Empresa_dados;
+import Cad_Empresa.EmpresaDao;
 import Login.LoginDados;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,6 +38,7 @@ public class PesquisarSalvarServlet extends HttpServlet {
         PesquisaDao dao = new PesquisaDao();
 
         try {
+            dao.getQtdPessoas(pesquisa);
             PesquisarDados busca = dao.findEstabelecimento(pesquisa);
             request.setAttribute("busca", busca);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
@@ -47,6 +49,21 @@ public class PesquisarSalvarServlet extends HttpServlet {
             System.out.println(e);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
             dispatcher.forward(request, response);
+        }
+
+        String idEstabelecimento = request.getParameter("id_Emp");
+        EmpresaDao empDao = new EmpresaDao();
+
+        try {
+            String nomeEstabelecimento = empDao.findyByID(idEstabelecimento);
+          
+            for(int i =0;i<4;i++)
+            System.out.println(PesquisarDados.randomDigit());
+            
+          
+
+        } catch (SQLException e) {
+            System.out.println(e);
         }
 
     }

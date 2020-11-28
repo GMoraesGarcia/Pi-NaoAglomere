@@ -37,5 +37,18 @@ public class PesquisarDados {
     public void addEstabelecimento(Cad_Empresa_dados c) {
         estabelecimentos.add(c);
     }
+    
+     public static String randomDigit(){
+        int num = (int)(Math.random()*10);
+        return String.valueOf(num);
+     }
+    
+    /*public String gerarCodigo(String nomeEstabelecimento){
+        String codigoEstabelecimento = null;
+        char[] codigo =  new char[3];
+              for(int i =0;i<3;i++){
+                  codigo[i] = nomeEstabelecimento.charAt(i);
+              }
+    }*/
 
 }

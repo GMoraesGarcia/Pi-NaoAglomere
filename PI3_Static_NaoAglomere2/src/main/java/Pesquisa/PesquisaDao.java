@@ -1,6 +1,7 @@
 package Pesquisa;
 
 import Cad_Empresa.Cad_Empresa_dados;
+import Cad_Empresa.EmpresaDao;
 import ConexãoBD.ConnectionUtilMySql;
 import ConexãoBD.Connection_db2;
 import Perfil.GerenciarDados;
@@ -45,7 +46,6 @@ public class PesquisaDao {
                 empresa.setEmpresa_id(rs.getInt("ID_empresa"));
                  int qtdAgend = getQtdAgendamentos(String.valueOf(empresa.getEmpresa_Id()));
                  empresa.setQtdAgendamentos(qtdAgend);
-                 System.out.println(qtdAgend);
                 empresas.add(empresa);
                 busca.setPesquisa(pesquisa);
             }
@@ -77,6 +77,14 @@ public class PesquisaDao {
                 throw e;
             }
         }
+        return -1;
+    }
+    
+    public int getQtdPessoas(String iDEmpresa) throws SQLException{
+        EmpresaDao dao = new EmpresaDao();
+     String nomeEmp =  dao.findyByID(iDEmpresa);
+        
+        
         return -1;
     }
 

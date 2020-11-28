@@ -191,4 +191,26 @@ public class EmpresaDao {
         return empresa;
     }
     
+     public String findyByID(String id) throws SQLException {
+     
+        String result = null;
+
+        String sql = "select Nome_Empresa from empresa where ID_empresa = ?";
+
+        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    result = rs.getString("Nome_Empresa");
+                     return result;
+                } 
+
+            }
+        }
+       
+        return null;
+    }
+    
 }
