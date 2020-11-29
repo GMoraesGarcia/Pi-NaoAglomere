@@ -5,10 +5,14 @@
  */
 package Agendamento;
 
+import Cad_Empresa.Cad_Empresa_dados;
 import Cad_Usuario.Cad_Usuario;
+import Login.LoginDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,14 +76,10 @@ public class Agendamento_Salvar extends HttpServlet {
         }*/
 
         //Validação de data de agendamento
-        LocalDate dataAgendamento = null;
-        if (dataStr != null && dataStr.trim().length() > 0) {
-            dataAgendamento = LocalDate.parse(dataStr);
-        }
-        boolean dataAgendamentoValida = (dataAgendamento != null);
+        boolean dataAgendamentoValida = validarData(dataStr);
 
         //Validação horario
-        boolean horarioValido = (horaStr != null);
+        boolean horarioValido = validarHoraMinSeg(horaStr);
 
         boolean camposValidos = (nomeValido && emailValido && telefoneValido && dataAgendamentoValida && horarioValido);
 
@@ -106,6 +106,17 @@ public class Agendamento_Salvar extends HttpServlet {
             request.setAttribute("horario", horaStr);
             request.setAttribute("dataAgendamento", dataStr);
             request.setAttribute("telefone", telefoneStr);
+
+            LoginDao daoLogin = new LoginDao();
+            Cad_Empresa_dados empresa = new Cad_Empresa_dados();
+            try {
+                empresa.setHorariosDisponiveis(daoLogin.findHorarios(Integer.parseInt(request.getParameter("id"))));
+            } catch (SQLException ex) {
+                Logger.getLogger(Form_Agendamento_Abrir.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            empresa.setEmpresa_id(Integer.parseInt(request.getParameter("id")));
+            request.setAttribute("empresa", empresa);
+            request.setAttribute("id", request.getParameter("id"));
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Agendamento/Form_Agendamento.jsp");
             dispatcher.forward(request, response);
@@ -134,4 +145,32 @@ public class Agendamento_Salvar extends HttpServlet {
         }
     }
 
+    public static boolean validarData(String data) {
+        try {
+            //dd = dia, MM = mes, yyyy = ano
+            //o "M" dessa String = maiusculo porque "m" minusculo = minutos
+            SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");            
+            //converter a String em um objeto do tipo date, se funcionar
+            //sua data é valida
+            sdf.parse(data);
+            //se nada deu errado retorna true (verdadeiro)
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
+    }
+
+    public static boolean validarHoraMinSeg(String hora) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            sdf.setLenient(false);
+            if (hora == null) {
+                return false;
+            }
+            sdf.parse(hora);
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
+    }
 }

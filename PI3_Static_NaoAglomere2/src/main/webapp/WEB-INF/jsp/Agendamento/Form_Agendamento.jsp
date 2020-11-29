@@ -36,7 +36,7 @@
                 <div>
 
                     <label>Nome:</label>
-                    <input type="text" name="nome" value="${sessionScope.user.nome}" class="form-control">
+                    <input type="text" name="nome" value="${sessionScope.user.nome}" class="form-control" readonly>
                     <c:if test="${nomeErro != null}">
                         <span class="erro"><c:out value="${nomeErro}"/></span> 
                     </c:if>
@@ -46,14 +46,14 @@
                 </div>
                 <div>
                     <label>E-mail:</label>
-                    <input type="email" name="email" value="${sessionScope.user.email}" class="form-control">
+                    <input type="email" name="email" value="${sessionScope.user.email}" class="form-control" readonly>
                     <c:if test="${emailErro != null}">
                         <span class="erro"> <c:out value="${emailErro}"/></span> 
                     </c:if>
                 </div>
                 <div>
                     <label>Telefone:</label>
-                    <input type="text" name="telefone" value="${sessionScope.user.telefone}" id="telefone"  class="form-control">
+                    <input type="text" name="telefone" value="${sessionScope.user.telefone}" id="telefone"  class="form-control" readonly>
                     <c:if test="${telefoneErro != null}">
                         <span class="erro"><c:out value="${telefoneErro}"/></span> 
                     </c:if>
@@ -66,11 +66,25 @@
                     </c:if>
                 </div>
                 <div>
-                    <label>Horário:</label>
-                    <input id="horario" type="time" name="horario" value="${horario}" class="form-control">
-                    <c:if test="${horarioErro != null}">
-                        <span class="erro"><c:out value="${horarioErro}"/></span> 
-                    </c:if>
+
+                    <c:choose>
+                        <c:when test="${empresa.getHorariosDisponiveis() != null }">
+                            <label>Horários:</label>
+                            <select id="id" name="horario" class="custom-select">       
+                                <option disabled selected>Selecione um Horário</option>
+                                <c:forEach var="hora2" items="${empresa.getHorariosDisponiveis()}">
+                                    <option value="${hora2}">${hora2}</option>    
+                                </c:forEach>
+                            </select>
+                            <c:if test="${horarioErro != null}">
+                                <span class="erro"><c:out value="${horarioErro}"/></span> 
+                            </c:if>                                                     
+                           
+                        </c:when>
+                        <c:otherwise>
+                            <p> Não há horarios disponiveis para este estabelecimento</p>
+                        </c:otherwise>
+                    </c:choose>
 
                 </div>
                 <button type="submit" class="btn btn-success botoes">Agendar</button>

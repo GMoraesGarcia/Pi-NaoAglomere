@@ -127,7 +127,7 @@ public class LoginDao {
 
         ArrayList horarios = new ArrayList();
 
-        String sql = "SELECT ID_EMPRESA,HORARIOS_DISPONIVEIS,STATUS_HORARIOS FROM HORARIOSDISPONIVEIS WHERE ID_EMPRESA = ?";
+        String sql = "SELECT DISTINCT ID_EMPRESA,HORARIOS_DISPONIVEIS,STATUS_HORARIOS FROM HORARIOSDISPONIVEIS WHERE ID_EMPRESA = ? and status_horarios = 'Livre'";
 
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -137,7 +137,7 @@ public class LoginDao {
 
             while (rs.next()) {
                 horarios.add(rs.getString("HORARIOS_DISPONIVEIS"));
-                horarios.add(rs.getString("STATUS_HORARIOS"));
+
             }
 
         }

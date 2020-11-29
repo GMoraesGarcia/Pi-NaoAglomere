@@ -25,12 +25,12 @@
         <div class="containerw">
             <nav class="sugestões">
                 <form method="post" action="pesquisar-Salvar">
-                    <div>            
-                        <input  type="submit" class="btn btn-info" name="pesquisa" value="Mercados">    
-                        <input  type="submit" class="btn btn-info" name="pesquisa" value="Salões de Beleza e Estudios"> 
-                        <input  type="submit" class="btn btn-info" name="pesquisa" value="Bares e restaurantes"> 
-                        <input  type="submit" class="btn btn-info" name="pesquisa" value="Lojas">   
-                        <input  type="submit" class="btn btn-info" name="pesquisa" value="Bancos">                     
+                    <div>
+                        <button type="submit" class="btn btn-info" name="pesquisa" value="Mercados">Mercados</button>
+                        <button type="submit" class="btn btn-info" name="pesquisa" value="Bares e restaurantes">Bares e restaurantes</button>
+                        <button type="submit" class="btn btn-info" name="pesquisa" value="Salões de Beleza e Estudios">Salões de Beleza e Estudios</button>
+                        <button type="submit" class="btn btn-info" name="pesquisa" value="Lojas">Lojas</button>
+                        <button type="submit" class="btn btn-info" name="pesquisa" value="Bancos">Bancos</button>
                     </div>
                 </form>
             </nav>
@@ -57,7 +57,7 @@
                         <c:when test="${busca.getEstabelecimentos() != null }">               
                             <ul>                    
                                 <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">
-                                   
+
                                     <li><p>Nome: <c:out value="${interesse.getNome_empresa()}" /></p></li>
                                     <li><p>Email: <c:out value="${interesse.getEmail()}" /></p></li>
                                     <li><p>Descrição: <c:out value="${interesse.getDescricao()}" /></p></li>
@@ -70,27 +70,31 @@
                                     <li><p>Regras: <c:out value="${interesse.getRegras()}" /></p></li>
 
                                     <c:if test="${interesse.getAgendamento() == 'Sim'}">
-                                        <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/agendamento?id=${interesse.getEmpresa_Id()}" >Agendar</a></li>   
-                                        </c:if> 
-                                        <c:if test="${interesse.getAgendamento() == 'Não'}">
-                                            <c:choose>
-                                                <c:when test="${sessionScope.user != null}">
+
+                                        <form action="${pageContext.request.contextPath}/agendamento" method="get">
+                                            <input type="text" hidden="true" name="id" value="${interesse.getEmpresa_Id()}" />
+                                            <button class="btn btn-info" type="submit"  >Agendar Horário</button>
+                                        </form>
+                                    </c:if> 
+                                    <c:if test="${interesse.getAgendamento() == 'Não'}">
+                                        <c:choose>
+                                            <c:when test="${sessionScope.user != null}">
                                                 <form method="post" action="pesquisar-Salvar">
                                                     <input name="id_Emp" type="hidden" value="${interesse.getEmpresa_Id()}">
-                                                 <button class="btn btn-info" type="submit"  >Gerar Código</button>
+                                                    <button class="btn btn-info" type="submit"  >Gerar Código</button>
                                                 </form>
-                                                </c:when>                                                
-                                                <c:otherwise>
+                                            </c:when>                                                
+                                            <c:otherwise>
                                                 <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/login" >Fazer Login para Gerar Código</a></li>   
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:if>
                                     </c:forEach>
                             </ul>
-                        
+
                         </c:when>
                         <c:otherwise>
-                            <p> Não tem nenhum interesse informado</p>
+                            <p> Não tem nenhuma Busca Informada</p>
                         </c:otherwise>
                     </c:choose>                    
                 </c:if>
