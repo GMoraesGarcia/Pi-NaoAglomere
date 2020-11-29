@@ -55,3 +55,12 @@ a.termos:hover{
     color: black;
     font-style: normal;
 }
+
+.img{
+    text-align: center;
+   
+}
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }

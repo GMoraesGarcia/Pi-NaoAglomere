@@ -43,12 +43,18 @@ public class PesquisarDados {
         return String.valueOf(num);
      }
     
-    /*public String gerarCodigo(String nomeEstabelecimento){
-        String codigoEstabelecimento = null;
-        char[] codigo =  new char[3];
-              for(int i =0;i<3;i++){
-                  codigo[i] = nomeEstabelecimento.charAt(i);
+    public String gerarCodigo(String nomeEstabelecimento){
+       StringBuilder str = new StringBuilder();
+        char[] codigo =  new char[4];
+              for(int i =0;i<4;i++){
+                str.append(codigo[i] = nomeEstabelecimento.charAt(i));
               }
-    }*/
+              for(int i =0;i<4;i++)
+                  str.append(randomDigit());
+ 
+              return str.toString();
+    }
+
+
 
 }

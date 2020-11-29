@@ -17,10 +17,11 @@
         <title>Gerenciar agendamentos</title>
     </head>
     <body>
-        <div class="containerw">
-            <header class="header">
+        <header class="header">
                 <c:import url="../header.jsp"/>
             </header>
+        <div class="containerw">
+            
             
             <h1>Gerenciar agendamentos</h1>
 

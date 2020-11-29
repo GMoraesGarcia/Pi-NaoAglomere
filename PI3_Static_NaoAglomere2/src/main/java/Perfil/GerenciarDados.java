@@ -5,6 +5,8 @@
  */
 package Perfil;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -65,6 +67,8 @@ public class GerenciarDados {
         this.data = data;
     }
 
+
+
     public String getHorario() {
         return horario;
     }
@@ -78,6 +82,14 @@ public class GerenciarDados {
         return "GerenciarDados{" + "agendamentos=" + agendamentos + ", nomeUser=" + nomeUser + ", nomeEmpresa=" + nomeEmpresa + ", data=" + data + ", horario=" + horario + '}';
     }
     
+    public String getDataFormatada(String data){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        LocalDate data1 = LocalDate.parse(data);
+        String formatado = data1.format(formatter);
+        
+        return formatado;
+    }
     
 }
 

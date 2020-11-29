@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -36,10 +37,13 @@ public class GerenciarDAO {
 
                     GerenciarDados agendamento = new GerenciarDados();
 
+                  String data = (rs.getString("data_agend"));
+                  String dataFormat = agendamento.getDataFormatada(data);
+                   
                     agendamento.setNumAgendamento(rs.getString("num_agendamento"));
                     agendamento.setNomeUser(rs.getString("nome"));
                     agendamento.setNomeEmpresa(rs.getString("nome_empresa"));
-                    agendamento.setData(rs.getString("data_agend"));
+                    agendamento.setData(dataFormat);
                     agendamento.setHorario(rs.getString("horario"));
 
                     agendamentos.add(agendamento);
@@ -70,10 +74,12 @@ public class GerenciarDAO {
                 while (rs.next()) {
 
                     GerenciarDados agendamento = new GerenciarDados();
+                    String data = (rs.getString("data_agend"));
+                    String dataFormat = agendamento.getDataFormatada(data);
 
                     agendamento.setNomeUser(rs.getString("nome"));
                     agendamento.setNomeEmpresa(rs.getString("nome_empresa"));
-                    agendamento.setData(rs.getString("data_agend"));
+                    agendamento.setData(dataFormat);
                     agendamento.setHorario(rs.getString("horario"));
 
                     agendamentos.add(agendamento);

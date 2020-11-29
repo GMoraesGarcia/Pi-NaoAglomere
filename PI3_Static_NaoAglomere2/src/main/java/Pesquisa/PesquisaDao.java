@@ -20,6 +20,8 @@ public class PesquisaDao {
     public PesquisarDados findEstabelecimento(String pesquisa) throws SQLException {
 
         PesquisarDados busca = new PesquisarDados();
+        CodigoDAO daoCod = new CodigoDAO();
+        CodigoDados dadosCod = new CodigoDados();
 
         ArrayList<Cad_Empresa_dados> empresas = new ArrayList<>();
 
@@ -28,10 +30,9 @@ public class PesquisaDao {
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             //String idEmp = rs.getString("ID_empresa");
-           
-           
 
             while (rs.next()) {// enquanto tiver empresas adiciona no array
+
                 Cad_Empresa_dados empresa = new Cad_Empresa_dados();
                 empresa.setNome_empresa(rs.getString("NOME_EMPRESA"));
                 empresa.setEmail(rs.getString("EMAIL"));
@@ -44,32 +45,40 @@ public class PesquisaDao {
                 empresa.setRegras(rs.getString("REGRAS"));
                 empresa.setAgendamento(rs.getString("AGENDAMENTO"));
                 empresa.setEmpresa_id(rs.getInt("ID_empresa"));
-                 int qtdAgend = getQtdAgendamentos(String.valueOf(empresa.getEmpresa_Id()));
-                 empresa.setQtdAgendamentos(qtdAgend);
+                //gera a quantidade de pessoas agendadas a partir da pesquisa
+                int qtdAgend = getQtdAgendamentos(String.valueOf(empresa.getEmpresa_Id()));
+                empresa.setQtdAgendamentos(qtdAgend);
                 empresas.add(empresa);
                 busca.setPesquisa(pesquisa);
+                //gera e adiciona o codigo de cada empresa que não precisa realizar agendamento 
+                if (empresa.getAgendamento().equalsIgnoreCase("não") && daoCod.isEmpty(empresa.getEmpresa_Id()) || 
+                            daoCod.getAtualizacaoCodigo(empresa.getEmpresa_Id())) {
+                    dadosCod.setCodigo(busca.gerarCodigo(empresa.getNome_empresa()));
+                    dadosCod.setId(empresa.getEmpresa_Id());
+
+                    daoCod.inserirInfoCodigo(dadosCod);
+                }
             }
             busca.setEstabelecimentos(empresas);//atualiza o array do objeto dados (referente a pesquisa)            
         }
         return busca; // retorna a pesquisa que foi encontrada ou dados nulos caso a pesquisa não for encontrada
     }
-    
+
     public int getQtdAgendamentos(String IdEmpresa) throws SQLException {
         String sql = "call Sp_Qtd_Agend (sysdate(),?)";
 
-          try (Connection conn = Connection_db2.obterConexao();
+        try (Connection conn = Connection_db2.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
-         
             stmt.setString(1, IdEmpresa);
 
             try (ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
                     int res = rs.getInt("qtd_Agend");
-                
-                  return res;
-                    
+
+                    return res;
+
                 }
 
             } catch (SQLException e) {
@@ -77,14 +86,6 @@ public class PesquisaDao {
                 throw e;
             }
         }
-        return -1;
-    }
-    
-    public int getQtdPessoas(String iDEmpresa) throws SQLException{
-        EmpresaDao dao = new EmpresaDao();
-     String nomeEmp =  dao.findyByID(iDEmpresa);
-        
-        
         return -1;
     }
 
