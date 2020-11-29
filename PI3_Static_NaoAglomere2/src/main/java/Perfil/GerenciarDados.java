@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class GerenciarDados {
     
     private ArrayList<GerenciarDados> agendamentos;
+    
+    private String numAgendamento;
             
     private String nomeUser;
     
@@ -29,6 +31,14 @@ public class GerenciarDados {
 
     public void setAgendamentos(ArrayList<GerenciarDados> agendamentos) {
         this.agendamentos = agendamentos;
+    }
+
+    public String getNumAgendamento() {
+        return numAgendamento;
+    }
+
+    public void setNumAgendamento(String numAgendamento) {
+        this.numAgendamento = numAgendamento;
     }
 
     public String getNomeUser() {

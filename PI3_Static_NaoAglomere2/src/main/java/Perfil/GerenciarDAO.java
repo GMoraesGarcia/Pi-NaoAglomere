@@ -36,13 +36,14 @@ public class GerenciarDAO {
 
                     GerenciarDados agendamento = new GerenciarDados();
 
+                    agendamento.setNumAgendamento(rs.getString("num_agendamento"));
                     agendamento.setNomeUser(rs.getString("nome"));
                     agendamento.setNomeEmpresa(rs.getString("nome_empresa"));
                     agendamento.setData(rs.getString("data_agend"));
                     agendamento.setHorario(rs.getString("horario"));
 
                     agendamentos.add(agendamento);
-                    
+
                 }
 
             } catch (SQLException e) {
@@ -85,4 +86,22 @@ public class GerenciarDAO {
         }
         return agendamentos;
     }
+
+    public void Delete(int numAgendamento) throws SQLException {
+
+        String sql = "DELETE FROM AGENDAMENTO WHERE NUM_AGENDAMENTO = ?";
+
+        try (Connection conn = Connection_db2.obterConexao();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, numAgendamento);
+            
+            stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            
+            System.out.println(e);
+        }
+    }
+    
 }
