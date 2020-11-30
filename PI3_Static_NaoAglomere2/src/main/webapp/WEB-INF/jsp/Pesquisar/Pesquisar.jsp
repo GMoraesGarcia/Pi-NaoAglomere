@@ -72,7 +72,7 @@
                                     <c:if test="${interesse.getAgendamento() == 'Sim'}">
 
                                         <form action="${pageContext.request.contextPath}/agendamento" method="get">
-                                            <input type="text" hidden="true" name="id" value="${interesse.getEmpresa_Id()}" />
+                                            <input type="text"  name="id" value="${interesse.getEmpresa_Id()}" />
                                             <button class="btn btn-info" type="submit"  >Agendar Horário</button>
                                         </form>
                                     </c:if> 
