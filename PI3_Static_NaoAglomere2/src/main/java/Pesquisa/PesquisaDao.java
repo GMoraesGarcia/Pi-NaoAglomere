@@ -25,7 +25,7 @@ public class PesquisaDao {
 
         ArrayList<Cad_Empresa_dados> empresas = new ArrayList<>();
 
-        String sql = "SELECT NOME_EMPRESA, EMAIL, DESCRICAO, TELEFONE, QTD_MAX, RUA, BAIRRO, NUMERO, REGRAS, AGENDAMENTO, ID_empresa FROM EMPRESA where DESCRICAO LIKE '%" + pesquisa + "%' OR NOME_EMPRESA LIKE '%" + pesquisa + "%'";
+        String sql = "SELECT NOME_EMPRESA, EMAIL, DESCRICAO, TELEFONE, QTD_MAX, RUA, BAIRRO, NUMERO, REGRAS, AGENDAMENTO, ID_empresa,FOTO FROM EMPRESA where DESCRICAO LIKE '%" + pesquisa + "%' OR NOME_EMPRESA LIKE '%" + pesquisa + "%'";
 
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
@@ -45,6 +45,7 @@ public class PesquisaDao {
                 empresa.setRegras(rs.getString("REGRAS"));
                 empresa.setAgendamento(rs.getString("AGENDAMENTO"));
                 empresa.setEmpresa_id(rs.getInt("ID_empresa"));
+                empresa.setFoto(rs.getString("FOTO"));
                 //gera a quantidade de pessoas agendadas a partir da pesquisa
                 int qtdAgend = getQtdAgendamentos(String.valueOf(empresa.getEmpresa_Id()));
                 empresa.setQtdAgendamentos(qtdAgend);

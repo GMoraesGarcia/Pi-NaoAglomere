@@ -68,7 +68,15 @@
                                     <li><p>Bairro: <c:out value="${interesse.getBairro()}" /></p></li>
                                     <li><p>Numero: <c:out value="${interesse.getNumero_rua()}" /></p></li>
                                     <li><p>Regras: <c:out value="${interesse.getRegras()}" /></p></li>
-
+                                        <c:choose>                                            
+                                            <c:when test="${interesse.getFoto() != null}">
+                                            <label id="imagem">Foto: </label>
+                                            <img src="${interesse.getFoto()}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p>não possui foto</p>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <c:if test="${interesse.getAgendamento() == 'Sim'}">
 
                                         <form action="${pageContext.request.contextPath}/agendamento" method="get">
