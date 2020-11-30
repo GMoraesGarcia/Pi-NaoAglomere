@@ -53,13 +53,32 @@ CREATE TABLE usuario (
      UNIQUE(cpf)
 );
 
+CREATE TABLE Codigos_Gerados (
+codigo varchar(20) not null,
+empresa_id int not null,
+data_geracao date not null,
+horario_geracao TIME NOT NULL,
+PRIMARY KEY (codigo),
+FOREIGN KEY (empresa_id ) REFERENCES Empresa (ID_empresa)
+);
+
+CREATE TABLE CodigosPorUsuario(
+id int,
+codigo varchar(20),
+usuario_id int,
+data_gera DATE NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (usuario_id) REFERENCES usuario (id),
+FOREIGN KEY (codigo) REFERENCES Codigos_Gerados(codigo)
+);
+
 DELIMITER $$
 CREATE PROCEDURE Sp_selectAgentEmpresa (CNPJn varchar(18))
 BEGIN
 select ep.Nome_Empresa,us.nome,ag.data_Agend,ag.horario from agendamento as ag
 INNER JOIN empresa as ep on  ag.empresa_id = ep.ID_empresa
 INNER JOIN usuario as us on ag.usuario_id = us.id
-WHERE ep.cnpj = CNPJn
+WHERE ep.cnpj = CNPJn and ag.data_agend >= current_date()
 ORDER BY ag.data_Agend;
 end $$
 
@@ -69,10 +88,10 @@ call Sp_selectAgentEmpresa('41.173.747/0001-80'); #Chamada da procedure
 DELIMITER $$
 CREATE PROCEDURE Sp_selectAgendUser(cpfn VARCHAR(11))
 BEGIN
-SELECT u.nome,e.nome_empresa,ag.data_agend,ag.horario FROM agendamento as ag
+SELECT u.nome,e.nome_empresa,ag.data_agend,ag.horario,ag.num_agendamento FROM agendamento as ag
 INNER JOIN usuario as u on ag.usuario_id = u.id
 INNER JOIN empresa as e on ag.empresa_id = e.ID_empresa
-where u.cpf  = cpfn
+where u.cpf  = cpfn and ag.data_agend >= current_date()
 ORDER BY ag.data_Agend;
 end $$
 
@@ -85,3 +104,5 @@ BEGIN
 SELECT  count(*) as qtd_Agend from agendamento as ag
 where data_agend = dataHj and empresa_id = empresa;
 end $$
+
+call Sp_Qtd_Agend (CURRENT_DATE(), 2);
