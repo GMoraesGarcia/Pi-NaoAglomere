@@ -3127,6 +3127,8 @@ fieldset:disabled a.btn {
   font-weight: 400;
   color: #007bff;
   text-decoration: none;
+  border: none;
+  background-color: transparent;
 }
 
 .btn-link:hover {

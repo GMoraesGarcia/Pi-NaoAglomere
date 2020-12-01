@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/bootstrap.css">
@@ -112,7 +112,7 @@
                             </c:if>
                         </div>
                         <div>
-                            <input name="check" type="checkbox"> Li e aceito a <button type="button" class="btn btn-link" data-toggle="modal" data-target="#politica">Política de privacidade</button> e os <button type="button" class="btn btn-link" data-toggle="modal" data-target="#termo">termos de uso</button>
+                            <input name="check" type="checkbox"> Li e aceito a <button type="button" class="btn-link" data-toggle="modal" data-target="#politica">Política de privacidade</button> e os <button type="button" class="btn-link" data-toggle="modal" data-target="#termo">termos de uso</button>
                             <c:if test="${checkErro != null}">
                                 <span class="erro"><c:out value="${checkErro}"/></span>
                             </c:if>

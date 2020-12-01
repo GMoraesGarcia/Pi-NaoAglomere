@@ -26,15 +26,22 @@ body{
 .pesquisar{    
     font-weight: bold;  
     text-align: center;
-    
+
 }
 
 .telaPesquisa{
     background-color: aliceblue;
-    padding: 200px;
+    
     position: relative;
     margin: 0 auto;
     width: 940px;
 }
 
-
+.imagem-est{
+    float: right;
+    background-color: #F5DCDC;
+    background: linear-gradient(#F5DCDC,#BEBEF4);
+}
+.paineis-busca{
+    border: green;
+}

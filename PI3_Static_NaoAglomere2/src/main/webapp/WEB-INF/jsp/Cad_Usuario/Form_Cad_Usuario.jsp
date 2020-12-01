@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="css/Estilo.css">
         <link rel="stylesheet" href="css/footer.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
         <script type="text/javascript">
@@ -89,8 +91,62 @@
 
                 </div>
                 <div>
-                    <input type="checkbox"> Li e aceito a <a class="termos" 
-                                                             onclick="alert('Política de privacidade:\nA sua privacidade é importante para nós. É política do Não Aglomere respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no nosso site. Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei. O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade. O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais.')">Política de privacidade </a>e os <a class="termos" onclick="alert('Termos de uso:\nAo utilizar os serviços do Não Aglomere, você concorda em não agir com más intenções ou fazer mal uso da plataforma para quaisquer outros fins que não sejam:\n1-Realizar cadastro na plataforma.\n2-Fazer consultas de estabelecimentos com fins de se informar sobre a situação do mesmo.\n3-Gerar código de ida ao estabelecimento.*\n4-Realizar agendamento de ida ao estabelecimento.**\n5-Ser informado sobre novidades em relação ao COVID-19.\n*Só será possível gerar um único código por pessoa em cada estabelecimento a cada dia, os estabelecimentos poderão oferecer benefícios que julguem condizentes com a geração e apresentação do código no endereço cadastrado no site.\n**Caso a empresa reporte o não comparecimento ou o usuário não informe a empresa, na primeira vez haverá uma advertência, na próxima ocorrência o cadastro será suspenso.\nMais informações em contatonaoaglomere@gmail.com')">Termos de uso.</a>
+                    <input name="check" type="checkbox"> Li e aceito a <button type="button" class="btn-link" data-toggle="modal" data-target="#politica">Política de privacidade</button> e os <button type="button" class="btn-link" data-toggle="modal" data-target="#termo">termos de uso</button>
+                    <c:if test="${checkErro != null}">
+                        <span class="erro"><c:out value="${checkErro}"/></span>
+                    </c:if>
+                </div>
+
+                <!-- The Modal -->
+                <div class="modal" id="politica">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Política de privacidade</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                A sua privacidade é importante para nós. É política do Não Aglomere respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no nosso site. Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.
+                                <br>O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade.
+                                <br>O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais.
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- The Modal -->
+                <div class="modal" id="termo">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Termos de uso</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                Ao utilizar os serviços do Não Aglomere, você concorda em não agir com más intenções ou fazer mal uso da plataforma para quaisquer outros fins que não sejam:
+                                <br>1-Realizar cadastro na plataforma.
+                                <br>2-Fazer consultas de estabelecimentos com fins de se informar sobre a situação do mesmo.
+                                <br>3-Gerar código de ida ao estabelecimento.*
+                                <br>4-Realizar agendamento de ida ao estabelecimento.**
+                                <br>5-Ser informado sobre novidades em relação ao COVID-19.
+                                <br>*Só será possível gerar um único código por pessoa em cada estabelecimento a cada dia, os estabelecimentos poderão oferecer benefícios que julguem condizentes com a geração e apresentação do código no endereço cadastrado no site.
+                                <br>**Caso a empresa reporte o não comparecimento ou o usuário não informe a empresa, na primeira vez haverá uma advertência, na próxima ocorrência o cadastro será suspenso.
+                                <br>Mais informações em contatonaoaglomere@gmail.com
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-success botoes"  data-toggle="modal" data-target="#myModal">Efetuar Cadastro</button>
