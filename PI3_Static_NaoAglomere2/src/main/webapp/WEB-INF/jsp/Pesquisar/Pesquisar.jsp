@@ -51,39 +51,46 @@
                     <span class="erro"><c:out value="${Erro}"/></span>
                 </c:if>
                 <c:if test="${busca.pesquisa != null}">
-                    <div class="paineis-busca">
-                        <h1>Resultado da busca</h1>
-                        <h2><c:out value ="${busca.pesquisa}" /></h2>
-                        <c:choose>
-                            <c:when test="${busca.getEstabelecimentos() != null }">               
-                                <ul>                    
-                                    <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">
+                    <h1 class="titulo-pesquisa"><b>Resultado da busca</b></h1>
 
-                                        <li><p>Nome: <c:out value="${interesse.getNome_empresa()}" /></p></li>
-                                        <li><p>Email: <c:out value="${interesse.getEmail()}" /></p></li>
-                                        <li><p>Descrição: <c:out value="${interesse.getDescricao()}" /></p></li>
-                                        <li><p>Telefone: <c:out value="${interesse.getTelefone()}" /></p></li>
-                                        <li><p>Quantidade Maxima de pessoas: <c:out value="${interesse.getQtd_max()}" /></p></li>
-                                        <li><p>Quantidade de Pessoas: <c:out value="${interesse.getQtdAgendamentos()}" /></p></li>
-                                        <li><p>Rua: <c:out value="${interesse.getRua()}" /></p></li>
-                                        <li><p>Bairro: <c:out value="${interesse.getBairro()}" /></p></li>
-                                        <li><p>Numero: <c:out value="${interesse.getNumero_rua()}" /></p></li>
-                                        <li><p>Regras: <c:out value="${interesse.getRegras()}" /></p></li>
-                                            <c:choose>                                            
-                                                <c:when test="${interesse.getFoto() != null}">
+                    <h2><c:out value ="${busca.pesquisa}" /></h2>
+                    <div class="row-cols-2">
+                        <c:choose>
+                            <c:when test="${busca.getEstabelecimentos() != null }">  
+                                <fieldset class="col-auto">
+
+                                    <c:forEach var="interesse" items="${busca.getEstabelecimentos()}">
+                                        <c:choose>                                            
+                                            <c:when test="${interesse.getFoto() != null}">
                                                 <div class="imagem-est" >
                                                     <img src="${interesse.getFoto()}"width="300" height="200">
                                                 </div>                                            
                                             </c:when>
                                             <c:otherwise>
-                                                <p class="imagem-est">não possui foto</p>
+                                                <img class="imagem-est" src="C:/PI-FOTOS/avatar-padrao.jpg"width="300" height="200">                                                
                                             </c:otherwise>
                                         </c:choose>
+                                        <li><p><b>Nome</b>: <c:out value="${interesse.getNome_empresa()}" /></p></li>
+                                        <li><p><b>Email:</b> <c:out value="${interesse.getEmail()}" /></p></li>
+                                        <li><p><b>Descrição:</b> <c:out value="${interesse.getDescricao()}" /></p></li>
+                                        <li><p><b>Telefone:</b> <c:out value="${interesse.getTelefone()}" /></p></li>
+                                        <li><p><b>Máximo de pessoas:</b> <c:out value="${interesse.getQtd_max()}" /></p></li>
+                                        <li><p><b>Pessoas do Local:</b> <c:out value="${interesse.getQtdAgendamentos()}" /></p></li>
+
+
+
+                                        <li><p><b>Rua: </b><c:out value="${interesse.getRua()}" /></p></li>
+                                        <li><p><b>Bairro:</b> <c:out value="${interesse.getBairro()}" /></p></li>
+                                        <li><p><b>Numero: </b><c:out value="${interesse.getNumero_rua()}" /></p></li>
+                                        <li><p><b>Regras: </b><c:out value="${interesse.getRegras()}" /></p></li>
+
+
+
                                         <c:if test="${interesse.getAgendamento() == 'Sim'}">
 
                                             <form action="${pageContext.request.contextPath}/agendamento" method="get">
                                                 <input type="hidden"  name="id" value="${interesse.getEmpresa_Id()}" />
-                                                <button class="btn btn-info" type="submit"  >Agendar Horário</button>
+                                                <button id="botoes" class="btn btn-info" type="submit"  >Agendar Horário</button>
                                             </form>
                                         </c:if> 
                                         <c:if test="${interesse.getAgendamento() == 'Não'}">
@@ -98,16 +105,18 @@
                                                     <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/login" >Fazer Login para Gerar Código</a></li>   
                                                     </c:otherwise>
                                                 </c:choose>
-                                            </c:if>
-                                        </c:forEach>
-                                </ul>
+                                            </c:if>                                                        
+                                        <p id="espaço-busca">.</p>
+                                    </c:forEach>                                        
 
-                            </c:when>
-                            <c:otherwise>
-                                <p> Não tem nenhuma Busca Informada</p>
-                            </c:otherwise>
-                        </c:choose> 
-                    </div>
+
+                                </c:when>
+                                <c:otherwise>
+                                    <p> Não tem nenhuma Busca Informada</p>
+                                </c:otherwise>
+                            </c:choose> 
+                        </fieldset>
+                    </div>                    
                 </c:if>
             </section>
         </div>

@@ -31,17 +31,29 @@ body{
 
 .telaPesquisa{
     background-color: aliceblue;
-    
+
     position: relative;
     margin: 0 auto;
-    width: 940px;
+    width: 900px;
 }
 
-.imagem-est{
+.imagem-est{    
+    margin-top: 20px;    
     float: right;
     background-color: #F5DCDC;
     background: linear-gradient(#F5DCDC,#BEBEF4);
 }
-.paineis-busca{
-    border: green;
+
+#espaço-busca{
+    background-color: #d1ecf1;
+    text-indent: -9999px;
+}
+li {
+    list-style-type: none;  
+    display: inline-table;
+   min-width:  200px;
+   padding: auto;
+}
+.titulo-pesquisa{
+    color: #34ce57;
 }
