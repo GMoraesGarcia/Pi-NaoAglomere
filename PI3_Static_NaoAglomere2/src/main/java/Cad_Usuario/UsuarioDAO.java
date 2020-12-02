@@ -73,24 +73,24 @@ public class UsuarioDAO {
             }
 
         }
-      }
-      
-      public int findByCPF(String cpf) throws SQLException{
-          int id =0;
-          String sql ="select id from usuario where cpf =?";
-          try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
-                PreparedStatement stmt = conn.prepareStatement(sql);){
-              
-              stmt.setString(1, cpf);
-          try (ResultSet rs = stmt.executeQuery()) {
+    }
+
+    public int findByCPF(String cpf) throws SQLException {
+        int id = 0;
+        String sql = "select id from usuario where cpf =?";
+        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+            stmt.setString(1, cpf);
+            try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     id = rs.getInt("id");
-                     return id;
-                } 
+                    return id;
+                }
 
             }
-          }
-          return -1;
-      }
-    
+        }
+        return -1;
+    }
+
 }

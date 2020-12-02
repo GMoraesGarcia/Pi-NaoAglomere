@@ -22,11 +22,11 @@ public class CodigoDados {
     private String codigo;
 
     private int idEmpresa;
-    
+  
     private Date data_geracao; 
     
     private  LocalTime horario_Geracao;
-    
+   
     private int idUsuario;
     
     private int quantidade;
@@ -80,7 +80,7 @@ public class CodigoDados {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-    
+ 
     public boolean getTempoLimite(LocalTime hr1){
         LocalTime hr2 = LocalTime.now();
         Duration duracao = Duration.between(hr1, hr2);
