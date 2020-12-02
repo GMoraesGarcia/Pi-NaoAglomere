@@ -66,7 +66,31 @@
                     <c:otherwise>
                         <p>Nenhum agendamento feito.</p>
                     </c:otherwise>
-                </c:choose>         
+                </c:choose>  
+                <c:choose>
+                    <c:when test="${codigos != null}">
+                        <table class="table ">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th></th>
+                                    <th>Estabelecimento</th>
+                                    <th>Código</th>
+                                </tr>
+                            </thead> 
+                            <c:forEach var="codigo" items="${codigos}">
+                                <tbody>
+                                    <tr>
+                                <form method="post" action="gerenciar-salvar">
+                                    <td> <c:out value="${codigo.getNome_empresa()}" /></td>  
+                                    <td><c:out value="${codigo.getCodigo()}" /></td> 
+                                </form>
+                                </tr>
+                                </tbody>
+                            </c:forEach>
+                        </table>
+
+                    </c:when>
+                </c:choose>
             </form>
         </c:if>
 

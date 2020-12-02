@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Cad_Empresa_dados {
 
     public Cad_Empresa_dados(int empresa_id, String nome_empresa, String cnpj, String email, String descricao, String telefone,
-            String senha, int qtd_max, String rua, String bairro, int numero_rua, String regras, String agendamento) {
+            String senha, int qtd_max, String rua, String bairro, int numero_rua, String regras, String agendamento,String codigo) {
         this.empresa_id = empresa_id;
         this.nome_empresa = nome_empresa;
         this.cnpj = cnpj;
@@ -23,6 +23,7 @@ public class Cad_Empresa_dados {
         this.numero_rua = numero_rua;
         this.regras = regras;
         this.agendamento = agendamento;
+        this.codigo = codigo;
     }
 
     public Cad_Empresa_dados() {
@@ -54,6 +55,8 @@ public class Cad_Empresa_dados {
     private String regras;
 
     private String agendamento;
+    
+    private String codigo;
 
     private ArrayList<String> horariosDisponiveis = new ArrayList<>();
     ;
@@ -61,6 +64,14 @@ public class Cad_Empresa_dados {
     private String foto;
 
     private int qtdAgendamentos;
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
     public int getQtdAgendamentos() {
         return qtdAgendamentos;
