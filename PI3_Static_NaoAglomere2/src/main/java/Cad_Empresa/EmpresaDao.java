@@ -17,7 +17,7 @@ public class EmpresaDao {
                 + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO, AGENDAMENTO, FOTO  ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         //ConnectionUtilMySql
-        try (Connection conn = ConnectionUtilMySql.obterConexao()) {
+        try (Connection conn = Connection_db2.obterConexao()) {
 
             conn.setAutoCommit(false);
 
@@ -54,7 +54,7 @@ public class EmpresaDao {
         String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
                 + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
 
-        try (Connection conn = ConnectionUtilMySql.obterConexao()) {
+        try (Connection conn = Connection_db2.obterConexao()) {
 
             conn.setAutoCommit(false);
 
@@ -89,7 +89,7 @@ public class EmpresaDao {
 
         String sql = "UPDATE EMPRESA SET FOTO = ? WHERE CNPJ = ?";
 
-        try (Connection conn = ConnectionUtilMySql.obterConexao()) {
+        try (Connection conn = Connection_db2.obterConexao()) {
 
             conn.setAutoCommit(false);
 
@@ -112,7 +112,7 @@ public class EmpresaDao {
     public void addHorarios(Cad_Empresa_dados empresaDados) throws SQLException {
         String sql = "insert into HorariosDisponiveis (id_empresa,horarios_disponiveis,Status_horarios) values (?,?,?);";
 
-        try (Connection conn = ConnectionUtilMySql.obterConexao()) {
+        try (Connection conn = Connection_db2.obterConexao()) {
 
             conn.setAutoCommit(false);
 

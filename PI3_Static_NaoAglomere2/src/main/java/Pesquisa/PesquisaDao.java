@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +20,7 @@ public class PesquisaDao {
 
     public PesquisarDados findEstabelecimento(String pesquisa) throws SQLException {
 
+        LocalTime att = LocalTime.now();
         PesquisarDados busca = new PesquisarDados();
         CodigoDAO daoCod = new CodigoDAO();
         CodigoDados dadosCod = new CodigoDados();
@@ -52,12 +54,27 @@ public class PesquisaDao {
                 empresas.add(empresa);
                 busca.setPesquisa(pesquisa);
                 //gera e adiciona o codigo de cada empresa que não precisa realizar agendamento 
-                if (empresa.getAgendamento().equalsIgnoreCase("não") && daoCod.isEmpty(empresa.getEmpresa_Id()) || 
-                            daoCod.getAtualizacaoCodigo(empresa.getEmpresa_Id())) {
+                if (empresa.getAgendamento().equalsIgnoreCase("não") && daoCod.isEmpty(empresa.getEmpresa_Id())
+                        || daoCod.getAtualizacaoCodigo(empresa.getEmpresa_Id())) {
                     dadosCod.setCodigo(busca.gerarCodigo(empresa.getNome_empresa()));
                     dadosCod.setId(empresa.getEmpresa_Id());
 
                     daoCod.inserirInfoCodigo(dadosCod);
+                }
+              
+                CodigoDados dadoscod = daoCod.getPrimeirohorario(empresa.getEmpresa_Id());
+                if (dadoscod.getHorario_Geracao() != null) {
+                    att = dadoscod.getHorario_Geracao();
+                   // 
+                    if (dadoscod.getTempoLimite(att)) {
+                        att = LocalTime.now();
+                        dadoscod.setHorario_Geracao(LocalTime.now());
+                    }
+                  
+                    CodigoDados qtd = daoCod.getQtdPessoas(att, empresa.getEmpresa_Id());
+                    empresa.setQtdAgendamentos(qtd.getQuantidade());
+                
+                            
                 }
             }
             busca.setEstabelecimentos(empresas);//atualiza o array do objeto dados (referente a pesquisa)            

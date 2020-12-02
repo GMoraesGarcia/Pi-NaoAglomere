@@ -3,10 +3,13 @@ package Pesquisa;
 import Cad_Empresa.Cad_Empresa_dados;
 import Cad_Empresa.EmpresaDao;
 import Cad_Usuario.Cad_Usuario;
+import Cad_Usuario.UsuarioDAO;
 import Login.LoginDados;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,11 +38,18 @@ public class PesquisarSalvarServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pesquisa = request.getParameter("pesquisa");
+        
+       
 
         PesquisaDao dao = new PesquisaDao();
+        UsuarioDAO daoUser = new UsuarioDAO();
+        CodigoDAO daoCod = new CodigoDAO();
+        CodigoDados dados = new CodigoDados();
+        
+       
 
         try {
-           
+
             PesquisarDados busca = dao.findEstabelecimento(pesquisa);
             request.setAttribute("busca", busca);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
@@ -51,18 +61,48 @@ public class PesquisarSalvarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
             dispatcher.forward(request, response);
         }
-             String emp = request.getParameter("id");
-         HttpSession sessao = request.getSession();
-         Cad_Usuario user = (Cad_Usuario) sessao.getAttribute("user");
-         String use = user.getCpf();
-            System.out.println(use);
-            System.out.println(emp);
-         
+
+        String emp = request.getParameter("id_Emp");
+        HttpSession sessao = request.getSession();
+        Cad_Usuario user = (Cad_Usuario) sessao.getAttribute("user");
         
-          
-            
- 
-      
+        boolean idempresa = emp !=null;
+        boolean validaUser  =  user != null;
+        
+        boolean camposValidos = idempresa && validaUser;
+        if(!camposValidos){
+            if(!idempresa){
+                request.setAttribute("erroEmp", "codigo da empresa não encontado");
+            }
+            if(!validaUser){
+                request.setAttribute("erroUser", "Usuário não encontrado");
+            }
+                
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
+            dispatcher.forward(request, response);
+        }
+
+        if (emp != null) {
+
+            String userCpf = user.getCpf();
+            try {
+
+                int userId = daoUser.findByCPF(userCpf);
+                String codigo = daoCod.findCodigo(Integer.parseInt(emp));
+
+                dados.setCodigo(codigo);
+                dados.setIdUsuario(userId);
+
+                daoCod.addCodigoUsuario(dados);
+
+            } catch (SQLException e) {
+                System.out.println(e);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
+                dispatcher.forward(request, response);
+            }
+
+        }
+
     }
 
 }

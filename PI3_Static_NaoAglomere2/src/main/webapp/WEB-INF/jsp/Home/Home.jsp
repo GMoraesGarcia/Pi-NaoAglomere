@@ -21,51 +21,20 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <style>
   /* Make the image fully responsive */
-  .carousel-inner img {
-    width: 100%;
-    height: 100%;
-  }
+ 
   </style>
     </head>
     <body>
         <header class="header">
             <c:import url="../header.jsp"/> 
         </header>
-        <div class="containerw">       
+        <div class="containerw ">       
             <h1>Não Aglomere</h1>
-            <div id="demo" class="carousel slide" data-ride="carousel">
-
-                <!-- Indicators -->
-                <ul class="carousel-indicators">
-                    <li data-target="#demo" data-slide-to="0" class="active"></li>
-                    <li data-target="#demo" data-slide-to="1"></li>
-                    <li data-target="#demo" data-slide-to="2"></li>
-                </ul>
-
-                <!-- The slideshow -->
-                <section class="carousel-inner img">
-                    <div class="carousel-item active">
-                        <figure>
-                            <img src="imagens/nova.png" alt="img01" width="1100px" height="500px">
-                        </figure>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imagens/img02.jpg" alt="Chicago" width="1100px" height="500px">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imagens/prevencao-corona.jpg" alt="New York" width="1100px" height="500px">
-                    </div>
-                </section>
-
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
+            <div >
+            <iframe class="col-lg-12" width="560" height="450" src="https://www.youtube.com/embed/LwUjglzIUhc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-
+            
+            <p><a href="${pageContext.request.contextPath}/salvar-usuario">Cadastre-se </a> ou se já é cadastrado faça  <a href="${pageContext.request.contextPath}/login">Login</a> para realizar agendamentos ou ir a algum estabelecimento, sem aglomerar #FICAEMCASA</p>
 
         </div>
         <footer class="footer">

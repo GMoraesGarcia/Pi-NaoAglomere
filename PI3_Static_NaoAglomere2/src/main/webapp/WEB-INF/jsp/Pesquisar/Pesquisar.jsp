@@ -96,9 +96,10 @@
                                         <c:if test="${interesse.getAgendamento() == 'Não'}">
                                             <c:choose>
                                                 <c:when test="${sessionScope.user != null}">
-                                                    <form method="post" action="pesquisar-Salvar">
+                                                    <form method="post" action="pesquisar-Salvar" >
                                                         <input name="id_Emp" type="hidden" value="${interesse.getEmpresa_Id()}">
                                                         <button class="btn btn-info" type="submit"  >Gerar Código</button>
+                                                       
                                                     </form>
                                                 </c:when>                                                
                                                 <c:otherwise>
