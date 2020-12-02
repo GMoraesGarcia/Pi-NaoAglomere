@@ -26,7 +26,6 @@ public class Cad_Empresa_dados {
     }
 
     public Cad_Empresa_dados() {
-
     }
 
     private int empresa_id;
