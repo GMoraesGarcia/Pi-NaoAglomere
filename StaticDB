@@ -124,3 +124,15 @@ inner join Codigos_Gerados as cg on cp.codigo = cg.codigo
 where cp.data_gera = current_date() and cg.empresa_id = cod_emp
 group by cg.empresa_id ;
 end $$
+
+
+DELIMITER $$
+create procedure sp_codigosUsuario(cpf_usuario varchar(11))
+begin
+select emp.nome_empresa,cuser.codigo from CodigosPorUsuario as cuser
+inner join Codigos_Gerados as cg on cuser.codigo = cg.codigo
+inner join empresa as emp on cg.empresa_id = emp.id_empresa
+inner join usuario as userr on cuser.usuario_id = userr.id
+where userr.cpf = cpf_usuario and cg.data_geracao = current_date()
+group by emp.nome_empresa;
+end $$
