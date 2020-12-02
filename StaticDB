@@ -63,10 +63,11 @@ FOREIGN KEY (empresa_id ) REFERENCES Empresa (ID_empresa)
 );
 
 CREATE TABLE CodigosPorUsuario(
-id int,
+id int auto_increment,
 codigo varchar(20),
 usuario_id int,
 data_gera DATE NOT NULL,
+horario Time not null,
 PRIMARY KEY (id),
 FOREIGN KEY (usuario_id) REFERENCES usuario (id),
 FOREIGN KEY (codigo) REFERENCES Codigos_Gerados(codigo)
@@ -106,3 +107,20 @@ where data_agend = dataHj and empresa_id = empresa;
 end $$
 
 call Sp_Qtd_Agend (CURRENT_DATE(), 2);
+
+DELIMITER $$
+CREATE PROCEDURE SP_qtd (horario time, id_emp int)
+begin
+select  count(*)as qtd  from CodigosPorUsuario  as cp
+inner join Codigos_Gerados as cg on cp.codigo = cg.codigo
+where cp.data_gera = current_date() and cp.horario >= horario and cg.empresa_id = id_emp;
+end $$
+
+DELIMITER $$
+create procedure sp_geraqtdPessoas (cod_emp int )
+begin
+select cp.horario from CodigosPorUsuario  as cp
+inner join Codigos_Gerados as cg on cp.codigo = cg.codigo
+where cp.data_gera = current_date() and cg.empresa_id = cod_emp
+group by cg.empresa_id ;
+end $$
