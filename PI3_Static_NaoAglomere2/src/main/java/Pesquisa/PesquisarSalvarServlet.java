@@ -39,7 +39,7 @@ public class PesquisarSalvarServlet extends HttpServlet {
         PesquisaDao dao = new PesquisaDao();
 
         try {
-           
+
             PesquisarDados busca = dao.findEstabelecimento(pesquisa);
             request.setAttribute("busca", busca);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
@@ -51,18 +51,13 @@ public class PesquisarSalvarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
             dispatcher.forward(request, response);
         }
-             String emp = request.getParameter("id");
-         HttpSession sessao = request.getSession();
-         Cad_Usuario user = (Cad_Usuario) sessao.getAttribute("user");
-         String use = user.getCpf();
-            System.out.println(use);
-            System.out.println(emp);
-         
-        
-          
-            
- 
-      
+        String emp = request.getParameter("id");
+        HttpSession sessao = request.getSession();
+        Cad_Usuario user = (Cad_Usuario) sessao.getAttribute("user");
+        String use = user.getCpf();
+        System.out.println(use);
+        System.out.println(emp);
+
     }
 
 }

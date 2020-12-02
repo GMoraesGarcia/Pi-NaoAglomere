@@ -22,6 +22,9 @@
         <header class="header">
             <c:import url="../header.jsp"/>
         </header>
+        
+<!-- inicio do form para usuarios-->
+
         <c:if test="${login.getTipo_cadastro() == 'usuário'}">
             <h1>Bem Vindo(a)! <c:out value="${user.getNome()}"/></h1>
             <div class="containerw" >
@@ -65,7 +68,7 @@
 
 
 
-                <a href="${pageContext.request.contextPath}/logout">Logout</a>
+                <a class="btn btn-info" href="${pageContext.request.contextPath}/logout">Logout</a>
 
             </div>
         </c:if>
@@ -74,6 +77,7 @@
             <span class="erro"><c:out value="${Erro}"/></span>
         </c:if>
 
+<!--inicio do form para empresas-->
 
         <c:if test="${login.getTipo_cadastro() == 'empresa' || empresa.getNome_empresa() != null}">
             <h1>Bem Vindo(a)! <c:out value="${empresa.getNome_empresa()}"/></h1>
@@ -170,7 +174,9 @@
                                     </c:when>
                                     <c:when test="${empresa.getFoto() != null}">
                                         <label id="imagem">Foto: </label>
-                                        <img src="${empresa.getFoto()}">
+                                        <div class="imagem-est" >
+                                            <img src="${empresa.getFoto()}" width="300" height="200">
+                                        </div>                                        
                                     </c:when>
                                 </c:choose>
                             </div>
@@ -179,15 +185,15 @@
                 </form>
                 <c:choose>
                     <c:when test="${empresa.getHorariosDisponiveis() != null }">               
-                        <ul>
-                            <li><p>horarios: <c:out value="${empresa.getHorariosDisponiveis()}" /></p></li>
+                        <ul class="horarios">
+                            <li><p>Horarios: disponiveis<c:out value="${empresa.getHorariosDisponiveis()}" /></p></li>
                         </ul>
                     </c:when>
                     <c:otherwise>
                         <p> Não tem nenhum interesse informado</p>
                     </c:otherwise>
                 </c:choose>        
-                <a href="${pageContext.request.contextPath}/logout">Logout</a>
+                <a class="btn btn-info" href="${pageContext.request.contextPath}/logout">Logout</a>
 
             </div>
 
