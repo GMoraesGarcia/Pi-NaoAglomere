@@ -48,6 +48,7 @@ public class PesquisaDao {
                 empresa.setAgendamento(rs.getString("AGENDAMENTO"));
                 empresa.setEmpresa_id(rs.getInt("ID_empresa"));
                 empresa.setFoto(rs.getString("FOTO"));
+                
                 //gera a quantidade de pessoas agendadas a partir da pesquisa
                 int qtdAgend = getQtdAgendamentos(String.valueOf(empresa.getEmpresa_Id()));
                 empresa.setQtdAgendamentos(qtdAgend);
@@ -83,7 +84,7 @@ public class PesquisaDao {
     }
 
     public int getQtdAgendamentos(String IdEmpresa) throws SQLException {
-        String sql = "call Sp_Qtd_Agend (current_date(),?)";
+        String sql = "call Sp_Qtd_Agend (CURRENT_DATE,?)";
 
         try (Connection conn = Connection_db2.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
