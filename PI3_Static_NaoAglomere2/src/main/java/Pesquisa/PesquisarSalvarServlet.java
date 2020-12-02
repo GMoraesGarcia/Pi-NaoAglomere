@@ -51,6 +51,8 @@ public class PesquisarSalvarServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
             dispatcher.forward(request, response);
         }
+
+        //excluir
         String emp = request.getParameter("id");
         HttpSession sessao = request.getSession();
         Cad_Usuario user = (Cad_Usuario) sessao.getAttribute("user");

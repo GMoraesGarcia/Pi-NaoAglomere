@@ -12,21 +12,28 @@ import java.time.LocalDate;
  * @author Gabriel
  */
 public class Cad_Usuario {
-    
-   private int id; 
-   private String nome;
-   private String cpf;
-   private String email;
-   private LocalDate dataNascimento;
-   private String telefone;
-   private String senha;
-   private String confirmarSenha;
+
+    private int id;
+    private String nome;
+    private String cpf;
+    private String email;
+    private LocalDate dataNascimento;
+    private String telefone;
+    private String senha;
+    private String confirmarSenha;
+
+    public Cad_Usuario(String nome, String cpf, String email, LocalDate dataNascimento, String telefone, String senha, String confirmarSenha) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.confirmarSenha = confirmarSenha;
+    }
 
     public Cad_Usuario() {
-       
     }
-   
-   
 
     public int getId() {
         return id;
@@ -35,8 +42,6 @@ public class Cad_Usuario {
     public void setId(int id) {
         this.id = id;
     }
-
-
 
     public String getNome() {
         return nome;
@@ -93,8 +98,8 @@ public class Cad_Usuario {
     public void setConfirmarSenha(String confirmarSenha) {
         this.confirmarSenha = confirmarSenha;
     }
-    
-    public  boolean validaCPF(char ArrayCPF[]) {
+
+    public boolean validaCPF(char ArrayCPF[]) {
         String digito01 = String.valueOf(ArrayCPF[9]);
         String digito02 = String.valueOf(ArrayCPF[10]);
         int num = 10, r = 0, i = 0;
@@ -135,7 +140,5 @@ public class Cad_Usuario {
         return false;
 
     }
-   
-   
-    
+
 }

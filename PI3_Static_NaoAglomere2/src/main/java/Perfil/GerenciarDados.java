@@ -14,17 +14,17 @@ import java.util.ArrayList;
  * @author leona
  */
 public class GerenciarDados {
-    
+
     private ArrayList<GerenciarDados> agendamentos;
-    
+
     private String numAgendamento;
-            
+
     private String nomeUser;
-    
+
     private String nomeEmpresa;
-    
+
     private String data;
-    
+
     private String horario;
 
     public ArrayList<GerenciarDados> getAgendamentos() {
@@ -67,8 +67,6 @@ public class GerenciarDados {
         this.data = data;
     }
 
-
-
     public String getHorario() {
         return horario;
     }
@@ -81,15 +79,14 @@ public class GerenciarDados {
     public String toString() {
         return "GerenciarDados{" + "agendamentos=" + agendamentos + ", nomeUser=" + nomeUser + ", nomeEmpresa=" + nomeEmpresa + ", data=" + data + ", horario=" + horario + '}';
     }
-    
-    public String getDataFormatada(String data){
+
+    public String getDataFormatada(String data) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        
+
         LocalDate data1 = LocalDate.parse(data);
         String formatado = data1.format(formatter);
-        
+
         return formatado;
     }
-    
-}
 
+}

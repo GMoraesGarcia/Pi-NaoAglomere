@@ -26,7 +26,7 @@ public class Perfil_usuario_Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
-        
+
         sessao.getAttribute("user");
         sessao.getAttribute("dados");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");

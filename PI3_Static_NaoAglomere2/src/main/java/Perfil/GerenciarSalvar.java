@@ -44,7 +44,7 @@ public class GerenciarSalvar extends HttpServlet {
             GerenciarDAO dao = new GerenciarDAO();
 
             try {
-                
+
                 ArrayList agendamentos = dao.User(usuario.getCpf());
                 request.setAttribute("agendamentos", agendamentos);
                 request.setAttribute("Excluído", "Agendamento cancelado com sucesso!");
@@ -91,7 +91,7 @@ public class GerenciarSalvar extends HttpServlet {
         try {
 
             dao.Delete(num_agendamento);
-            
+
             response.sendRedirect("gerenciar-salvar");
 
         } catch (SQLException ex) {

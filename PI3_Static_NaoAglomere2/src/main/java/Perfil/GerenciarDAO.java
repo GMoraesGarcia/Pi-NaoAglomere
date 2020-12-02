@@ -37,9 +37,9 @@ public class GerenciarDAO {
 
                     GerenciarDados agendamento = new GerenciarDados();
 
-                  String data = (rs.getString("data_agend"));
-                  String dataFormat = agendamento.getDataFormatada(data);
-                   
+                    String data = (rs.getString("data_agend"));
+                    String dataFormat = agendamento.getDataFormatada(data);
+
                     agendamento.setNumAgendamento(rs.getString("num_agendamento"));
                     agendamento.setNomeUser(rs.getString("nome"));
                     agendamento.setNomeEmpresa(rs.getString("nome_empresa"));
@@ -101,13 +101,13 @@ public class GerenciarDAO {
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, numAgendamento);
-            
+
             stmt.executeUpdate();
-            
+
         } catch (SQLException e) {
-            
+
             System.out.println(e);
         }
     }
-    
+
 }

@@ -52,8 +52,8 @@ public class PesquisaDao {
                 empresas.add(empresa);
                 busca.setPesquisa(pesquisa);
                 //gera e adiciona o codigo de cada empresa que não precisa realizar agendamento 
-                if (empresa.getAgendamento().equalsIgnoreCase("não") && daoCod.isEmpty(empresa.getEmpresa_Id()) || 
-                            daoCod.getAtualizacaoCodigo(empresa.getEmpresa_Id())) {
+                if (empresa.getAgendamento().equalsIgnoreCase("não") && daoCod.isEmpty(empresa.getEmpresa_Id())
+                        || daoCod.getAtualizacaoCodigo(empresa.getEmpresa_Id())) {
                     dadosCod.setCodigo(busca.gerarCodigo(empresa.getNome_empresa()));
                     dadosCod.setId(empresa.getEmpresa_Id());
 

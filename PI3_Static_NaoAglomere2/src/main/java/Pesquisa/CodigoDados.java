@@ -15,14 +15,15 @@ import java.util.Date;
  * @author Gabriel
  */
 public class CodigoDados {
+
     private String codigo;
-    
+
     private int idEmpresa;
-    
-    private Date data_geracao; 
-    
+
+    private Date data_geracao;
+
     private Time horario_Geracao;
-    
+
     private int idUsuario;
 
     public String getCodigo() {
@@ -64,8 +65,5 @@ public class CodigoDados {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-    
-    
-    
-    
+
 }

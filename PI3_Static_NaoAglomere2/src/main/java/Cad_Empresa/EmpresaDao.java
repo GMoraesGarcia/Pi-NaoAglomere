@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EmpresaDao {
 
@@ -70,7 +68,6 @@ public class EmpresaDao {
                 stmt.setString(8, empresaDados.getRegras());
                 stmt.setString(9, empresaDados.getDescricao());
                 stmt.setString(10, empresaDados.getAgendamento());
-                //stmt.setString(11, empresaDados.getFoto());
                 stmt.setString(11, empresaDados.getCnpj());
 
                 stmt.executeUpdate();

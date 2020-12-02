@@ -95,7 +95,7 @@ public class LoginServlet extends HttpServlet {
                     //id,nome,cnpj,email,descricao,telefone,qtd_max,rua,bairro,numero,regras,agendamento
                     Cad_Empresa_dados empresa = dao.findEmpresa(emailStr, senhaStr);
                     if (dao.findHorarios(empresa.getEmpresa_Id()).size() > 0) {
-                        empresa.setHorariosDisponiveis(dao.findHorarios(empresa.getEmpresa_Id()));                        
+                        empresa.setHorariosDisponiveis(dao.findHorarios(empresa.getEmpresa_Id()));
                     }
                     HttpSession sessao = request.getSession();
                     sessao.setAttribute("empresa", empresa);

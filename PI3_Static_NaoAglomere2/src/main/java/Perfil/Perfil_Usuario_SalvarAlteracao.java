@@ -73,8 +73,6 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
         String nome_empresa = request.getParameter("nome_empresa");
         String cnpj = request.getParameter("CNPJ");
         String email = request.getParameter("email");
-        //String senha = request.getParameter("senha");
-        //String confirmasenha = request.getParameter("confirmasenha");
         String telefone = request.getParameter("telefone");
         String descricao = request.getParameter("descricao");
         String rua = request.getParameter("rua");
@@ -111,11 +109,6 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
                 emailValido = emailValido && emailMatcher.matches();
             }
 
-            //validação senha
-            //boolean senhaValida = (senha != null && senha.trim().length() >= 8);
-            //Senhas Iguais
-            //boolean ConfirmaSenhaValida = (confirmasenha != null && confirmasenha.equals(senha));
-            
             //Validação CNPJ
             boolean validaCNPJ = cnpj != null && cnpj.trim().length() > 0;
 
@@ -157,8 +150,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             boolean agendamentoValido = agendamento != null && agendamento.trim().length() > 0;
 
             boolean camposValidos = nomeValido && emailValido && validaCNPJ && telefoneValido && ruaValida
-                    && numeroValido && bairroValido && descricaoValida && qtdValida && regrasValidas /*&& senhaValida
-                && ConfirmaSenhaValida*/ && agendamentoValido;
+                    && numeroValido && bairroValido && descricaoValida && qtdValida && regrasValidas && agendamentoValido;
 
             if (!camposValidos) {
 
@@ -171,12 +163,6 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
                 if (!validaCNPJ) {
                     request.setAttribute("cnpjErro", "CPNJ inválido ou deve ser preenchido");
                 }
-                /*if (!senhaValida) {
-                    request.setAttribute("senhaErro", "Senha inválida ou deve ser preenchida");
-                }
-                if (!ConfirmaSenhaValida) {
-                    request.setAttribute("confirmaErro", "Senhas devem ser iguais");
-                }*/
                 if (!telefoneValido) {
                     request.setAttribute("telefoneErro", "Telefone inválido ou deve ser preenchido");
                 }
@@ -213,7 +199,6 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
                 request.setAttribute("qtd_pessoas", qtd_pessoasStr);
                 request.setAttribute("regras", regras);
                 request.setAttribute("agendamento", agendamento);
-                request.setAttribute("Erro", "Erro no banco de dados2");
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
                 dispatcher.forward(request, response);
@@ -226,7 +211,6 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             empresa_dados.setNome_empresa(nome_empresa);
             empresa_dados.setCnpj(cnpj);
             empresa_dados.setEmail(email);
-            //empresa_dados.setSenha(senha);
             empresa_dados.setTelefone(telefone);
             empresa_dados.setDescricao(descricao);
             empresa_dados.setRua(rua);
@@ -241,7 +225,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
                 }
             }
             EmpresaDao dao = new EmpresaDao();
-            
+
             try {
 
                 dao.update(empresa_dados);
@@ -258,10 +242,10 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
                 //Pegar os dados atualizados do banco da empresa
                 Cad_Empresa_dados dadosEmpresa = dao.findEmpresa(empresa_dados.getCnpj());
-                
+
                 HttpSession sessao = request.getSession();
                 sessao.setAttribute("empresa", dadosEmpresa);
-                
+
                 response.sendRedirect("perfil-alterado");
 
             } catch (SQLException e) {
@@ -346,7 +330,7 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
 
             } catch (SQLException e) {
                 request.setAttribute("Erro", "Erro no banco de dados");
-
+                System.out.println(e);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
                 dispatcher.forward(request, response);
             }

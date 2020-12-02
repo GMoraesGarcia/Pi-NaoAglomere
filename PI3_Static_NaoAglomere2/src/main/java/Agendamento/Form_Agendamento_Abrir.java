@@ -38,7 +38,7 @@ public class Form_Agendamento_Abrir extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(Form_Agendamento_Abrir.class.getName()).log(Level.SEVERE, null, ex);
         }
-        empresa.setEmpresa_id(Integer.parseInt(request.getParameter("id")));         
+        empresa.setEmpresa_id(Integer.parseInt(request.getParameter("id")));
         request.setAttribute("empresa", empresa);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Agendamento/Form_Agendamento.jsp");
 
