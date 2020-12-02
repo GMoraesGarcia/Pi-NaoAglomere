@@ -42,7 +42,7 @@ public class Cad_Usuario_Salvar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-Cad_Usuario novoUsuario = new Cad_Usuario();
+        Cad_Usuario novoUsuario = new Cad_Usuario();
         String nomeStr = request.getParameter("nome");
         String cpfStr = request.getParameter("cpf");
         String emailStr = request.getParameter("email");
@@ -73,7 +73,7 @@ Cad_Usuario novoUsuario = new Cad_Usuario();
 
         //Validação do Telefone
         boolean telefoneValido = telefoneStr != null && telefoneStr.trim().length() > 0;
-      if (telefoneValido) {
+        if (telefoneValido) {
             Pattern telefonePattern = Pattern.compile("(\\([0-9]{2}\\))\\s([9]{1})?([0-9]{4})-([0-9]{4})");
             Matcher telefoneMatcher = telefonePattern.matcher(telefoneStr);
             telefoneValido = telefoneValido && telefoneMatcher.matches();
@@ -123,9 +123,7 @@ Cad_Usuario novoUsuario = new Cad_Usuario();
             dispatcher.forward(request, response);
             return;
         }
-
         
-
         novoUsuario.setNome(nomeStr);
         novoUsuario.setCpf(cpfStr);
         novoUsuario.setEmail(emailStr);
@@ -149,7 +147,5 @@ Cad_Usuario novoUsuario = new Cad_Usuario();
         }
 
     }
-
-    
 
 }

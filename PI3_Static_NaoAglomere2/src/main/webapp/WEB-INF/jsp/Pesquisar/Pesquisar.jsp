@@ -70,33 +70,35 @@
                                                 <img class="imagem-est" src="C:/PI-FOTOS/avatar-padrao.jpg"width="300" height="200">                                                
                                             </c:otherwise>
                                         </c:choose>
+
                                         <li><p><b>Nome</b>: <c:out value="${interesse.getNome_empresa()}" /></p></li>
                                         <li><p><b>Email:</b> <c:out value="${interesse.getEmail()}" /></p></li>
                                         <li><p><b>Descrição:</b> <c:out value="${interesse.getDescricao()}" /></p></li>
                                         <li><p><b>Telefone:</b> <c:out value="${interesse.getTelefone()}" /></p></li>
                                         <li><p><b>Máximo de pessoas:</b> <c:out value="${interesse.getQtd_max()}" /></p></li>
                                         <li><p><b>Pessoas do Local:</b> <c:out value="${interesse.getQtdAgendamentos()}" /></p></li>
-
-
-
                                         <li><p><b>Rua: </b><c:out value="${interesse.getRua()}" /></p></li>
                                         <li><p><b>Bairro:</b> <c:out value="${interesse.getBairro()}" /></p></li>
                                         <li><p><b>Numero: </b><c:out value="${interesse.getNumero_rua()}" /></p></li>
                                         <li><p><b>Regras: </b><c:out value="${interesse.getRegras()}" /></p></li>
 
-
-
                                         <c:if test="${interesse.getAgendamento() == 'Sim'}">
-
-                                            <form action="${pageContext.request.contextPath}/agendamento" method="get">
-                                                <input type="hidden"  name="id" value="${interesse.getEmpresa_Id()}" />
-                                                <button id="botoes" class="btn btn-info" type="submit"  >Agendar Horário</button>
-                                            </form>
-                                        </c:if> 
-                                        <c:if test="${interesse.getAgendamento() == 'Não'}">
                                             <c:choose>
                                                 <c:when test="${sessionScope.user != null}">
-                                                    <form method="post" action="pesquisar-Salvar" >
+                                                    <form action="${pageContext.request.contextPath}/agendamento" method="get">
+                                                        <input type="hidden"  name="id" value="${interesse.getEmpresa_Id()}" />
+                                                        <button id="botoes" class="btn btn-info" type="submit"  >Agendar Horário</button>
+                                                    </form>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li><a class="btn btn-info"  href="${pageContext.request.contextPath}/login" >Fazer Login para Agendar horário</a></li>   
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:if> 
+                                            <c:if test="${interesse.getAgendamento() == 'Não'}">
+                                                <c:choose>
+                                                    <c:when test="${sessionScope.user != null}">
+                                                    <form method="post" action="pesquisar-Salvar">
                                                         <input name="id_Emp" type="hidden" value="${interesse.getEmpresa_Id()}">
                                                         <button class="btn btn-info" type="submit"  >Gerar Código</button>
                                                        
@@ -108,8 +110,7 @@
                                                 </c:choose>
                                             </c:if>                                                        
                                         <p id="espaço-busca">.</p>
-                                    </c:forEach>                                        
-
+                                    </c:forEach>
 
                                 </c:when>
                                 <c:otherwise>

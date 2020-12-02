@@ -33,28 +33,27 @@ public class PesquisarDados {
         this.pesquisa = pesquisa;
     }
 
-    //Inseri uma empresa na pesquisa
+    //Insere uma empresa na pesquisa
     public void addEstabelecimento(Cad_Empresa_dados c) {
         estabelecimentos.add(c);
     }
-    
-     public static String randomDigit(){
-        int num = (int)(Math.random()*10);
+
+    public static String randomDigit() {
+        int num = (int) (Math.random() * 10);
         return String.valueOf(num);
-     }
-    
-    public String gerarCodigo(String nomeEstabelecimento){
-       StringBuilder str = new StringBuilder();
-        char[] codigo =  new char[4];
-              for(int i =0;i<4;i++){
-                str.append(codigo[i] = nomeEstabelecimento.charAt(i));
-              }
-              for(int i =0;i<4;i++)
-                  str.append(randomDigit());
- 
-              return str.toString();
     }
 
+    public String gerarCodigo(String nomeEstabelecimento) {
+        StringBuilder str = new StringBuilder();
+        char[] codigo = new char[4];
+        for (int i = 0; i < 4; i++) {
+            str.append(codigo[i] = nomeEstabelecimento.charAt(i));
+        }
+        for (int i = 0; i < 4; i++) {
+            str.append(randomDigit());
+        }
 
+        return str.toString();
+    }
 
 }

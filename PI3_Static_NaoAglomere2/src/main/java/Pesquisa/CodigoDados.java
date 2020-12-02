@@ -18,8 +18,9 @@ import java.util.Date;
  * @author Gabriel
  */
 public class CodigoDados {
+
     private String codigo;
-    
+
     private int idEmpresa;
     
     private Date data_geracao; 

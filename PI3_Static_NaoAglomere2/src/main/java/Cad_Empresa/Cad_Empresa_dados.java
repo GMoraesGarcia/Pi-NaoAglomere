@@ -1,16 +1,33 @@
 package Cad_Empresa;
 
-import java.io.InputStream;
-import java.nio.file.Path;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author leona
  */
 public class Cad_Empresa_dados {
+
+    public Cad_Empresa_dados(int empresa_id, String nome_empresa, String cnpj, String email, String descricao, String telefone,
+            String senha, int qtd_max, String rua, String bairro, int numero_rua, String regras, String agendamento) {
+        this.empresa_id = empresa_id;
+        this.nome_empresa = nome_empresa;
+        this.cnpj = cnpj;
+        this.email = email;
+        this.descricao = descricao;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.qtd_max = qtd_max;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.numero_rua = numero_rua;
+        this.regras = regras;
+        this.agendamento = agendamento;
+    }
+
+    public Cad_Empresa_dados() {
+
+    }
 
     private int empresa_id;
 
@@ -38,7 +55,8 @@ public class Cad_Empresa_dados {
 
     private String agendamento;
 
-    private ArrayList<String> horariosDisponiveis = new ArrayList<>();;
+    private ArrayList<String> horariosDisponiveis = new ArrayList<>();
+    ;
 
     private String foto;
 

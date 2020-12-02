@@ -21,22 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Cad_Usuario_Serv", urlPatterns = {"/cad_usuario"})
 public class Cad_Usuario_Serv extends HttpServlet {
 
- 
-    
-
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Cad_Usuario.jsp");
-       dispatcher.forward(request, response);
-        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Cad_Usuario/Form_Cad_Usuario.jsp");
+        dispatcher.forward(request, response);
+
     }
-
-    
-  
-
-  
-
 
 }
