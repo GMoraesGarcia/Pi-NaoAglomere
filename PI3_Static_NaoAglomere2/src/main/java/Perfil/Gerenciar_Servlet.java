@@ -42,11 +42,13 @@ public class Gerenciar_Servlet extends HttpServlet {
         if (usuario != null) {
 
             GerenciarDAO dao = new GerenciarDAO();
-
+            
             try {
-
+                
+                ArrayList codigos = dao.Codigos(usuario.getCpf());
                 ArrayList agendamentos = dao.User(usuario.getCpf());
                 request.setAttribute("agendamentos", agendamentos);
+                request.setAttribute("codigos", codigos);
 
             } catch (SQLException ex) {
                 System.out.println(ex);

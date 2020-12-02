@@ -38,15 +38,11 @@ public class PesquisarSalvarServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pesquisa = request.getParameter("pesquisa");
-        
-       
 
         PesquisaDao dao = new PesquisaDao();
         UsuarioDAO daoUser = new UsuarioDAO();
         CodigoDAO daoCod = new CodigoDAO();
         CodigoDados dados = new CodigoDados();
-        
-       
 
         try {
 
@@ -65,20 +61,20 @@ public class PesquisarSalvarServlet extends HttpServlet {
         String emp = request.getParameter("id_Emp");
         HttpSession sessao = request.getSession();
         Cad_Usuario user = (Cad_Usuario) sessao.getAttribute("user");
-        
-        boolean idempresa = emp !=null;
-        boolean validaUser  =  user != null;
-        
+
+        boolean idempresa = emp != null;
+        boolean validaUser = user != null;
+
         boolean camposValidos = idempresa && validaUser;
-        if(!camposValidos){
-            if(!idempresa){
+        if (!camposValidos) {
+            if (!idempresa) {
                 request.setAttribute("erroEmp", "codigo da empresa não encontado");
             }
-            if(!validaUser){
+            if (!validaUser) {
                 request.setAttribute("erroUser", "Usuário não encontrado");
             }
-                
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Pesquisar/Pesquisar.jsp");
             dispatcher.forward(request, response);
         }
 

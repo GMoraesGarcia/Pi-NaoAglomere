@@ -28,9 +28,9 @@ public class Connection_db2 {
         }
         
         // 2) Abrir a conexão
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/staticdb?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC",
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/staticdb?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC",
                 "root", // Usuário de conexão no BD
-                ""); // Senha
+                "kuruma"); // Senha
         return conn ;
     }
 

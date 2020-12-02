@@ -110,9 +110,11 @@ public class GerenciarDAO {
             System.out.println(e);
         }
     }
-    public ArrayList<Cad_Empresa_dados> Codigos(String cpf) throws SQLException{
-        ArrayList<Cad_Empresa_dados> codigosGerados = new ArrayList<>();
+
+    public ArrayList<Cad_Empresa_dados> Codigos(String cpf) throws SQLException {
         
+        ArrayList<Cad_Empresa_dados> codigosGerados = new ArrayList<>();
+
         String sql = "call sp_codigosUsuario(?)";
         try (Connection conn = Connection_db2.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
@@ -123,11 +125,11 @@ public class GerenciarDAO {
 
                 while (rs.next()) {
                     Cad_Empresa_dados dados = new Cad_Empresa_dados();
-                        dados.setNome_empresa(rs.getString("nome_empresa"));
-                        dados.setCodigo(rs.getString("codigo"));
-                    
+                    dados.setNome_empresa(rs.getString("nome_empresa"));
+                    dados.setCodigo(rs.getString("codigo"));
+
                     codigosGerados.add(dados);
-                    
+
                 }
             } catch (SQLException e) {
                 conn.rollback();
