@@ -83,7 +83,7 @@ public class PesquisaDao {
     }
 
     public int getQtdAgendamentos(String IdEmpresa) throws SQLException {
-        String sql = "call Sp_Qtd_Agend (sysdate(),?)";
+        String sql = "call Sp_Qtd_Agend (current_date(),?)";
 
         try (Connection conn = Connection_db2.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
