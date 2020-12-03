@@ -6,7 +6,7 @@
 package Cad_Usuario;
 
 import java.sql.Connection;
-import ConexãoBD.Connection_db2;
+import ConexãoBD.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
