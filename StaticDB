@@ -136,3 +136,19 @@ inner join usuario as userr on cuser.usuario_id = userr.id
 where userr.cpf = cpf_usuario and cg.data_geracao = current_date()
 group by emp.nome_empresa;
 end $$
+
+delimiter $$
+CREATE TRIGGER ocupar_horarios
+AFTER INSERT ON Agendamento
+FOR EACH ROW
+BEGIN
+update HorariosDisponiveis SET Status_horarios = 'ocupado' WHERE ID_empresa = new.empresa_id and horarios_disponiveis = new.horario;
+END $$
+
+delimiter $$
+CREATE TRIGGER desocupar_horarios
+Before Delete ON Agendamento
+FOR EACH ROW
+BEGIN
+update HorariosDisponiveis SET Status_horarios = 'Livre' WHERE ID_empresa = old.empresa_id and horarios_disponiveis = old.horario;
+END $$
