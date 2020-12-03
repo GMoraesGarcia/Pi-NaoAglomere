@@ -72,7 +72,7 @@
                         <table class="table ">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th></th>
+                                  
                                     <th>Estabelecimento</th>
                                     <th>Código</th>
                                 </tr>

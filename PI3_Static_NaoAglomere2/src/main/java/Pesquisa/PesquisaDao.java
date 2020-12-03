@@ -58,18 +58,18 @@ public class PesquisaDao {
 
                     daoCod.inserirInfoCodigo(dadosCod);
                 }
-
-                CodigoDados dadoscod = daoCod.getPrimeirohorario(empresa.getEmpresa_Id());
+                
+                CodigoDados dadoscod = daoCod.getPrimeirohorario(empresa.getEmpresa_Id()); // faz a pesquisa do primeiro horário em que foi realizado o agendamento
                 if (dadoscod.getHorario_Geracao() != null) {
-                    att = dadoscod.getHorario_Geracao();
+                    att = dadoscod.getHorario_Geracao();// armazena esse horário em uma variavel
                     
-                    if (dadoscod.getTempoLimite(att)) {
-                        att = LocalTime.now();
-                        dadoscod.setHorario_Geracao(LocalTime.now());
+                    if (dadoscod.getTempoLimite(att)) { // faz a verificação se o horário que foi passado ja se passou uma hora
+                        att = LocalTime.now();// se já tives passado uma hora esse novo horário é armazenado
+                        dadoscod.setHorario_Geracao(LocalTime.now());// e setado no objeto
                     }
 
-                    CodigoDados qtd = daoCod.getQtdPessoas(att, empresa.getEmpresa_Id());
-                    empresa.setQtdAgendamentos(qtd.getQuantidade());
+                    CodigoDados qtd = daoCod.getQtdPessoas(att, empresa.getEmpresa_Id());// é feita uma pesquisa no banco para gerar a quantidade de pessoa a partir do horário passado
+                    empresa.setQtdAgendamentos(qtd.getQuantidade());// novo horário é setado no objeto
 
                 }
             }
