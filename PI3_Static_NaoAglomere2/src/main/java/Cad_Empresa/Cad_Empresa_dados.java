@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Cad_Empresa_dados {
 
     public Cad_Empresa_dados(int empresa_id, String nome_empresa, String cnpj, String email, String descricao, String telefone,
-            String senha, int qtd_max, String rua, String bairro, int numero_rua, String regras, String agendamento,String codigo) {
+            String senha, int qtd_max, String rua, String bairro, int numero_rua, String regras, String agendamento, String codigo) {
         this.empresa_id = empresa_id;
         this.nome_empresa = nome_empresa;
         this.cnpj = cnpj;
@@ -55,7 +55,7 @@ public class Cad_Empresa_dados {
     private String regras;
 
     private String agendamento;
-    
+
     private String codigo;
 
     private ArrayList<String> horariosDisponiveis = new ArrayList<>();
@@ -219,6 +219,24 @@ public class Cad_Empresa_dados {
 
         return -1;
 
+    }
+
+    public int getIndiceAglomeração() {
+        double indice = (qtdAgendamentos * 10) / qtd_max;
+        if (indice <= 0) {
+            return 1;//Local Vazio        
+        } else if (indice <= 2) {
+            return 2;//local quase vazio
+        } else if (indice <= 4) {
+            return 3;//local quase na metade da capacidade
+        } else if (indice <= 6) {
+            return 4;//local moderadamente cheio        
+        } else if (indice <= 8) {
+            return 5;//local quase cheio
+        } else if (indice >= 9) {
+            return 6;//local cheio cheio
+        }
+        return 0;
     }
 
 }

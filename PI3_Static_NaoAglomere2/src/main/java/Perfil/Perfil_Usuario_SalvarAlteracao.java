@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Perfil;
 
 import Cad_Empresa.Cad_Empresa_dados;
 import Cad_Empresa.EmpresaDao;
 import Cad_Usuario.Cad_Usuario;
 import Cad_Usuario.UsuarioDAO;
-import Login.LoginDao;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -43,17 +36,14 @@ public class Perfil_Usuario_SalvarAlteracao extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession();
-        //String sucesso = (String) sessao.getAttribute("sucesso");
         Cad_Empresa_dados empresa_dados = (Cad_Empresa_dados) sessao.getAttribute("empresa");
         request.getAttribute("sucesso");
-        //sessao.removeAttribute("empresa");
 
         request.setAttribute("empresa", empresa_dados);
         request.setAttribute("sucesso", "Alterado com sucesso");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Perfil/Perfil_entrada.jsp");
         dispatcher.forward(request, response);
 
-        //HttpSession sessao2 = request.getSession();
         Cad_Usuario novoUsuario = (Cad_Usuario) sessao.getAttribute("novouser");
         sessao.removeAttribute("novouser");
 

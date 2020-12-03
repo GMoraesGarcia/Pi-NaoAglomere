@@ -7,10 +7,7 @@ package Cad_Empresa;
 
 import DataHelper.DataHelper;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.sql.Time;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -78,11 +75,7 @@ public class Cad_HorarioSalvar extends HttpServlet {
         // inicio dos calculos para disponibilzação do array horarios disponiveis
         DataHelper dataAbertura = new DataHelper(horaAb);
         DataHelper dataFechamento = new DataHelper(horaFh);
-        DataHelper dataAtendimento = new DataHelper(horaAt);
-
-        System.out.println("dataAbertura: " + dataAbertura.getHoras() + dataAbertura.getMinutos());
-        System.out.println("dataFechamento: " + dataFechamento.getHoras() + dataFechamento.getMinutos());
-        System.out.println("dataAtendimento: " + dataAtendimento.getHoras() + dataAtendimento.getMinutos());
+        DataHelper dataAtendimento = new DataHelper(horaAt);        
 
         //loop encadeado para ir adicionando horarios no array da empresa desde a abertura até o fechamento
         for (DataHelper temp = dataAbertura; temp.comparar(dataFechamento.getData()) <= 0;

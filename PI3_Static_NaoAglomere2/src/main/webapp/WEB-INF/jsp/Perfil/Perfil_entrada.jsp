@@ -22,8 +22,8 @@
         <header class="header">
             <c:import url="../header.jsp"/>
         </header>
-        
-<!-- inicio do form para usuarios-->
+
+        <!-- inicio do form para usuarios-->
 
         <c:if test="${login.getTipo_cadastro() == 'usuário'}">
             <h1>Bem Vindo(a)! <c:out value="${user.getNome()}"/></h1>
@@ -77,7 +77,7 @@
             <span class="erro"><c:out value="${Erro}"/></span>
         </c:if>
 
-<!--inicio do form para empresas-->
+        <!--inicio do form para empresas-->
 
         <c:if test="${login.getTipo_cadastro() == 'empresa' || empresa.getNome_empresa() != null}">
             <h1>Bem Vindo(a)! <c:out value="${empresa.getNome_empresa()}"/></h1>
@@ -181,18 +181,22 @@
                                 </c:choose>
                             </div>
                         </fieldset>
+                        <c:if test="${empresa.getAgendamento() == 'Sim'}">
+                            <c:choose>
+                                <c:when test="${empresa.getHorariosDisponiveis() != null }">               
+                                    <ul class="horarios">
+                                        <li><p>Horarios: disponiveis<c:out value="${empresa.getHorariosDisponiveis()}" /></p></li>
+                                    </ul>
+                                </c:when>
+                                <c:otherwise>
+                                    <p> Não tem nenhum interesse informado</p>
+                                </c:otherwise>
+                            </c:choose>   
+                        </c:if>
+
                     </div>
                 </form>
-                <c:choose>
-                    <c:when test="${empresa.getHorariosDisponiveis() != null }">               
-                        <ul class="horarios">
-                            <li><p>Horarios: disponiveis<c:out value="${empresa.getHorariosDisponiveis()}" /></p></li>
-                        </ul>
-                    </c:when>
-                    <c:otherwise>
-                        <p> Não tem nenhum interesse informado</p>
-                    </c:otherwise>
-                </c:choose>        
+
                 <a class="btn btn-info" href="${pageContext.request.contextPath}/logout">Logout</a>
 
             </div>

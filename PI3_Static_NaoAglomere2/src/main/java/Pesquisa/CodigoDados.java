@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Pesquisa;
 
-import Cad_Empresa.Cad_Empresa_dados;
-import Cad_Usuario.Cad_Usuario;
-import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -84,7 +75,6 @@ public class CodigoDados {
         Duration duracao = Duration.between(hr1, hr2);
         long horas = duracao.toHours();
 
-        // System.out.println(horas);
         if (horas >= 1) {
             return true;
 

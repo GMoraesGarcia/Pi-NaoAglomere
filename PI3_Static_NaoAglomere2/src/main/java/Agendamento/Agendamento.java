@@ -5,8 +5,6 @@
  */
 package Agendamento;
 
-import Cad_Usuario.Cad_Usuario;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 /**

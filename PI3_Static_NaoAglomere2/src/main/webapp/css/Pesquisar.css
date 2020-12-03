@@ -51,9 +51,27 @@ body{
 li {
     list-style-type: none;  
     display: inline-table;
-   min-width:  200px;
+   min-width:  250px;
    padding: auto;
 }
 .titulo-pesquisa{
     color: #34ce57;
+}
+.Baixo{
+    background-color: green;
+}
+.quaseBaixo{
+    background-color: springgreen;
+}
+.Medio{
+    background-color: greenyellow;
+}
+.Moderado{
+    background-color: yellow;
+}
+.quaseMaximo{
+    background-color: orange;
+}
+.maximo{
+    background-color: red;
 }

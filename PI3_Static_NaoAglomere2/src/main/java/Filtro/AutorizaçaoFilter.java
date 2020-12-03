@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Filtro;
 
 import Login.LoginDados;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -25,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author leona
  */
-@WebFilter(filterName = "AutorizaçaoFilter", urlPatterns = {"/agendamento" , "/Perfil-usuario"})
+@WebFilter(filterName = "AutorizaçaoFilter", urlPatterns = {"/agendamento", "/Perfil-usuario"})
 public class AutorizaçaoFilter implements Filter {
 
     @Override
@@ -41,7 +33,7 @@ public class AutorizaçaoFilter implements Filter {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
             return;
         }
-        
+
         LoginDados usuario = (LoginDados) sessao.getAttribute("login");
 
         if (verificarAcesso(usuario, httpRequest)) {
@@ -69,10 +61,9 @@ public class AutorizaçaoFilter implements Filter {
         if ((paginaAcessada.endsWith("/agendamento") || paginaAcessada.endsWith("/cad-horario-abrir")) && usuario.getTipo_cadastro().equals("usuário")) {
             return true;
         }
-        if(paginaAcessada.endsWith("/Perfil-usuario") && (usuario.getTipo_cadastro().equals("usuário") || usuario.getTipo_cadastro().equals("empresa"))){
+        if (paginaAcessada.endsWith("/Perfil-usuario") && (usuario.getTipo_cadastro().equals("usuário") || usuario.getTipo_cadastro().equals("empresa"))) {
             return true;
         }
-        
 
         return false;
     }

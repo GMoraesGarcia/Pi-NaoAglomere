@@ -34,7 +34,7 @@
             <iframe class="col-lg-12" width="560" height="450" src="https://www.youtube.com/embed/LwUjglzIUhc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             
-            <p><a href="${pageContext.request.contextPath}/salvar-usuario">Cadastre-se </a> ou se já é cadastrado faça  <a href="${pageContext.request.contextPath}/login">Login</a> para realizar agendamentos ou ir a algum estabelecimento, sem aglomerar #FICAEMCASA</p>
+            <p><a href="${pageContext.request.contextPath}/cad_usuario">Cadastre-se </a> ou se já é cadastrado faça  <a href="${pageContext.request.contextPath}/login">Login</a> para realizar agendamentos ou ir a algum estabelecimento, sem aglomerar #FICAEMCASA</p>
 
         </div>
         <footer class="footer">

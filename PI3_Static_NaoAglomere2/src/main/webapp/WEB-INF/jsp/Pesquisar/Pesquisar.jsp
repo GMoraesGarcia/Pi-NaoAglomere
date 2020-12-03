@@ -76,11 +76,37 @@
                                         <li><p><b>Descrição:</b> <c:out value="${interesse.getDescricao()}" /></p></li>
                                         <li><p><b>Telefone:</b> <c:out value="${interesse.getTelefone()}" /></p></li>
                                         <li><p><b>Máximo de pessoas:</b> <c:out value="${interesse.getQtd_max()}" /></p></li>
-                                        <li><p><b>Pessoas do Local:</b> <c:out value="${interesse.getQtdAgendamentos()}" /></p></li>
+                                        <li><p><b>Pessoas do Local:</b> <c:out value="${interesse.getQtdAgendamentos()}" /></p></li>                                        
                                         <li><p><b>Rua: </b><c:out value="${interesse.getRua()}" /></p></li>
                                         <li><p><b>Bairro:</b> <c:out value="${interesse.getBairro()}" /></p></li>
                                         <li><p><b>Numero: </b><c:out value="${interesse.getNumero_rua()}" /></p></li>
                                         <li><p><b>Regras: </b><c:out value="${interesse.getRegras()}" /></p></li>
+                                        <li><p><b>Indice de aglomeração:</b> 
+                                                    <c:choose>
+                                                        <c:when test="${interesse.getIndiceAglomeração() == 1}">
+                                                        <span class="Baixo">Baixo</span>
+                                                    </c:when>
+                                                    <c:when test="${interesse.getIndiceAglomeração() == 2}">
+                                                        <span class="quaseBaixo">quase Baixo</span>
+                                                    </c:when>
+                                                    <c:when test="${interesse.getIndiceAglomeração() == 3}">
+                                                        <span class="Medio">Médio</span>
+                                                    </c:when>
+                                                    <c:when test="${interesse.getIndiceAglomeração() == 4}">
+                                                        <span class="Moderado">Moderado</span>
+                                                    </c:when>
+                                                    <c:when test="${interesse.getIndiceAglomeração() == 5}">
+                                                        <span class="quaseMaximo">Quase no máximo</span>
+                                                    </c:when>
+                                                    <c:when test="${interesse.getIndiceAglomeração() == 6}">
+                                                        <span class="maximo">Máximo</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span>Não determinado</span>
+                                                    </c:otherwise>
+
+                                                </c:choose>
+                                            </p></li>
 
                                         <c:if test="${interesse.getAgendamento() == 'Sim'}">
                                             <c:choose>
@@ -100,8 +126,8 @@
                                                     <c:when test="${sessionScope.user != null}">
                                                     <form method="post" action="pesquisar-Salvar">
                                                         <input name="id_Emp" type="hidden" value="${interesse.getEmpresa_Id()}">
-                                                        <button class="btn btn-info" type="submit"  >Gerar Código</button>
-                                                       
+                                                        <button class="btn btn-info" type="submit" onclick="alert('Código Gerado e disponivel em Gerenciar Agendamentos')">Gerar Código</button>
+
                                                     </form>
                                                 </c:when>                                                
                                                 <c:otherwise>

@@ -1,10 +1,7 @@
 package Pesquisa;
 
 import Cad_Empresa.Cad_Empresa_dados;
-import Cad_Empresa.EmpresaDao;
-import ConexãoBD.ConnectionUtilMySql;
 import ConexãoBD.Connection_db2;
-import Perfil.GerenciarDados;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +28,6 @@ public class PesquisaDao {
 
         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
-            //String idEmp = rs.getString("ID_empresa");
 
             while (rs.next()) {// enquanto tiver empresas adiciona no array
 
@@ -48,7 +44,7 @@ public class PesquisaDao {
                 empresa.setAgendamento(rs.getString("AGENDAMENTO"));
                 empresa.setEmpresa_id(rs.getInt("ID_empresa"));
                 empresa.setFoto(rs.getString("FOTO"));
-                
+
                 //gera a quantidade de pessoas agendadas a partir da pesquisa
                 int qtdAgend = getQtdAgendamentos(String.valueOf(empresa.getEmpresa_Id()));
                 empresa.setQtdAgendamentos(qtdAgend);
@@ -62,20 +58,19 @@ public class PesquisaDao {
 
                     daoCod.inserirInfoCodigo(dadosCod);
                 }
-              
+
                 CodigoDados dadoscod = daoCod.getPrimeirohorario(empresa.getEmpresa_Id());
                 if (dadoscod.getHorario_Geracao() != null) {
                     att = dadoscod.getHorario_Geracao();
-                   // 
+                    
                     if (dadoscod.getTempoLimite(att)) {
                         att = LocalTime.now();
                         dadoscod.setHorario_Geracao(LocalTime.now());
                     }
-                  
+
                     CodigoDados qtd = daoCod.getQtdPessoas(att, empresa.getEmpresa_Id());
                     empresa.setQtdAgendamentos(qtd.getQuantidade());
-                
-                            
+
                 }
             }
             busca.setEstabelecimentos(empresas);//atualiza o array do objeto dados (referente a pesquisa)            
