@@ -1,0 +1,77 @@
+body{
+    color: #333333;    
+}
+
+.sugestões ul li {
+    display: inline; /*reoordena cadas topico da lista horizontalmente*/
+    margin-left: 20px;
+}
+
+.sugestões ul {
+    font-size: 15px
+}
+
+.sugestões a {
+    color: #003366;
+}
+.sugestões{
+    text-align: center;    
+    margin-top: 10px;
+}
+
+.sugestões btn btn-info{
+    padding: 20px;
+}
+
+.pesquisar{    
+    font-weight: bold;  
+    text-align: center;
+
+}
+
+.telaPesquisa{
+    background-color: aliceblue;
+
+    position: relative;
+    margin: 0 auto;
+    width: 900px;
+}
+
+.imagem-est{    
+    margin-top: 20px;    
+    float: right;
+    background-color: #F5DCDC;
+    background: linear-gradient(#F5DCDC,#BEBEF4);
+}
+
+#espaço-busca{
+    background-color: #d1ecf1;
+    text-indent: -9999px;
+}
+li {
+    list-style-type: none;  
+    display: inline-table;
+   min-width:  250px;
+   padding: auto;
+}
+.titulo-pesquisa{
+    color: #34ce57;
+}
+.Baixo{
+    background-color: green;
+}
+.quaseBaixo{
+    background-color: springgreen;
+}
+.Medio{
+    background-color: greenyellow;
+}
+.Moderado{
+    background-color: yellow;
+}
+.quaseMaximo{
+    background-color: orange;
+}
+.maximo{
+    background-color: red;
+}

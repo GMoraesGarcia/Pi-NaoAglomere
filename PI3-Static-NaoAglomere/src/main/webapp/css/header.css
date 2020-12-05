@@ -1,0 +1,40 @@
+header {    
+    margin: 0 auto;    
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Noto Sans JP', sans-serif;
+ 
+}
+.menu-opcoes ul li {
+    display: inline; /*reoordena cadas topico da lista horizontalmente*/
+    margin-left: 50px;
+}
+
+.menu-opcoes ul {
+    font-size: 15px;    
+}
+
+.menu-opcoes a {
+    color: black;
+    text-decoration: none;
+    
+}
+.menu-opcoes a:hover{
+    transition: all 0.5s;
+    transform: scale(1.1);
+      box-shadow: 0 0 5px #333;
+    
+    
+}
+.menu-opcoes{    
+    text-align: right;   
+    padding: 5px;
+    
+}
+body{
+    background: linear-gradient(#98FB98,white, white,white,#98FB98);
+ 
+    
+}
+
