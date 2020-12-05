@@ -1,7 +1,7 @@
 package Pesquisa;
 
 import Cad_Empresa.Cad_Empresa_dados;
-import ConexãoBD.Connection_db2;
+import ConexãoBD.ConnectionAzureMysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +26,7 @@ public class PesquisaDao {
 
         String sql = "SELECT NOME_EMPRESA, EMAIL, DESCRICAO, TELEFONE, QTD_MAX, RUA, BAIRRO, NUMERO, REGRAS, AGENDAMENTO, ID_empresa,FOTO FROM EMPRESA where DESCRICAO LIKE '%" + pesquisa + "%' OR NOME_EMPRESA LIKE '%" + pesquisa + "%'";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {// enquanto tiver empresas adiciona no array
@@ -81,7 +81,7 @@ public class PesquisaDao {
     public int getQtdAgendamentos(String IdEmpresa) throws SQLException {
         String sql = "call Sp_Qtd_Agend (CURRENT_DATE,?)";
 
-        try (Connection conn = Connection_db2.obterConexao();
+        try (Connection conn = ConnectionAzureMysql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, IdEmpresa);

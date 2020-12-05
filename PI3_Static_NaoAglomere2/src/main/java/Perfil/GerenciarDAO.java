@@ -1,7 +1,7 @@
 package Perfil;
 
 import Cad_Empresa.Cad_Empresa_dados;
-import ConexãoBD.Connection_db2;
+import ConexãoBD.ConnectionAzureMysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +20,7 @@ public class GerenciarDAO {
 
         String sql = "call Sp_selectAgendUser(?)";
 
-        try (Connection conn = Connection_db2.obterConexao();
+        try (Connection conn = ConnectionAzureMysql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, cpf);
@@ -58,7 +58,7 @@ public class GerenciarDAO {
 
         String sql = "call Sp_selectAgentEmpresa(?)";
 
-        try (Connection conn = Connection_db2.obterConexao();
+        try (Connection conn = ConnectionAzureMysql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, cnpj);
@@ -91,7 +91,7 @@ public class GerenciarDAO {
 
         String sql = "DELETE FROM AGENDAMENTO WHERE NUM_AGENDAMENTO = ?";
 
-        try (Connection conn = Connection_db2.obterConexao();
+        try (Connection conn = ConnectionAzureMysql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, numAgendamento);
@@ -109,7 +109,7 @@ public class GerenciarDAO {
         ArrayList<Cad_Empresa_dados> codigosGerados = new ArrayList<>();
 
         String sql = "call sp_codigosUsuario(?)";
-        try (Connection conn = Connection_db2.obterConexao();
+        try (Connection conn = ConnectionAzureMysql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, cpf);

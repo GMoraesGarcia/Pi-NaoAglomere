@@ -15,7 +15,7 @@ public class CodigoDAO {
 
     public void inserirInfoCodigo(CodigoDados cod) throws SQLException {
         String sql = "insert into Codigos_Gerados (codigo, empresa_id, data_geracao,horario_geracao ) values(?,?, current_date(), current_time())";
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
@@ -38,7 +38,7 @@ public class CodigoDAO {
     public boolean isEmpty(int cod_empresa) throws SQLException {
         String sql = "select * from Codigos_Gerados where empresa_id =? ";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setInt(1, cod_empresa);
 
@@ -53,7 +53,7 @@ public class CodigoDAO {
 
     public boolean getAtualizacaoCodigo(int cod_empresa) throws SQLException {
         String sql = "select * from Codigos_Gerados where empresa_id =? and data_geracao < current_date();";
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             stmt.setInt(1, cod_empresa);
 
@@ -68,7 +68,7 @@ public class CodigoDAO {
 
     public void addCodigoUsuario(CodigoDados dados) throws SQLException {
         String sql = "insert into CodigosPorUsuario (codigo,usuario_id,data_gera,horario) values(?,?, current_date(),current_time());";
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
@@ -91,7 +91,7 @@ public class CodigoDAO {
     public String findCodigo(int id_Emp) throws SQLException {
         String sql = "select codigo from Codigos_Gerados where empresa_id =?  and data_geracao = current_date() ;";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setInt(1, id_Emp);
@@ -112,7 +112,7 @@ public class CodigoDAO {
         CodigoDados dados = new CodigoDados();
 
         String sql = "call sp_geraqtdPessoas (?)";
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             
             stmt.setInt(1, id_empresa);
@@ -132,7 +132,7 @@ public class CodigoDAO {
     public CodigoDados getQtdPessoas (LocalTime horario, int id_empresa) throws SQLException{
         CodigoDados dados = new CodigoDados();
         String sql = "call SP_qtd(?,?)";
-         try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+         try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
             
             stmt.setString(1, String.valueOf(horario));

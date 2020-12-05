@@ -14,7 +14,7 @@ public class EmpresaDao {
                 + "RUA, BAIRRO, NUMERO, REGRAS, TIPO_CADASTRO, AGENDAMENTO, FOTO  ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         //ConnectionUtilMySql
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
 
             conn.setAutoCommit(false);
 
@@ -51,7 +51,7 @@ public class EmpresaDao {
         String sql = "UPDATE EMPRESA SET NOME_EMPRESA = ?, EMAIL = ?, TELEFONE = ?, RUA = ?, NUMERO = ?, BAIRRO = ?,"
                 + "QTD_MAX = ?, REGRAS = ?, DESCRICAO = ?, AGENDAMENTO = ? WHERE CNPJ = ?";
 
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
 
             conn.setAutoCommit(false);
 
@@ -85,7 +85,7 @@ public class EmpresaDao {
 
         String sql = "UPDATE EMPRESA SET FOTO = ? WHERE CNPJ = ?";
 
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
 
             conn.setAutoCommit(false);
 
@@ -108,7 +108,7 @@ public class EmpresaDao {
     public void addHorarios(Cad_Empresa_dados empresaDados) throws SQLException {
         String sql = "insert into HorariosDisponiveis (id_empresa,horarios_disponiveis,Status_horarios) values (?,?,?);";
 
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
 
             conn.setAutoCommit(false);
 
@@ -136,7 +136,7 @@ public class EmpresaDao {
         String sql = "select ID_empresa from empresa order by ID_empresa  desc  limit 1;";
         int id = 0;
 
-        try (Connection conn = Connection_db2.obterConexao();) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao();) {
             try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
                 if (rs.next()) {
@@ -158,7 +158,7 @@ public class EmpresaDao {
 
         String sql = "SELECT ID_EMPRESA,NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO,FOTO FROM EMPRESA WHERE CNPJ = ?";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, cnpj);
@@ -193,7 +193,7 @@ public class EmpresaDao {
 
         String sql = "select Nome_Empresa from empresa where ID_empresa = ?";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, id);

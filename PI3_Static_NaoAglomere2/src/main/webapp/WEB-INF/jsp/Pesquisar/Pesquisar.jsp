@@ -67,7 +67,7 @@
                                                 </div>                                            
                                             </c:when>
                                             <c:otherwise>
-                                                <img class="imagem-est" src="C:/PI-FOTOS/avatar-padrao.jpg"width="300" height="200">                                                
+                                                <img class="imagem-est" src="${pageContext.request.contextPath}/img/avatar-padrao.jpg"width="300" height="200">                                                
                                             </c:otherwise>
                                         </c:choose>
 

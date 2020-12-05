@@ -2,7 +2,7 @@ package Login;
 
 import Cad_Empresa.Cad_Empresa_dados;
 import Cad_Usuario.Cad_Usuario;
-import ConexãoBD.Connection_db2;
+import ConexãoBD.ConnectionAzureMysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +22,7 @@ public class LoginDao {
 
         String sql = "SELECT EMAIL,SENHA,TIPO_CADASTRO FROM EMPRESA WHERE EMAIL=?";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, email);
@@ -42,7 +42,7 @@ public class LoginDao {
 
         sql = "SELECT EMAIL,SENHA,TIPO_CADASTRO FROM USUARIO WHERE EMAIL=?";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, email);
@@ -67,7 +67,7 @@ public class LoginDao {
         Cad_Usuario user = new Cad_Usuario();
         String sql = "select nome,cpf,email,data_nascimento,telefone from usuario where email=? and senha = ?";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, email);
@@ -93,7 +93,7 @@ public class LoginDao {
         Cad_Empresa_dados empresa = new Cad_Empresa_dados();
         String sql = "SELECT ID_EMPRESA,NOME_EMPRESA,CNPJ,EMAIL,DESCRICAO,TELEFONE,QTD_MAX,RUA,BAIRRO,NUMERO,REGRAS,AGENDAMENTO,FOTO FROM EMPRESA WHERE EMAIL=? AND SENHA=?";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, email);
@@ -129,7 +129,7 @@ public class LoginDao {
 
         String sql = "SELECT DISTINCT ID_EMPRESA,HORARIOS_DISPONIVEIS,STATUS_HORARIOS FROM HORARIOSDISPONIVEIS WHERE ID_EMPRESA = ? and status_horarios = 'Livre'";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setInt(1, id);

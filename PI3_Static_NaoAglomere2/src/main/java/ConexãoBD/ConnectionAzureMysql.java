@@ -24,13 +24,13 @@ public class ConnectionAzureMysql {
         }
 // 2) Abrir a conexão com banco rodando no Azure
         Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://static-naoaglomere-mysql.mysql.database.azure.com:3306/StaticDB?"
+                "jdbc:mysql://servidor-naoaglomere.mysql.database.azure.com:3306/staticdb?"
                 + "useUnicode=yes&"
                 + "characterEncoding=UTF-8&"
                 + "useTimezone=true&"
                 + "serverTimezone=UTC",
-                "USER-AZURE",
-                "SENHA_AZURE");
+                "static@servidor-naoaglomere.mysql.database.azure.com",
+                "josao@123");
         return conn;
     }
 }

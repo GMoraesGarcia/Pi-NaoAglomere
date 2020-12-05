@@ -5,7 +5,7 @@
  */
 package Agendamento;
 
-import ConexãoBD.Connection_db2;
+import ConexãoBD.ConnectionAzureMysql;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ public class AgendamentoDAO {
 
     public void addAgendamento(Agendamento agend) throws SQLException {
         String sql = "insert into agendamento (email,usuario_id,telefone,empresa_id,data_Agend,horario) values (?,?,?,?,?,?);";
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
             conn.setAutoCommit(false);
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, agend.getEmail());
@@ -44,7 +44,7 @@ public class AgendamentoDAO {
         Agendamento a = new Agendamento();
         String sql = "select id from usuario where email = ?";
 
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, emailUser);

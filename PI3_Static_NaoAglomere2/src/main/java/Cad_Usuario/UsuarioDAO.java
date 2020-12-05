@@ -19,7 +19,7 @@ public class UsuarioDAO {
 
     public void addNovoUsuario(Cad_Usuario user) throws SQLException {
         String sql = "INSERT INTO usuario (nome,cpf,email,data_nascimento,telefone,senha,tipo_cadastro) values(?,?,?,?,?,?,?);";
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
@@ -48,7 +48,7 @@ public class UsuarioDAO {
 
     public void Update(Cad_Usuario user) throws SQLException {
         String sql = "update usuario set nome =?, email = ?,data_nascimento=?,telefone = ? where cpf = ?";
-        try (Connection conn = Connection_db2.obterConexao()) {
+        try (Connection conn = ConnectionAzureMysql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
@@ -76,7 +76,7 @@ public class UsuarioDAO {
     public int findByCPF(String cpf) throws SQLException {
         int id = 0;
         String sql = "select id from usuario where cpf =?";
-        try (Connection conn = Connection_db2.obterConexao(); // abre e fecha a conexão
+        try (Connection conn = ConnectionAzureMysql.obterConexao(); // abre e fecha a conexão
                 PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setString(1, cpf);
