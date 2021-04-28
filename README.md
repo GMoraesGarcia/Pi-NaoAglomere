@@ -1,2 +1,4 @@
 # PI-Static
-Projeto Integrador com Programação Orientada a Objetos com o objetivo da criação de um CRUD.
+Projeto Integrador com Programação Orientada a Objetos, utilizando JSP e servlet
+
+Sistema pensado em ajudar as pessoas a não gerar aglomeração durante a época de isolamento
